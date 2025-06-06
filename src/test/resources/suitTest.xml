@@ -1,0 +1,15 @@
+<suite name="colsubcidio">
+    <test name="simulatorFreeCredit">
+        <classes>
+            <parameter name="url" value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>
+            <class name="execution.tests.SimulatorFreeCreditTest"/>
+        </classes>
+    </test>
+
+    <test name="simulatorQuotaCredit">
+        <classes>
+            <parameter name="url" value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate" />
+            <class name="execution.tests.SimulatorQuotaCreditTest"/>
+        </classes>
+    </test>
+</suite>

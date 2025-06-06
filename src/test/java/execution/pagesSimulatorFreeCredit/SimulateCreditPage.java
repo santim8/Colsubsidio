@@ -8,7 +8,6 @@ import utils.basePage.BasePage;
 
 public class SimulateCreditPage extends BasePage {
 
-
     @FindBy(xpath = "//p[text()='Simula tu crédito']")
     private WebElement title;
 
