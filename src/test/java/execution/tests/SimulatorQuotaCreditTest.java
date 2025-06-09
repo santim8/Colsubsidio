@@ -28,8 +28,8 @@ public class SimulatorQuotaCreditTest extends BaseTest {
         wait.until(ExpectedConditions.visibilityOf(simulatorFreeCreditStep2.webElementTitle()));
         softAssert.assertEquals(simulatorFreeCreditStep2.getTitle(), "Comencemos");
 
-        simulatorFreeCreditStep2.enterQuantity("7");
-        simulatorFreeCreditStep2.enterAmount("10000000");
+        simulatorFreeCreditStep2.enterQuantity(EnumSimulatorQuota.AMOUNT_QUOTA.getValue());
+        simulatorFreeCreditStep2.enterAmount(EnumSimulatorQuota.QUANTITY_QUOTA.getValue());
         wait.until(ExpectedConditions.visibilityOf(simulatorFreeCreditStep2.getButtonContinuar()));
         simulatorFreeCreditStep2.clickOnButtonContinuar();
 
@@ -56,6 +56,8 @@ public class SimulatorQuotaCreditTest extends BaseTest {
 
         String percentage = simulatorQuotaCreditStep3.getPercentageElement();
         String percentage2 = simulatorQuotaCreditStep3.getPercentageElementTasaNominal();
+
+        softAssert.assertTrue(simulatorQuotaCreditStep3.getTextXpathNodeP(EnumSimulatorQuota.AMOUNT_QUOTA.getValue()+ " meses"));
 
         System.out.println("Percentage Element: " + percentage);  // This prints the value
         System.out.println("Percentage Element: " + percentage2);

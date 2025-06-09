@@ -1,5 +1,6 @@
 package execution.pagesSimulatorFreeCredit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -105,5 +106,15 @@ public class SimulatorFreeCreditStep3 extends BasePage {
     public String getPercentageElementTasaNominal() {
         wait.until(ExpectedConditions.visibilityOf(percentageElementTasaNominal));
         return percentageElementTasaNominal.getText();
+    }
+
+    public Boolean getTextXpathNodeP(String text) {
+        String xpath = "//p[text()='" + text+"']";
+        try {
+            WebElement webElement = driver.findElement(By.xpath(xpath));
+            return webElement.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
