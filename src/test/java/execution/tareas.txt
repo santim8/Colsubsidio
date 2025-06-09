@@ -1,0 +1,4 @@
+**************
+comparar el precio de un millon
+poner logs
+hacer conexion con API

@@ -2,7 +2,9 @@ package execution.enums;
 
 public enum EnumSimulatorQuota {
     TASA_EFECTIVA_ANUAL("22.99%"),
-    TASA_NOMINAL_MV("1.74%");
+    TASA_NOMINAL_MV("1.74%"),
+    AMOUNT_QUOTA("10000000"),
+    QUANTITY_QUOTA("7");
 
     private final String value;
 
