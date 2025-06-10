@@ -6,63 +6,85 @@ import execution.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep2;
 import execution.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep3;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import utils.baseTest.BaseTest;
 
 public class SimulatorQuotaCreditTest extends BaseTest {
 
+    private SimulateQuotaCredit simulateQuotaCredit;
+    private SimulatorQuotaCreditStep2 simulatorFreeCreditStep2;
+    private SimulatorQuotaCreditStep3 simulatorQuotaCreditStep3;
+    private SoftAssert softAssert;
+
+    @BeforeMethod
+    public void setUp() {
+        simulateQuotaCredit = new SimulateQuotaCredit(driver);
+        simulatorFreeCreditStep2 = new SimulatorQuotaCreditStep2(driver);
+        simulatorQuotaCreditStep3 = new SimulatorQuotaCreditStep3(driver);
+        softAssert = new SoftAssert();
+    }
+
     @Test
     public void testSimulatorQuotaCredit() {
-        SoftAssert softAssert = new SoftAssert();
 
-        SimulateQuotaCredit simulateQuotaCredit = new SimulateQuotaCredit(driver);
-        softAssert.assertEquals(simulateQuotaCredit.getTitle(), "Simula tu compra");
-        softAssert.assertEquals(simulateQuotaCredit.getDescription(), "Explora diferentes formas de pagar tu compra a cuotas. Recuerda que para solicitar nuestros productos debes ser afiliado.");
+        //Validate elements on the first screen
+        validateElementsScreen1();
 
-        simulateQuotaCredit.setInputRegistrationNumber("1234567890");
-        simulateQuotaCredit.markCheckboxTermsAndConditions();
-        simulateQuotaCredit.clickContinueButton();
+        //Validate elements on the second screen
+        simulateQuotaCredit
+                .setInputRegistrationNumber("1234567890")
+                .markCheckboxTermsAndConditions()
+                .clickOnContinueButton();
+        validateElementsScreen2();
 
-        SimulatorQuotaCreditStep2 simulatorFreeCreditStep2 = new SimulatorQuotaCreditStep2(driver);
-        wait.until(ExpectedConditions.visibilityOf(simulatorFreeCreditStep2.webElementTitle()));
-        softAssert.assertEquals(simulatorFreeCreditStep2.getTitle(), "Comencemos");
+        simulatorFreeCreditStep2
+                .enterAmount(EnumSimulatorQuota.AMOUNT_QUOTA.getValue())
+                .enterQuantity(EnumSimulatorQuota.QUANTITY_QUOTA.getValue())
+                .clickOnButtonContinuar();
 
-        simulatorFreeCreditStep2.enterQuantity(EnumSimulatorQuota.AMOUNT_QUOTA.getValue());
-        simulatorFreeCreditStep2.enterAmount(EnumSimulatorQuota.QUANTITY_QUOTA.getValue());
-        wait.until(ExpectedConditions.visibilityOf(simulatorFreeCreditStep2.getButtonContinuar()));
-        simulatorFreeCreditStep2.clickOnButtonContinuar();
+        //Validate elements on the second screen
+        validateElementsScreen3();
+        softAssert.assertAll();
+    }
 
-        SimulatorQuotaCreditStep3 simulatorQuotaCreditStep3 = new SimulatorQuotaCreditStep3(driver);
-        wait.until(ExpectedConditions.visibilityOf(simulatorQuotaCreditStep3.getWebElementTitle()));
+    private void validateElementsScreen3() {
         softAssert.assertEquals(simulatorQuotaCreditStep3.getTitle(), "Resultado de tu simulación");
-        Assert.assertEquals(simulatorQuotaCreditStep3.getDescription(), "Cuota Mensual");
+        softAssert.assertEquals(simulatorQuotaCreditStep3.getDescription(), "Cuota Mensual");
+        softAssert.assertEquals(simulatorQuotaCreditStep3.getTextValorCompra(), "Valor de la compra");
+        softAssert.assertEquals(simulatorQuotaCreditStep3.getTextNumeroCuotas(), "Número de cuotas");
+        softAssert.assertEquals(simulatorQuotaCreditStep3.getSummaryText(), "Resumen de tu producto");
+
 
         simulatorQuotaCreditStep3.clickOnLinkTasaEfectivaAnual();
         softAssert.assertEquals(simulatorQuotaCreditStep3.getTextModalTasaAnual(), "Es el precio que se pacta entre Colsubsidio y sus afiliados por un préstamo. Las tasas son el resultado de un porcentaje basado en el producto y el plazo, y se abona mensualmente como parte de la cuota acordada.");
-        simulatorQuotaCreditStep3.clickOnButtonEntendido();
 
-        simulatorQuotaCreditStep3.clickOnLinkTasaNominal();
+        simulatorQuotaCreditStep3
+                .clickOnButtonEntendido()
+                .clickOnLinkTasaNominal();
+
         softAssert.assertEquals(simulatorQuotaCreditStep3.getTextModalTasaNominal(), "Es el precio que se pacta entre Colsubsidio y sus afiliados por un préstamo. Las tasas son el resultado de un porcentaje basado en el producto y el plazo, y se abona mensualmente como parte de la cuota acordada.");
-        simulatorQuotaCreditStep3.clickOnButtonEntendido();
+        simulatorQuotaCreditStep3
+                .clickOnButtonEntendido()
+                .clickOnLinkSeguros();
 
-
-        simulatorQuotaCreditStep3.clickOnLinkSeguros();
         softAssert.assertEquals(simulatorQuotaCreditStep3.getTextModalSeguros(), "Es un respaldo financiero que cubre pérdidas inesperadas en áreas como vida, salud, o patrimonio, ayudando a pagar parte o la totalidad de los gastos asociados.");
         simulatorQuotaCreditStep3.clickOnButtonEntendido();
-
         softAssert.assertEquals(simulatorQuotaCreditStep3.getPercentageElement(), EnumSimulatorQuota.TASA_EFECTIVA_ANUAL.getValue());
         softAssert.assertEquals(simulatorQuotaCreditStep3.getPercentageElementTasaNominal(), EnumSimulatorQuota.TASA_NOMINAL_MV.getValue());
+        softAssert.assertTrue(simulatorQuotaCreditStep3.getTextXpathNodeP(EnumSimulatorQuota.AMOUNT_QUOTA.getValue() + " meses"));
+    }
 
-        String percentage = simulatorQuotaCreditStep3.getPercentageElement();
-        String percentage2 = simulatorQuotaCreditStep3.getPercentageElementTasaNominal();
+    private void validateElementsScreen1() {
+        softAssert.assertEquals(simulateQuotaCredit.getTitle(), "Simula tu compra");
+        softAssert.assertEquals(simulateQuotaCredit.getDescription(), "Explora diferentes formas de pagar tu compra a cuotas. Recuerda que para solicitar nuestros productos debes ser afiliado.");
+    }
 
-        softAssert.assertTrue(simulatorQuotaCreditStep3.getTextXpathNodeP(EnumSimulatorQuota.AMOUNT_QUOTA.getValue()+ " meses"));
-
-        System.out.println("Percentage Element: " + percentage);  // This prints the value
-        System.out.println("Percentage Element: " + percentage2);
-        softAssert.assertAll();
-
-
+    private void validateElementsScreen2() {
+        softAssert.assertEquals(simulatorFreeCreditStep2.getTitle(), "Comencemos");
+        softAssert.assertEquals(simulatorFreeCreditStep2.getInputAmountLabel(), "¿De cuánto es la compra?");
+        softAssert.assertEquals(simulatorFreeCreditStep2.getInputQuantityLabel(), "¿A cuántas cuotas quieres pagar?");
+        softAssert.assertEquals(simulatorFreeCreditStep2.getRestrictionText().getText(), "Los datos suministrados son aproximados. Esto no garantiza la aprobación del crédito.");
     }
 }

@@ -15,17 +15,17 @@ public class BaseTest {
     protected WebDriverWait wait;
 
     @BeforeMethod
-    @Parameters("url")
-    public void beforeMethod(String url) {
+    public void beforeMethod() {
         this.driver = new SetDriver().getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         driver.manage().window().maximize();
-        driver.get(url);
-        driver.get("https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding");
+/*        driver.get(url);*/
+        driver.get("https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate");
     }
 
     @AfterMethod
     public void afterMethod() {
-        this.driver.close();
+
+//        this.driver.close();
     }
 }
