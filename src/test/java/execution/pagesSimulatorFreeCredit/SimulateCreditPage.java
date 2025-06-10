@@ -34,17 +34,30 @@ public class SimulateCreditPage extends BasePage {
 
     public String getDescription() {return description.getText();}
 
-    public void setInputRegistrationNumber(String registrationNumber) {
+    public SimulateCreditPage setInputRegistrationNumber(String registrationNumber) {
         inputRegistrationNumber.sendKeys(registrationNumber);
+        return this;
     }
 
-    public void markCheckboxTermsAndConditions() {
+   /* public void markCheckboxTermsAndConditions() {
         if (!checkboxTermsAndConditions.isSelected()) {
             checkboxTermsAndConditions.click();
         }
+    }*/
+
+    public SimulateCreditPage markCheckboxTermsAndConditions() {
+        if (!checkboxTermsAndConditions.isSelected()) {
+            checkboxTermsAndConditions.click();
+        }
+        return this;
     }
 
-    public void clickContinueButton() {
+    /*public void clickContinueButton() {
         continueButton.click();
+    }*/
+
+    public SimulateCreditPage clickOnContinueButton() {
+        continueButton.click();
+        return this;
     }
 }

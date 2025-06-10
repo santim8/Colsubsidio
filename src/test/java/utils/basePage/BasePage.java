@@ -23,6 +23,9 @@ public class BasePage {
     @FindBy(id = "proceed-link")
     private WebElement proceedLink;
 
+    @FindBy(xpath = "//p[contains(text(),'Los datos suministrados son aproximados')]")
+    private WebElement restrictionText;
+
     protected WebDriver driver;
     protected WebDriverWait wait;
 
@@ -51,19 +54,39 @@ public class BasePage {
         System.out.println("Wait: " + basePage.getWait());
     }
     //
+/*
     public void clickOnSelectCupo() {
         selectCupoCredito.click();
+    }
+*/
+
+    public BasePage clickOnSelectCupo() {
+        selectCupoCredito.click();
+        return this; // Return the current instance for method chaining
     }
 
     public WebElement getCupoDeCreditoText() {
         return cupoDeCreditoText;
     }
 
-    public void clickDetailsButton() {
+/*    public void clickDetailsButton() {
         detailsButton.click();
+    }*/
+
+    public BasePage clickDetailsButton() {
+        detailsButton.click();
+        return this; // Return the current instance for method chaining
     }
 
-    public void clickOnProceedLink(){
+  /*  public void clickOnProceedLink(){
         proceedLink.click();
+    }*/
+    public BasePage clickOnProceedLink() {
+        proceedLink.click();
+        return this; // Return the current instance for method chaining
+    }
+
+    public WebElement getRestrictionText() {
+        return restrictionText;
     }
 }
