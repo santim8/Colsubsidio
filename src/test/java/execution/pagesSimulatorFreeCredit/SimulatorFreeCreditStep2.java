@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.basePage.BasePage;
 
+import javax.xml.xpath.XPath;
+
 public class SimulatorFreeCreditStep2 extends BasePage {
 
     @FindBy(xpath = "//p[contains(text(), 'Comencemos')]")
@@ -24,6 +26,9 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     @FindBy(id = ":r3:")
     private WebElement inputQuantity;
 
+    @FindBy(id = ":r4:")
+    private WebElement inputAmountQuota;
+
     @FindBy(xpath = "//button[.//span[contains(text(), 'Continuar')]]")
     private WebElement buttonContinuar;
 
@@ -33,15 +38,14 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     @FindBy(id = ":r3:-label")
     private WebElement inputQuantityLabel;
 
+    @FindBy(xpath = "//button[.//p[contains(text(), 'Valor')]]")
+    private WebElement buttonValor;
+
     public SimulatorFreeCreditStep2(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    /*public String getAmountLabel() {
-        wait.until(ExpectedConditions.visibilityOf(amountLabel));
-        return amountLabel.getText();
-    }*/
 
     public String getTitle() {
         wait.until(ExpectedConditions.visibilityOf(title));
@@ -58,7 +62,7 @@ public class SimulatorFreeCreditStep2 extends BasePage {
         return this;
     }
 
-    public SimulatorFreeCreditStep2 enterAmount(String amount){
+    public SimulatorFreeCreditStep2 enterAmount(String amount) {
         wait.until(ExpectedConditions.visibilityOf(inputAmount));
         inputAmount.sendKeys(amount);
         return this;
@@ -87,7 +91,7 @@ public class SimulatorFreeCreditStep2 extends BasePage {
         return inputQuantityLabel.getText();
     }
 
-    public WebElement webElementTitle(){
+    public WebElement webElementTitle() {
         wait.until(ExpectedConditions.visibilityOf(title));
         return title;
     }
@@ -104,5 +108,19 @@ public class SimulatorFreeCreditStep2 extends BasePage {
 
     public WebElement getAmountLabel() {
         return amountLabel;
+    }
+
+    public SimulatorFreeCreditStep2 enterInputAmountQuota(String amountQuota) {
+        wait.until(ExpectedConditions.visibilityOf(inputAmountQuota));
+        inputAmountQuota.sendKeys(amountQuota);
+        return this;
+    }
+
+    public SimulatorFreeCreditStep2 clickButtonValor() {
+        wait.until(ExpectedConditions.visibilityOf(buttonValor));
+        if (buttonValor.isEnabled()) {
+            buttonValor.click();
+        }
+        return this;
     }
 }

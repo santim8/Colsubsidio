@@ -47,46 +47,32 @@ public class BasePage {
     }
 
     public static void main(String [] args) {
-        // Example usage
         WebDriver driver = new SetDriver().getDriver();
         BasePage basePage = new BasePage(driver);
         System.out.println("Driver: " + basePage.getDriver());
         System.out.println("Wait: " + basePage.getWait());
     }
-    //
-/*
-    public void clickOnSelectCupo() {
-        selectCupoCredito.click();
-    }
-*/
 
     public BasePage clickOnSelectCupo() {
         selectCupoCredito.click();
-        return this; // Return the current instance for method chaining
+        return this;
     }
 
     public WebElement getCupoDeCreditoText() {
         return cupoDeCreditoText;
     }
 
-/*    public void clickDetailsButton() {
-        detailsButton.click();
-    }*/
-
     public BasePage clickDetailsButton() {
         detailsButton.click();
-        return this; // Return the current instance for method chaining
+        return this;
     }
 
-  /*  public void clickOnProceedLink(){
-        proceedLink.click();
-    }*/
     public BasePage clickOnProceedLink() {
         proceedLink.click();
-        return this; // Return the current instance for method chaining
+        return this;
     }
 
-    public WebElement getRestrictionText() {
+    public WebElement getRestriction() {
         return restrictionText;
     }
 }

@@ -15,12 +15,15 @@ public class BaseTest {
     protected WebDriverWait wait;
 
     @BeforeMethod
-    public void beforeMethod() {
+    @Parameters({"url"})
+    public void beforeMethod(String url) {
         this.driver = new SetDriver().getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(100));
         driver.manage().window().maximize();
-/*        driver.get(url);*/
+        driver.get(url);
+/*
         driver.get("https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate");
+*/
     }
 
     @AfterMethod
