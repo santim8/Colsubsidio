@@ -1,10 +1,11 @@
-package execution.pagesQuotaCredit;
+package execution.pages.pagesQuotaCredit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.basePage.BasePage;
+
 
 public class SolicitudCreditoOnboarding2 extends BasePage {
 

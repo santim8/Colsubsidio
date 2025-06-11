@@ -1,4 +1,4 @@
-package execution.pagesQuotaCredit;
+package execution.pages.pagesQuotaCredit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,12 +19,14 @@ public class Login extends BasePage {
         PageFactory.initElements(this.driver, this);
     }
 
-    public void enterIdentification(String identificationNumber){
+    public Login enterIdentification(String identificationNumber){
         inputIdentification.sendKeys(identificationNumber);
+        return this;
     }
 
-    public void enterPassword(String password){
+    public Login enterPassword(String password){
         inputPassword.sendKeys(password);
+        return this;
     }
 
 }

@@ -1,4 +1,4 @@
-package execution.pagesQuotaCredit;
+package execution.pages.pagesQuotaCredit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

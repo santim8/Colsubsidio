@@ -1,6 +1,6 @@
-package execution.pagesSimulatorQuotaCredit;
+package execution.pages.pagesSimulatorQuotaCredit;
 
-import execution.pagesSimulatorFreeCredit.SimulatorFreeCreditStep2;
+import execution.pages.pagesSimulatorFreeCredit.SimulatorFreeCreditStep2;
 import org.openqa.selenium.WebDriver;
 
 public class SimulatorQuotaCreditStep2 extends SimulatorFreeCreditStep2 {

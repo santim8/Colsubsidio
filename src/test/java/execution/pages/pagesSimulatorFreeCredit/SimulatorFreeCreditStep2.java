@@ -1,4 +1,4 @@
-package execution.pagesSimulatorFreeCredit;
+package execution.pages.pagesSimulatorFreeCredit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,8 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.basePage.BasePage;
-
-import javax.xml.xpath.XPath;
 
 public class SimulatorFreeCreditStep2 extends BasePage {
 

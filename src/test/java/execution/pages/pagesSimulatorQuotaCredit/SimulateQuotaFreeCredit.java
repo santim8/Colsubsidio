@@ -1,12 +1,12 @@
-package execution.pagesSimulatorQuotaCredit;
+package execution.pages.pagesSimulatorQuotaCredit;
 
-import execution.pagesSimulatorFreeCredit.SimulateCreditPage;
+import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class SimulateQuotaCredit extends SimulateCreditPage {
+public class SimulateQuotaFreeCredit extends SimulateFreeCreditPage {
 
     @FindBy(xpath = "//p[contains(text(), 'Simula tu compra')]")
     private WebElement title;
@@ -21,11 +21,12 @@ public class SimulateQuotaCredit extends SimulateCreditPage {
     @FindBy(id = ":r1:-label")
     private WebElement documentNumber;
 
-    public SimulateQuotaCredit(WebDriver driver) {
+    public SimulateQuotaFreeCredit(WebDriver driver) {
         super(driver);
     }
 
     public String getDescription() {
+        wait.until(ExpectedConditions.visibilityOf(title));
         return description.getText();
     }
 
@@ -40,5 +41,8 @@ public class SimulateQuotaCredit extends SimulateCreditPage {
         return documentNumber;
     }
 
-    public String getTitle() { return title.getText();}
+    public String getTitle() {
+        wait.until(ExpectedConditions.visibilityOf(title));
+        return title.getText();
+    }
 }

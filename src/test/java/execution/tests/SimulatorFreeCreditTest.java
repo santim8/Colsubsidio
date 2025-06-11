@@ -1,12 +1,9 @@
 package execution.tests;
 
 import execution.enums.EnumSimulatorQuota;
-import execution.enums.EnumsRouteFlows;
-import execution.enums.EnumsSimulatorFreeCredit;
-import execution.pagesSimulatorFreeCredit.SimulateCreditPage;
-import execution.pagesSimulatorFreeCredit.SimulatorFreeCreditStep2;
-import execution.pagesSimulatorFreeCredit.SimulatorFreeCreditStep3;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
+import execution.pages.pagesSimulatorFreeCredit.SimulatorFreeCreditStep2;
+import execution.pages.pagesSimulatorFreeCredit.SimulatorFreeCreditStep3;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,7 +12,7 @@ import utils.basePage.BasePage;
 import utils.baseTest.BaseTest;
 
 public class SimulatorFreeCreditTest extends BaseTest {
-    private SimulateCreditPage simulateCreditPage;
+    private SimulateFreeCreditPage simulateFreeCreditPage;
     private SimulatorFreeCreditStep2 simulatorFreeCreditStep2;
     private SimulatorFreeCreditStep3 simulatorFreeCreditStep3;
     private SoftAssert softAssert;
@@ -25,7 +22,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
     public void setUp() {
         softAssert = new SoftAssert();
         basePage = new BasePage(driver);
-        simulateCreditPage = new SimulateCreditPage(driver);
+        simulateFreeCreditPage = new SimulateFreeCreditPage(driver);
         simulatorFreeCreditStep2 = new SimulatorFreeCreditStep2(driver);
         simulatorFreeCreditStep3 = new SimulatorFreeCreditStep3(driver);
     }
@@ -39,7 +36,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
         validateElementsScreen1();
 
         //Validate elements on the second screen
-        simulateCreditPage
+        simulateFreeCreditPage
                 .setInputRegistrationNumber("1234567890")
                 .markCheckboxTermsAndConditions()
                 .clickOnContinueButton();
@@ -59,8 +56,8 @@ public class SimulatorFreeCreditTest extends BaseTest {
     }
 
     public void validateElementsScreen1(){
-        Assert.assertEquals(simulateCreditPage.getTitle(), "Simula tu crédito");
-        Assert.assertEquals(simulateCreditPage.getDescription(), "Explora diferentes formas de pagar tu crédito a cuotas. Recuerda que para solicitar nuestros productos debes ser afiliado.");
+        Assert.assertEquals(simulateFreeCreditPage.getTitle(), "Simula tu crédito");
+        Assert.assertEquals(simulateFreeCreditPage.getDescription(), "Explora diferentes formas de pagar tu crédito a cuotas. Recuerda que para solicitar nuestros productos debes ser afiliado.");
     }
 
 

@@ -1,4 +1,4 @@
-package execution.pagesSimulatorFreeCredit;
+package execution.pages.pagesSimulatorFreeCredit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
