@@ -2,3 +2,14 @@
 comparar el precio de un millon
 poner logs
 hacer conexion con API
+verificar public, private, variables
+
+
+se pone text o clik o como se hace buenas pracitcaS?
+-continue button should be in the basepage
+-test it when is responsive
+
+////////////////
+-bloquear notificaciones
+-crear test cases para reporte
+-probar con todos los flujos

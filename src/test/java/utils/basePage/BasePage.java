@@ -1,10 +1,14 @@
 package utils.basePage;
+
+import com.aventstack.extentreports.Status;
+import execution.enums.WaitStrategy;
+import execution.repositories.ExplicitWaitFactory;
+import execution.repositories.ReportImplementation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.SetDriver;
 
 import java.time.Duration;
 
@@ -29,31 +33,13 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage() {
-    }
-
-    public WebDriverWait getWait() {
-        return wait;
-    }
-
-    public WebDriver getDriver() {
-        return driver;
-    }
-
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
     }
 
-    public static void main(String [] args) {
-        WebDriver driver = new SetDriver().getDriver();
-        BasePage basePage = new BasePage(driver);
-        System.out.println("Driver: " + basePage.getDriver());
-        System.out.println("Wait: " + basePage.getWait());
-    }
-
-    public BasePage clickOnSelectCupo() {
+    protected BasePage clickOnSelectCupo() {
         selectCupoCredito.click();
         return this;
     }
@@ -63,16 +49,26 @@ public class BasePage {
     }
 
     public BasePage clickDetailsButton() {
-        detailsButton.click();
+        click(detailsButton, WaitStrategy.CLICKABLE, "Details_Button");
         return this;
     }
 
     public BasePage clickOnProceedLink() {
-        proceedLink.click();
+        click(proceedLink, WaitStrategy.CLICKABLE, "Open_link_Button");
         return this;
     }
 
     public WebElement getRestriction() {
         return restrictionText;
+    }
+
+    protected void click(WebElement element, WaitStrategy waitStrategy, String elementName) {
+        ReportImplementation.sendLog(Status.PASS, elementName + " is clicked");
+        ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
+    }
+
+    protected void sendKeys(WebElement element, WaitStrategy waitStrategy, String data) {
+        ReportImplementation.sendLog(Status.PASS, "the data " + data + "+ is sent to the element");
+        ExplicitWaitFactory.performExplicitWait(waitStrategy, element).sendKeys(data);
     }
 }

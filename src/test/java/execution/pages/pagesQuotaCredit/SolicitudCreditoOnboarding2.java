@@ -9,8 +9,6 @@ import utils.basePage.BasePage;
 
 public class SolicitudCreditoOnboarding2 extends BasePage {
 
-    private WebDriver driver;
-
     @FindBy(xpath = "//button[.//p[text()='Siguiente']]")
     private WebElement nextButton;
 
@@ -19,7 +17,7 @@ public class SolicitudCreditoOnboarding2 extends BasePage {
 
 
     public SolicitudCreditoOnboarding2(WebDriver driver)  {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 

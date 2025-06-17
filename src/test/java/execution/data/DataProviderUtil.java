@@ -8,9 +8,12 @@ public class DataProviderUtil {
     public static Object[][] fillTheCheckoutStepOne() {
         return new Object[][]{
                 {
-                        "Santiago",
-                        "Correa",
-                        "23114"
+                        "1023013419",
+                        "Colsubsidio2025."
+                },
+                {
+                        "1023013504",
+                        "Colsubsidio2025."
                 }
         };
     }

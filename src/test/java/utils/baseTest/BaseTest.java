@@ -1,32 +1,34 @@
 package utils.baseTest;
 
+import execution.driver.Driver;
+import execution.driver.DriverManager;
+import execution.repositories.ReportImplementation;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import utils.SetDriver;
 
-import java.time.Duration;
 
-public class BaseTest {
+public class BaseTest  {
     protected WebDriver driver;
-    protected WebDriverWait wait;
     protected String url;
 
     @BeforeMethod
     @Parameters({"url"})
     public void beforeMethod(String url) {
-        this.url = url;
-        this.driver = new SetDriver().getDriver();
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+
+        Driver.initDriver("chrome", url);
+        ReportImplementation.initialize();
+        ReportImplementation.setTest("Test_url");
+        this.driver = DriverManager.getDriver();
+
+
+    /*    this.url = url;
+        this.driver = new ManageDriver().getDriver();
         driver.manage().window().maximize();
-        driver.get(url);
-/*
-        driver.get("https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate");
-*/
+        driver.get(url);*/
     }
 
     @AfterMethod
     public void afterMethod() {
-       /* this.driver.close();*/
+        Driver.quitDriver();
     }
 }
