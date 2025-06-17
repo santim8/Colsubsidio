@@ -1,4 +1,4 @@
-package execution.pagesSimulatorFreeCredit;
+package execution.pages.pagesSimulatorFreeCredit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.basePage.BasePage;
 
-public class SimulateCreditPage extends BasePage {
+public class SimulateFreeCreditPage extends BasePage {
 
     @FindBy(xpath = "//p[text()='Simula tu crédito']")
     private WebElement title;
@@ -23,7 +23,7 @@ public class SimulateCreditPage extends BasePage {
     @FindBy(xpath = "//button[.//p[text()='Continuar']]")
     private WebElement continueButton;
 
-    public SimulateCreditPage(WebDriver driver) {
+    public SimulateFreeCreditPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -34,7 +34,7 @@ public class SimulateCreditPage extends BasePage {
 
     public String getDescription() {return description.getText();}
 
-    public SimulateCreditPage setInputRegistrationNumber(String registrationNumber) {
+    public SimulateFreeCreditPage setInputRegistrationNumber(String registrationNumber) {
         inputRegistrationNumber.sendKeys(registrationNumber);
         return this;
     }
@@ -45,7 +45,7 @@ public class SimulateCreditPage extends BasePage {
         }
     }*/
 
-    public SimulateCreditPage markCheckboxTermsAndConditions() {
+    public SimulateFreeCreditPage markCheckboxTermsAndConditions() {
         if (!checkboxTermsAndConditions.isSelected()) {
             checkboxTermsAndConditions.click();
         }
@@ -56,7 +56,7 @@ public class SimulateCreditPage extends BasePage {
         continueButton.click();
     }*/
 
-    public SimulateCreditPage clickOnContinueButton() {
+    public SimulateFreeCreditPage clickOnContinueButton() {
         continueButton.click();
         return this;
     }

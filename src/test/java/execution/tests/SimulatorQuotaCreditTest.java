@@ -2,9 +2,9 @@ package execution.tests;
 
 import execution.enums.EnumSimulatorQuota;
 import execution.enums.EnumsRouteFlows;
-import execution.pagesSimulatorQuotaCredit.SimulateQuotaCredit;
-import execution.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep2;
-import execution.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep3;
+import execution.pages.pagesSimulatorQuotaCredit.SimulateQuotaFreeCredit;
+import execution.pages.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep2;
+import execution.pages.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep3;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -13,14 +13,15 @@ import utils.baseTest.BaseTest;
 
 public class SimulatorQuotaCreditTest extends BaseTest {
 
-    private SimulateQuotaCredit simulateQuotaCredit;
+    private SimulateQuotaFreeCredit simulateQuotaCredit;
     private SimulatorQuotaCreditStep2 simulatorFreeCreditStep2;
     private SimulatorQuotaCreditStep3 simulatorQuotaCreditStep3;
     private SoftAssert softAssert;
+    private String path;
 
     @BeforeMethod
     public void setUp() {
-        simulateQuotaCredit = new SimulateQuotaCredit(driver);
+        simulateQuotaCredit = new SimulateQuotaFreeCredit(driver);
         simulatorFreeCreditStep2 = new SimulatorQuotaCreditStep2(driver);
         simulatorQuotaCreditStep3 = new SimulatorQuotaCreditStep3(driver);
         softAssert = new SoftAssert();
@@ -29,9 +30,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
     @Test
     @Parameters("path")
     public void testSimulatorQuotaCredit(String path) {
-/*
-        String path = "optionNumberAmount";
-*/
+        this.path = path;
         //Validate elements on the first screen
         validateElementsScreen1();
 
@@ -40,6 +39,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
                 .setInputRegistrationNumber("1234567890")
                 .markCheckboxTermsAndConditions()
                 .clickOnContinueButton();
+
         validateElementsScreen2();
 
         simulatorFreeCreditStep2

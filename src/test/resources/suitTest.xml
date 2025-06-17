@@ -1,5 +1,5 @@
 <suite name="colsubcidio">
-    <test name="simulatorFreeCredit">
+   <!-- <test name="simulatorFreeCredit">
         <classes>
             <parameter name="url" value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>
             <class name="execution.tests.SimulatorFreeCreditTest"/>
@@ -19,6 +19,14 @@
             <parameter name="url" value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>
             <parameter name="path" value="optionNumberAmount"/>
             <class name="execution.tests.SimulatorQuotaCreditTest"/>
+        </classes>
+    </test>-->
+
+    <test name="requestQuotaCredit">
+        <classes>
+            <parameter name="url" value= "https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding"/>
+            <parameter name="path" value="optionNumberAmount"/>
+            <class name="execution.tests.RequestQuotaCreditTest"/>
         </classes>
     </test>
 
