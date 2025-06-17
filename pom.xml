@@ -35,12 +35,16 @@
         </dependency>
 
         <!-- RestAssured for API testing -->
-        <dependency>
+      <!--  <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest.assured.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.1</version>
         </dependency>
-
     </dependencies>
 
 </project>

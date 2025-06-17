@@ -1,5 +1,6 @@
 package execution.pages.pagesSimulatorFreeCredit;
 
+import execution.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -57,7 +58,7 @@ public class SimulateFreeCreditPage extends BasePage {
     }*/
 
     public SimulateFreeCreditPage clickOnContinueButton() {
-        continueButton.click();
+        click(continueButton, WaitStrategy.CLICKABLE, "Continue_button");
         return this;
     }
 }

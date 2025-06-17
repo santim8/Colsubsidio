@@ -1,4 +1,10 @@
 package execution.enums;
 
-public class WaitStrategy {
+public enum WaitStrategy {
+
+    CLICKABLE,
+    PRESENCE,
+    VISIBLE,
+    INVISIBLE,
+    NONE
 }

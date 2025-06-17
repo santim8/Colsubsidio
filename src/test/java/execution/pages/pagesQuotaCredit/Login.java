@@ -1,5 +1,6 @@
 package execution.pages.pagesQuotaCredit;
 
+import execution.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,12 +21,12 @@ public class Login extends BasePage {
     }
 
     public Login enterIdentification(String identificationNumber){
-        inputIdentification.sendKeys(identificationNumber);
+        sendKeys(inputIdentification, WaitStrategy.VISIBLE, identificationNumber);
         return this;
     }
 
     public Login enterPassword(String password){
-        inputPassword.sendKeys(password);
+        sendKeys(inputPassword, WaitStrategy.VISIBLE, password);
         return this;
     }
 

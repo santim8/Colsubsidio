@@ -11,11 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class SolicitudCupoCredito {
-/*    @FindBy(className = "MuiTypography-root MuiTypography-p css-1mno1l2")
-    private WebElement nextButton;*/
-/*
-    @FindBy(xpath = "//button[.//p[text()='Siguiente']]")
-*/
     @FindBy(xpath = "//button[.//p[text()='Siguiente']]")
     private WebElement nextButton;
 
@@ -24,9 +19,6 @@ public class SolicitudCupoCredito {
 
     @FindBy(xpath = "//p[text()='Cupo de Crédito en tu Tarjeta de Afiliación']")
     private WebElement cupoDeCreditoText;
-
- /*   @FindBy(className = "MuiTypography-root MuiTypography-p css-1lbiqbb")
-    private WebElement title;*/
     
     protected WebDriver driver;
     protected WebDriverWait wait;
