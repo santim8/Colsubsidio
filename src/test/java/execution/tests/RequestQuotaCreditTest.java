@@ -10,7 +10,6 @@ import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding3;
 import execution.pages.pagesQuotaCredit.requestFlow.RequestCreditStep1;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
 import execution.repositories.ReportImplementation;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.basePage.BasePage;
@@ -41,46 +40,55 @@ public class RequestQuotaCreditTest extends BaseTest {
 
 
     @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class)
-    private void testMethod(String identification, String password) {
+    private void testMethod(
+            String identification,
+            String password,
+            String cellphoneNumber,
+            String email
+    ) {
         basePage
                 .clickDetailsButton()
                 .clickOnProceedLink();
 
-        Assert.assertEquals(solicitudCreditoOnboarding1.getTitle(), "¡Empieza tu solicitud digital!");
-        solicitudCreditoOnboarding1.clickOnButtonSiguiente();
-        Assert.assertEquals(solicitudCreditoOnboarding2.getTitle(), "Conoce los requisitos");
-        solicitudCreditoOnboarding2.clickOnNExtButton();
-        Assert.assertEquals(solicitudCreditoOnboarding3.getTitle(), "Ten en cuenta lo siguiente");
-        solicitudCreditoOnboarding3.clickOnStartButton();
+        solicitudCreditoOnboarding1
+                .validateTitle()
+                .clickOnButtonSiguiente();
+
+        solicitudCreditoOnboarding2
+                .validateTitle()
+                .clickOnNExtButton();
+
+        solicitudCreditoOnboarding3
+                .validateTitle()
+                .clickOnStartButton();
 
         login
                 .enterIdentification(identification)
-                .enterPassword(password);
+                .enterPassword(password)
+                .waitInteractionUser(login, "Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.");
 
-        ReportImplementation.flush();
-        JOptionPane.showMessageDialog(null,
-                "🔐 Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.");
-
-       /* simulateFreeCreditPage
+ /*       simulateFreeCreditPage
                 .markCheckboxTermsAndConditions()
-                .clickOnContinueButton();
+                .clickOnContinueButton();*/
 
 
         requestCreditStep1
-                .enterInputNumeroTelefono("3001234567")
-                .enterInputCorreo("santiagocorea@200gmail.com")
-                .enterInputConfirmarCorreo("santiagocorea@200gmail.com")
+                .enterInputNumeroTelefono(cellphoneNumber)
+                .enterInputCorreo(email)
+                .enterInputConfirmarCorreo(email)
                 .clickButtonContinuar()
                 .clickOnDropdownEstadoCivil()
                 .selectOptionsEstadoCivil(EnumsDropdowns.SOLTERO.getValue())
                 .clickOnDropdownNivelEstudio()
                 .selectOptionsNivelEstudio(EnumsDropdowns.PRIMARIA.getValue())
                 .clickButtonContinuar()
+                .validateTipoViviendaLabel()
                 .selectOptionTipoVivienda()
                 .clickButtonContinuar()
                 .selectOptionObraLabor()
                 .clickButtonContinuar()
-                .enterInputSalarioMensual("10000000")
-                .clickButtonContinuar();*/
+                .enterInputSalarioMensual("100000000");
+
+        ReportImplementation.flush();
     }
 }

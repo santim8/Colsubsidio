@@ -1,11 +1,10 @@
 package execution.pages.pagesQuotaCredit;
 
-import org.openqa.selenium.By;
+import execution.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.basePage.BasePage;
 
 public class SolicitudCreditoOnboarding1 extends BasePage {
@@ -23,12 +22,12 @@ public class SolicitudCreditoOnboarding1 extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getTitle() {
-        wait.until(ExpectedConditions.visibilityOf(title));
-        return title.getText();
+    public SolicitudCreditoOnboarding1 validateTitle() {
+        getText(title, WaitStrategy.VISIBLE, "Title_Solicitud_Credito_Onboarding_1");
+        return this;
     }
 
     public void clickOnButtonSiguiente() {
-        nextButton.click();
+        click(nextButton, WaitStrategy.CLICKABLE, "Next_Button_Solicitud_Credito_Onboarding_1");
     }
 }

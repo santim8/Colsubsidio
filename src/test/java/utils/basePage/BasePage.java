@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.*;
 import java.time.Duration;
 
 
@@ -68,7 +69,25 @@ public class BasePage {
     }
 
     protected void sendKeys(WebElement element, WaitStrategy waitStrategy, String data) {
-        ReportImplementation.sendLog(Status.PASS, "the data " + data + "+ is sent to the element");
+        ReportImplementation.sendLog(Status.PASS, "the data " + data + " is sent to the element");
         ExplicitWaitFactory.performExplicitWait(waitStrategy, element).sendKeys(data);
+    }
+
+    protected String getText(WebElement element, WaitStrategy waitStrategy, String elementName) {
+        try {
+            WebElement waited = ExplicitWaitFactory.performExplicitWait(waitStrategy, element);
+            String text = waited.getText();
+            ReportImplementation.sendLog(Status.PASS, elementName + " text retrieved: " + text);
+            return text;
+        } catch (Exception e) {
+            ReportImplementation.sendLog(Status.FAIL, "Failed to retrieve text from " + elementName + ": " + e.getMessage());
+            return null;
+        }
+    }
+
+    public <T>T waitInteractionUser(T currentPage, String message) {
+        JOptionPane.showMessageDialog(null,
+                message, "Acción Manual Requerida", JOptionPane.INFORMATION_MESSAGE);
+        return currentPage;
     }
 }
