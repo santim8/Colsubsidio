@@ -16,15 +16,15 @@ public class ExplicitWaitFactory {
 
 
         if (waitStrategy == WaitStrategy.CLICKABLE) {
-            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20))
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(30))
                     .until(ExpectedConditions.elementToBeClickable(element));
 
         } else if (waitStrategy == WaitStrategy.PRESENCE) {
-            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20))
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(30))
                     .until(ExpectedConditions.presenceOfElementLocated((By) element));
 
         } else if (waitStrategy == WaitStrategy.VISIBLE) {
-            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(20))
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(30))
                     .until(ExpectedConditions.visibilityOf(element));
         }
 

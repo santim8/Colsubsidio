@@ -13,3 +13,6 @@ se pone text o clik o como se hace buenas pracitcaS?
 -bloquear notificaciones
 -crear test cases para reporte
 -probar con todos los flujos
+-validar con tiempo indicado
+-crear funcion
+-implementar en firebox

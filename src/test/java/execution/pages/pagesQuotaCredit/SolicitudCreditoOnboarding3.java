@@ -1,5 +1,6 @@
 package execution.pages.pagesQuotaCredit;
 
+import execution.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +20,9 @@ public class SolicitudCreditoOnboarding3 extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getTitle() {
-        return title.getText();
+    public SolicitudCreditoOnboarding3 validateTitle() {
+        getText(title, WaitStrategy.VISIBLE, "Title_Solicitud_Credito_Onboarding_3");
+        return this;
     }
 
     public void clickOnStartButton() {

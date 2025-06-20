@@ -4,8 +4,8 @@ import execution.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utils.basePage.BasePage;
-
 import java.util.List;
 
 public class RequestCreditStep1 extends BasePage {
@@ -32,9 +32,9 @@ public class RequestCreditStep1 extends BasePage {
     private WebElement buttonContinuar;
 
     @FindBy(id = "Pago arriendo")
-    private WebElement optionTipoVivienda;
+    private WebElement pagoArriendoRadioButton;
 
-    @FindBy(id = "Por obra o labor")
+    @FindBy(xpath = "//p[text()='Por obra o labor']")
     private WebElement optionObraLabor;
 
     @FindBy(id = ":r7:")
@@ -52,8 +52,21 @@ public class RequestCreditStep1 extends BasePage {
     @FindBy(xpath = "//ul[@id=':r4:']/li")
     private List<WebElement> optionsNivelEstudio;
 
+    @FindBy(xpath = "//p[text() = 'Pago arriendo']")
+    private WebElement soyPropietarioRadioButton;
+
+    @FindBy(xpath = "//p[text() = '¿Cuál es tu tipo de vivienda?']")
+    private WebElement tipoViviendaLabel;
+
+    public RequestCreditStep1 validateTipoViviendaLabel() {
+        getText(tipoViviendaLabel, WaitStrategy.VISIBLE, "Label_Tipo_Vivienda");
+        click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE, "Button_Soy_Propietario");
+        return this;
+    }
+
     public RequestCreditStep1(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public RequestCreditStep1 enterInputNumeroTelefono(String text) {
@@ -89,12 +102,12 @@ public class RequestCreditStep1 extends BasePage {
     }
 
     public RequestCreditStep1 selectOptionTipoVivienda() {
-        click(optionTipoVivienda, WaitStrategy.CLICKABLE, "Button_Continuar");
+        click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE, "Button_Soy_Propietario");
         return this;
     }
 
     public RequestCreditStep1 selectOptionObraLabor() {
-        click(optionObraLabor, WaitStrategy.CLICKABLE, "Button_Continuar");
+        click(optionObraLabor, WaitStrategy.CLICKABLE, "Button_Obra_Labor");
         return this;
     }
 
