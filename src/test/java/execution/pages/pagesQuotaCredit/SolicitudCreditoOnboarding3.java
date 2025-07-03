@@ -25,7 +25,7 @@ public class SolicitudCreditoOnboarding3 extends BasePage {
         return this;
     }
 
-    public void clickOnStartButton() {
-        startButton.click();
+    public void clickStartButton() {
+        click(startButton, WaitStrategy.CLICKABLE);
     }
 }

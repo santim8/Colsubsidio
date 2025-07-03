@@ -27,7 +27,7 @@ public class SolicitudCreditoOnboarding1 extends BasePage {
         return this;
     }
 
-    public void clickOnButtonSiguiente() {
-        click(nextButton, WaitStrategy.CLICKABLE, "Next_Button_Solicitud_Credito_Onboarding_1");
+    public void clickNextButton() {
+        click(nextButton, WaitStrategy.CLICKABLE);
     }
 }

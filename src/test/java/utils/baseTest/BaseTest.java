@@ -2,9 +2,10 @@ package utils.baseTest;
 
 import execution.driver.Driver;
 import execution.driver.DriverManager;
-import execution.repositories.ReportImplementation;
+import execution.enums.CategoryType;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import reports.ExtentReport;
 
 
 public class BaseTest  {
@@ -14,21 +15,16 @@ public class BaseTest  {
     @BeforeMethod
     @Parameters({"url"})
     public void beforeMethod(String url) {
-
         Driver.initDriver("chrome", url);
-        ReportImplementation.initialize();
-        ReportImplementation.setTest("Test_url");
         this.driver = DriverManager.getDriver();
 
-
-    /*    this.url = url;
-        this.driver = new ManageDriver().getDriver();
-        driver.manage().window().maximize();
-        driver.get(url);*/
     }
 
     @AfterMethod
     public void afterMethod() {
+        ExtentReport.addTestCategories(new CategoryType[] {CategoryType.SMOKE, CategoryType.REGRESSION});
+        ExtentReport.addAuthor("Santiago Correa");
+        ExtentReport.addTestID("TC-001");
         Driver.quitDriver();
     }
 }

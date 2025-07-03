@@ -9,13 +9,14 @@ import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding2;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding3;
 import execution.pages.pagesQuotaCredit.requestFlow.RequestCreditStep1;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
-import execution.repositories.ReportImplementation;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import reports.ExtentReport;
 import utils.basePage.BasePage;
 import utils.baseTest.BaseTest;
 
-import javax.swing.*;
 
 public class RequestQuotaCreditTest extends BaseTest {
 
@@ -26,6 +27,12 @@ public class RequestQuotaCreditTest extends BaseTest {
     private SolicitudCreditoOnboarding3 solicitudCreditoOnboarding3;
     private RequestCreditStep1 requestCreditStep1;
     private SimulateFreeCreditPage simulateFreeCreditPage;
+
+    @BeforeClass()
+    private void setUpReport() {
+
+        ExtentReport.initReports();
+    }
 
     @BeforeMethod
     private void setUp() {
@@ -44,51 +51,73 @@ public class RequestQuotaCreditTest extends BaseTest {
             String identification,
             String password,
             String cellphoneNumber,
-            String email
+            String email,
+            String testName
     ) {
+        ExtentReport.createTest(testName + " identification  = " + identification);
+
         basePage
+                .actionMessage(basePage, "Opening the application: Solicitud Colsubsidio")
                 .clickDetailsButton()
-                .clickOnProceedLink();
+                .clickProceedLink();
 
         solicitudCreditoOnboarding1
+                .actionMessage(solicitudCreditoOnboarding1, "Validating content Onboarding Step 1")
                 .validateTitle()
-                .clickOnButtonSiguiente();
+                .takeScreenshot(solicitudCreditoOnboarding1, "Screen Onboarding Step 1")
+                .clickNextButton();
 
         solicitudCreditoOnboarding2
+                .actionMessage(solicitudCreditoOnboarding2, "Validating content Onboarding Step 2")
                 .validateTitle()
-                .clickOnNExtButton();
+                .takeScreenshot(solicitudCreditoOnboarding2, "Screen Onboarding Step 2")
+                .clickNextButton();
 
         solicitudCreditoOnboarding3
+                .actionMessage(solicitudCreditoOnboarding3, "Validating content Onboarding Step 1")
                 .validateTitle()
-                .clickOnStartButton();
+                .takeScreenshot(solicitudCreditoOnboarding3, "Screen Onboarding Step 3")
+                .clickStartButton();
 
         login
+                .actionMessage(login, "The Login screen is open")
                 .enterIdentification(identification)
                 .enterPassword(password)
-                .waitInteractionUser(login, "Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.");
+                .takeScreenshot(login, "Login screen")
+                .waitInteractionUser(login, "Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.")
+                .actionMessage(login,"The login is succesfully");
 
- /*       simulateFreeCreditPage
+/*
+        simulateFreeCreditPage
                 .markCheckboxTermsAndConditions()
-                .clickOnContinueButton();*/
-
+                .clickOnContinueButton();
+*/
 
         requestCreditStep1
-                .enterInputNumeroTelefono(cellphoneNumber)
-                .enterInputCorreo(email)
-                .enterInputConfirmarCorreo(email)
-                .clickButtonContinuar()
-                .clickOnDropdownEstadoCivil()
-                .selectOptionsEstadoCivil(EnumsDropdowns.SOLTERO.getValue())
-                .clickOnDropdownNivelEstudio()
-                .selectOptionsNivelEstudio(EnumsDropdowns.PRIMARIA.getValue())
-                .clickButtonContinuar()
-                .validateTipoViviendaLabel()
-                .selectOptionTipoVivienda()
-                .clickButtonContinuar()
+                .actionMessage(requestCreditStep1,"The form is open")
+                .enterPhoneNumber(cellphoneNumber)
+                .enterEmail(email)
+                .enterConfirmationEmail(email)
+                .takeScreenshot(requestCreditStep1, "Request Credit Form 1")
+                .clickNextButton()
+                .openMaritalStatusDropdown()
+                .selectOptionMaritalStatus(EnumsDropdowns.SOLTERO.getValue())
+                .openEducationLevelDropdown()
+                .selectOptionEducationLevel(EnumsDropdowns.PRIMARIA.getValue())
+                .takeScreenshot(requestCreditStep1, "Request Credit Form 2")
+                .clickNextButton()
+                .validateHousingTypeLabel()
+                .selectOptionTipoHousingTypeLabel()
+                .clickNextButton()
                 .selectOptionObraLabor()
-                .clickButtonContinuar()
-                .enterInputSalarioMensual("100000000");
+                .takeScreenshot(requestCreditStep1, "Request Credit Form 3")
+                .clickNextButton()
+                .enterMonthlyIncome("100000000")
+                .takeScreenshot(requestCreditStep1, "Request Credit Form 1");
+    }
 
-        ReportImplementation.flush();
+    @AfterClass()
+    private void tearDown() {
+        ExtentReport.flushReports();
     }
 }

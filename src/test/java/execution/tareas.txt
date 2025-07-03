@@ -16,3 +16,6 @@ se pone text o clik o como se hace buenas pracitcaS?
 -validar con tiempo indicado
 -crear funcion
 -implementar en firebox
+-implementar en base64 imagges
+-chage logic in the extend report
+-preguntar a abraham

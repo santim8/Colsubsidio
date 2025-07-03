@@ -32,7 +32,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
         //Validate elements on the first screen
         basePage
                 .clickDetailsButton()
-                .clickOnProceedLink();
+                .clickProceedLink();
         validateElementsScreen1();
 
         //Validate elements on the second screen
