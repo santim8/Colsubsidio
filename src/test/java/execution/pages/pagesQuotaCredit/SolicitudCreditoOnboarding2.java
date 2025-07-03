@@ -22,8 +22,8 @@ public class SolicitudCreditoOnboarding2 extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickOnNExtButton() {
-        nextButton.click();
+    public void clickNextButton() {
+        click(nextButton, WaitStrategy.CLICKABLE);
     }
 
     public SolicitudCreditoOnboarding2 validateTitle() {

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.basePage.BasePage;
+
 import java.util.List;
 
 public class RequestCreditStep1 extends BasePage {
@@ -58,9 +59,9 @@ public class RequestCreditStep1 extends BasePage {
     @FindBy(xpath = "//p[text() = '¿Cuál es tu tipo de vivienda?']")
     private WebElement tipoViviendaLabel;
 
-    public RequestCreditStep1 validateTipoViviendaLabel() {
+    public RequestCreditStep1 validateHousingTypeLabel() {
         getText(tipoViviendaLabel, WaitStrategy.VISIBLE, "Label_Tipo_Vivienda");
-        click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE, "Button_Soy_Propietario");
+        click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE);
         return this;
     }
 
@@ -69,7 +70,7 @@ public class RequestCreditStep1 extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public RequestCreditStep1 enterInputNumeroTelefono(String text) {
+    public RequestCreditStep1 enterPhoneNumber(String text) {
         sendKeys(inputNumeroTelefono, WaitStrategy.VISIBLE, text);
         return this;
     }
@@ -78,12 +79,12 @@ public class RequestCreditStep1 extends BasePage {
         return numeroTelefonoLabel.getText();
     }
 
-    public RequestCreditStep1 enterInputConfirmarCorreo(String text) {
+    public RequestCreditStep1 enterConfirmationEmail(String text) {
         sendKeys(inputConfirmarCorreo, WaitStrategy.VISIBLE, text);
         return this;
     }
 
-    public RequestCreditStep1 enterInputCorreo(String text) {
+    public RequestCreditStep1 enterEmail(String text) {
         sendKeys(inputCorreo, WaitStrategy.VISIBLE, text);
         return this;
     }
@@ -96,33 +97,33 @@ public class RequestCreditStep1 extends BasePage {
         return confirmarCorreoLabel.getText();
     }
 
-    public RequestCreditStep1 clickButtonContinuar() {
-        click(buttonContinuar, WaitStrategy.CLICKABLE, "Button_Continuar");
+    public RequestCreditStep1 clickNextButton() {
+        click(buttonContinuar, WaitStrategy.CLICKABLE);
         return this;
     }
 
-    public RequestCreditStep1 selectOptionTipoVivienda() {
-        click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE, "Button_Soy_Propietario");
+    public RequestCreditStep1 selectOptionTipoHousingTypeLabel() {
+        click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE);
         return this;
     }
 
     public RequestCreditStep1 selectOptionObraLabor() {
-        click(optionObraLabor, WaitStrategy.CLICKABLE, "Button_Obra_Labor");
+        click(optionObraLabor, WaitStrategy.CLICKABLE);
         return this;
     }
 
-    public RequestCreditStep1 enterInputSalarioMensual(String text) {
+    public RequestCreditStep1 enterMonthlyIncome(String text) {
         sendKeys(inputAmountMonth, WaitStrategy.VISIBLE, text);
         return this;
     }
 
-    public RequestCreditStep1 clickOnDropdownEstadoCivil() {
-        click(dropdownEstadoCivil, WaitStrategy.CLICKABLE, "Button_Continuar");
+    public RequestCreditStep1 openMaritalStatusDropdown() {
+        click(dropdownEstadoCivil, WaitStrategy.CLICKABLE);
         return this;
     }
 
-    public RequestCreditStep1 clickOnDropdownNivelEstudio() {
-        click(dropdownNivelEstudio, WaitStrategy.CLICKABLE, "Button_Continuar");
+    public RequestCreditStep1 openEducationLevelDropdown() {
+        click(dropdownNivelEstudio, WaitStrategy.CLICKABLE);
         return this;
     }
 
@@ -134,20 +135,22 @@ public class RequestCreditStep1 extends BasePage {
         return optionsEstadoCivil;
     }
 
-    public RequestCreditStep1 selectOptionsEstadoCivil(String options) {
+    public RequestCreditStep1 selectOptionMaritalStatus(String options) {
         for (WebElement item : optionsEstadoCivil) {
             if (item.getText().equals(options)) {
-                item.click();
+                click(item, WaitStrategy.CLICKABLE, item.getText());/*
+                item.click();*/
                 break;
             }
         }
         return this;
     }
 
-    public RequestCreditStep1 selectOptionsNivelEstudio(String options) {
+    public RequestCreditStep1 selectOptionEducationLevel(String options) {
         for (WebElement item : optionsNivelEstudio) {
             if (item.getText().equals(options)) {
-                item.click();
+                click(item, WaitStrategy.CLICKABLE, item.getText());/*
+      /*          item.click();*/
                 break;
             }
         }

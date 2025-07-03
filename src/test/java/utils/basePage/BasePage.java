@@ -1,14 +1,13 @@
 package utils.basePage;
 
-import com.aventstack.extentreports.Status;
 import execution.enums.WaitStrategy;
 import execution.repositories.ExplicitWaitFactory;
-import execution.repositories.ReportImplementation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import reports.ExtentLogger;
 
 import javax.swing.*;
 import java.time.Duration;
@@ -50,12 +49,12 @@ public class BasePage {
     }
 
     public BasePage clickDetailsButton() {
-        click(detailsButton, WaitStrategy.CLICKABLE, "Details_Button");
+        click(detailsButton, WaitStrategy.CLICKABLE);
         return this;
     }
 
-    public BasePage clickOnProceedLink() {
-        click(proceedLink, WaitStrategy.CLICKABLE, "Open_link_Button");
+    public BasePage clickProceedLink() {
+        click(proceedLink, WaitStrategy.CLICKABLE);
         return this;
     }
 
@@ -64,30 +63,52 @@ public class BasePage {
     }
 
     protected void click(WebElement element, WaitStrategy waitStrategy, String elementName) {
-        ReportImplementation.sendLog(Status.PASS, elementName + " is clicked");
         ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
+        ExtentLogger.pass(elementName + "was clicked correctly");
+    }
+
+    protected void click(WebElement element, WaitStrategy waitStrategy) {
+        try {
+            ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
+        } catch (Exception e) {
+            ExtentLogger.fail("the click Failed error: " + element.getText() + ": " + e.getMessage());
+        }
     }
 
     protected void sendKeys(WebElement element, WaitStrategy waitStrategy, String data) {
-        ReportImplementation.sendLog(Status.PASS, "the data " + data + " is sent to the element");
-        ExplicitWaitFactory.performExplicitWait(waitStrategy, element).sendKeys(data);
+        try {
+            ExplicitWaitFactory.performExplicitWait(waitStrategy, element).sendKeys(data);
+            ExtentLogger.pass("The information " + data + " entered correctly");
+        } catch (Exception e) {
+            ExtentLogger.fail("Failed to retrieve text from " + element.getText() + ": " + e.getMessage());
+        }
     }
 
     protected String getText(WebElement element, WaitStrategy waitStrategy, String elementName) {
         try {
             WebElement waited = ExplicitWaitFactory.performExplicitWait(waitStrategy, element);
             String text = waited.getText();
-            ReportImplementation.sendLog(Status.PASS, elementName + " text retrieved: " + text);
+            ExtentLogger.pass("<b> text retrieved: </b>" + text);
             return text;
         } catch (Exception e) {
-            ReportImplementation.sendLog(Status.FAIL, "Failed to retrieve text from " + elementName + ": " + e.getMessage());
+            ExtentLogger.fail("Failed to retrieve text from " + elementName + ": " + e.getMessage());
             return null;
         }
     }
 
-    public <T>T waitInteractionUser(T currentPage, String message) {
+    public <T> T waitInteractionUser(T currentPage, String message) {
         JOptionPane.showMessageDialog(null,
-                message, "Acción Manual Requerida", JOptionPane.INFORMATION_MESSAGE);
+                message, "Manual Action Required", JOptionPane.INFORMATION_MESSAGE);
+        return currentPage;
+    }
+
+    public <T> T takeScreenshot(T currentPage, String screenshotName) {
+        ExtentLogger.info(screenshotName, true);
+        return currentPage;
+    }
+
+    public <T> T actionMessage(T currentPage, String message) {
+        ExtentLogger.info(message);
         return currentPage;
     }
 }
