@@ -3,6 +3,15 @@ package execution.driver;
 import java.net.MalformedURLException;
 import java.util.Objects;
 
+/**
+ * The Driver class provides utility methods to initialize and quit a WebDriver instance
+ * for test execution. It encapsulates the driver creation and teardown logic, ensuring
+ * proper browser setup and management.
+ *
+ * This class is designed as a final utility class and cannot be instantiated.
+ * It interacts with {@code DriverManager} and {@code DriverFactory} to handle
+ * the underlying WebDriver instances.
+ */
 final public class Driver {
 
     private Driver(){}

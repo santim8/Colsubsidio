@@ -27,7 +27,7 @@ public class ListenerClass implements ITestListener, ISuiteListener {
     public void onTestStart(ITestResult result) {
         String nameTest = "test " + result.getTestContext().getSuite().getName();
         Object[] parameters = result.getParameters();
-        if (parameters != null && parameters.length > 0) {
+        if (parameters != null && parameters.length > 0 && parameters[0] != null) {
             nameTest += "- identification: " + parameters[0];
         }
         ExtentReport.createTest(nameTest);
