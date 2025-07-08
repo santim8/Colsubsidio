@@ -58,13 +58,17 @@ public class BasePage {
         return this;
     }
 
-    public WebElement getRestriction() {
+    public WebElement validateRestriction() {
         return restrictionText;
     }
 
     protected void click(WebElement element, WaitStrategy waitStrategy, String elementName) {
-        ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
-        ExtentLogger.pass(elementName + "was clicked correctly");
+        try {
+            ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
+            ExtentLogger.pass(elementName + "was clicked correctly");
+        } catch (Exception e) {
+            ExtentLogger.fail("the click Failed error: " + element.getText() + ": " + e.getMessage());
+        }
     }
 
     protected void click(WebElement element, WaitStrategy waitStrategy) {
@@ -77,7 +81,7 @@ public class BasePage {
 
     protected void sendKeys(WebElement element, WaitStrategy waitStrategy, String data) {
         try {
-            ExplicitWaitFactory.performExplicitWait(waitStrategy, element).sendKeys(data);
+            ExplicitWaitFactory.performExplicitWait(waitStrategy, element, 10).sendKeys(data);
             ExtentLogger.pass("The information " + data + " entered correctly");
         } catch (Exception e) {
             ExtentLogger.fail("Failed to retrieve text from " + element.getText() + ": " + e.getMessage());
@@ -87,6 +91,18 @@ public class BasePage {
     protected String getText(WebElement element, WaitStrategy waitStrategy, String elementName) {
         try {
             WebElement waited = ExplicitWaitFactory.performExplicitWait(waitStrategy, element);
+            String text = waited.getText();
+            ExtentLogger.pass("<b> text retrieved: </b>" + text);
+            return text;
+        } catch (Exception e) {
+            ExtentLogger.fail("Failed to retrieve text from " + elementName + ": " + e.getMessage());
+            return null;
+        }
+    }
+
+    protected String getText(WebElement element, WaitStrategy waitStrategy, String elementName, Integer secondsWait) {
+        try {
+            WebElement waited = ExplicitWaitFactory.performExplicitWait(waitStrategy, element, secondsWait);
             String text = waited.getText();
             ExtentLogger.pass("<b> text retrieved: </b>" + text);
             return text;

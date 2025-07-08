@@ -1,7 +1,9 @@
 package execution.tests;
 
 
+import execution.annotations.FrameworkAnnotation;
 import execution.data.DataProviderUtil;
+import execution.enums.CategoryType;
 import execution.enums.EnumsDropdowns;
 import execution.pages.pagesQuotaCredit.Login;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding1;
@@ -9,11 +11,8 @@ import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding2;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding3;
 import execution.pages.pagesQuotaCredit.requestFlow.RequestCreditStep1;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import reports.ExtentReport;
 import utils.basePage.BasePage;
 import utils.baseTest.BaseTest;
 
@@ -28,12 +27,6 @@ public class RequestQuotaCreditTest extends BaseTest {
     private RequestCreditStep1 requestCreditStep1;
     private SimulateFreeCreditPage simulateFreeCreditPage;
 
-    @BeforeClass()
-    private void setUpReport() {
-
-        ExtentReport.initReports();
-    }
-
     @BeforeMethod
     private void setUp() {
         basePage = new BasePage(driver);
@@ -45,17 +38,14 @@ public class RequestQuotaCreditTest extends BaseTest {
         simulateFreeCreditPage = new SimulateFreeCreditPage(driver);
     }
 
-
+    @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
     @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class)
     private void testMethod(
             String identification,
             String password,
             String cellphoneNumber,
-            String email,
-            String testName
+            String email
     ) {
-        ExtentReport.createTest(testName + " identification  = " + identification);
-
         basePage
                 .actionMessage(basePage, "Opening the application: Solicitud Colsubsidio")
                 .clickDetailsButton()
@@ -85,7 +75,7 @@ public class RequestQuotaCreditTest extends BaseTest {
                 .enterPassword(password)
                 .takeScreenshot(login, "Login screen")
                 .waitInteractionUser(login, "Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.")
-                .actionMessage(login,"The login is succesfully");
+                .actionMessage(login, "The login is succesfully");
 
 /*
         simulateFreeCreditPage
@@ -94,7 +84,7 @@ public class RequestQuotaCreditTest extends BaseTest {
 */
 
         requestCreditStep1
-                .actionMessage(requestCreditStep1,"The form is open")
+                .actionMessage(requestCreditStep1, "The form is open")
                 .enterPhoneNumber(cellphoneNumber)
                 .enterEmail(email)
                 .enterConfirmationEmail(email)
@@ -106,18 +96,12 @@ public class RequestQuotaCreditTest extends BaseTest {
                 .selectOptionEducationLevel(EnumsDropdowns.PRIMARIA.getValue())
                 .takeScreenshot(requestCreditStep1, "Request Credit Form 2")
                 .clickNextButton()
-                .validateHousingTypeLabel()
-                .selectOptionTipoHousingTypeLabel()
+                .selectOptionHousingTypeLabel()
                 .clickNextButton()
                 .selectOptionObraLabor()
                 .takeScreenshot(requestCreditStep1, "Request Credit Form 3")
                 .clickNextButton()
                 .enterMonthlyIncome("100000000")
                 .takeScreenshot(requestCreditStep1, "Request Credit Form 1");
-    }
-
-    @AfterClass()
-    private void tearDown() {
-        ExtentReport.flushReports();
     }
 }

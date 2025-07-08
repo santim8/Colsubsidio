@@ -16,15 +16,39 @@ public class ExplicitWaitFactory {
 
 
         if (waitStrategy == WaitStrategy.CLICKABLE) {
-            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2))
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(3))
                     .until(ExpectedConditions.elementToBeClickable(element));
 
         } else if (waitStrategy == WaitStrategy.PRESENCE) {
-            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2))
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(3))
                     .until(ExpectedConditions.presenceOfElementLocated((By) element));
 
         } else if (waitStrategy == WaitStrategy.VISIBLE) {
-            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(2))
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(3))
+                    .until(ExpectedConditions.visibilityOf(element));
+        }
+
+        else if (waitStrategy == WaitStrategy.NONE) {
+            elementToReturn = element;
+        }
+
+        return elementToReturn;
+    }
+
+    public static WebElement performExplicitWait(WaitStrategy waitStrategy, WebElement element, Integer seconds) {
+        WebElement elementToReturn = null;
+
+
+        if (waitStrategy == WaitStrategy.CLICKABLE) {
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(seconds))
+                    .until(ExpectedConditions.elementToBeClickable(element));
+
+        } else if (waitStrategy == WaitStrategy.PRESENCE) {
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(seconds))
+                    .until(ExpectedConditions.presenceOfElementLocated((By) element));
+
+        } else if (waitStrategy == WaitStrategy.VISIBLE) {
+            elementToReturn = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(seconds))
                     .until(ExpectedConditions.visibilityOf(element));
         }
 
