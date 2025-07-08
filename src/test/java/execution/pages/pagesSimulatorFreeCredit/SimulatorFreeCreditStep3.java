@@ -1,5 +1,6 @@
 package execution.pages.pagesSimulatorFreeCredit;
 
+import execution.enums.WaitStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,7 +38,7 @@ public class SimulatorFreeCreditStep3 extends BasePage {
     @FindBy(xpath = "//p[contains(text(), 'Es el precio que se pacta entre Colsubsidio y sus afiliados por un préstamo.')]")
     private WebElement textModalTasaNominal;
 
-    @FindBy(xpath = "//p[contains(text(), 'Es un respaldo financiero que cubre pérdidas')]")
+    @FindBy(xpath = "//p[contains(text(), 'Es un respaldo financiero que cubre')]")
     private WebElement textModalSeguros;
 
     @FindBy(xpath = "//span[text()='Tasa efectiva anual']//following::div[@class='css-94nzlf']//p[contains(text(), '%')]")
@@ -60,73 +61,73 @@ public class SimulatorFreeCreditStep3 extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getTitle() {
-        wait.until(ExpectedConditions.visibilityOf(title));
-        return title.getText();
+    public SimulatorFreeCreditStep3 validateTitle() {
+        getText(title, WaitStrategy.VISIBLE, "title");
+        return this;
     }
 
     public WebElement getWebElementTitle() {
         return title;
     }
 
-    public String getDescription() {
-        wait.until(ExpectedConditions.visibilityOf(description));
-        return description.getText();
-    }
-
-    public SimulatorFreeCreditStep3 clickOnMostrarDetails() {
-        spanMostrarDetails.click();
+    public SimulatorFreeCreditStep3 validateDescription() {
+        getText(description, WaitStrategy.VISIBLE, "title");
         return this;
     }
 
-    public SimulatorFreeCreditStep3 clickOnLinkTasaEfectivaAnual() {
+    public SimulatorFreeCreditStep3 clickOnMostrarDetails() {
+        click(spanMostrarDetails, WaitStrategy.CLICKABLE);
+        return this;
+    }
+
+    public SimulatorFreeCreditStep3 clickModalAnnualRate() {
         linkTasaEfectivaAnual.click();
         return this;
     }
 
-    public SimulatorFreeCreditStep3 clickOnLinkTasaNominal() {
+    public SimulatorFreeCreditStep3 clickModalNominalRate() {
         linkTasaNominal.click();
         return this;
     }
 
-    public SimulatorFreeCreditStep3 clickOnLinkSeguros() {
+    public SimulatorFreeCreditStep3 clickModalInsurance() {
         linkSeguros.click();
         return this;
     }
 
-    public SimulatorFreeCreditStep3 clickOnButtonEntendido() {
+    public SimulatorFreeCreditStep3 clickButtonUnderstood() {
         buttonEntendido.click();
         return this;
     }
 
-    public String getTextValorCompra() {
-        wait.until(ExpectedConditions.visibilityOf(textValorCompra));
-        return textValorCompra.getText();
+    public SimulatorFreeCreditStep3 validatePurchaseValue() {
+        getText(textValorCompra, WaitStrategy.VISIBLE, "purchse_value");
+        return this;
     }
 
-    public String getTextNumeroCuotas() {
-        wait.until(ExpectedConditions.visibilityOf(textNumeroCuotas));
-        return textNumeroCuotas.getText();
+    public SimulatorFreeCreditStep3 validateNumberQuote() {
+        getText(textNumeroCuotas, WaitStrategy.VISIBLE, "title");
+        return this;
     }
 
-    public String getSummaryText() {
-        wait.until(ExpectedConditions.visibilityOf(summaryText));
-        return summaryText.getText();
+    public SimulatorFreeCreditStep3 validateSummaryText() {
+        getText(summaryText, WaitStrategy.VISIBLE, "title");
+        return this;
     }
 
-    public String getTextModalTasaAnual() {
-        wait.until(ExpectedConditions.visibilityOf(textModalTasaNominal));
-        return textModalTasaAnual.getText();
+    public SimulatorFreeCreditStep3 validateModalAnnualRate() {
+        getText(textModalTasaNominal, WaitStrategy.VISIBLE, "annal_rate");
+        return this;
     }
 
-    public String getTextModalTasaNominal() {
-        wait.until(ExpectedConditions.visibilityOf(textModalTasaNominal));
-        return textModalTasaNominal.getText();
+    public SimulatorFreeCreditStep3 validateModalNominalRate() {
+        getText(textModalTasaNominal, WaitStrategy.VISIBLE, "nominal_rate");
+        return this;
     }
 
-    public String getTextModalSeguros() {
-        wait.until(ExpectedConditions.visibilityOf(textModalSeguros));
-        return textModalSeguros.getText();
+    public SimulatorFreeCreditStep3 validateModalInsurance() {
+        getText(textModalSeguros, WaitStrategy.VISIBLE, "modal_insurance");
+        return this;
     }
 
     public String getPercentageElement() {
@@ -140,7 +141,7 @@ public class SimulatorFreeCreditStep3 extends BasePage {
     }
 
     public Boolean getTextXpathNodeP(String text) {
-        String xpath = "//p[contains(text(),'" + text+")']";
+        String xpath = "//p[contains(text(),'" + text + ")']";
         try {
             WebElement webElement = driver.findElement(By.xpath(xpath));
             System.out.println("WebElement found: " + webElement.getText());

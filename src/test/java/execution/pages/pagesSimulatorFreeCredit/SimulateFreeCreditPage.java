@@ -29,33 +29,16 @@ public class SimulateFreeCreditPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getTitle() {
-        return title.getText();
-    }
-
-    public String getDescription() {return description.getText();}
-
-    public SimulateFreeCreditPage setInputRegistrationNumber(String registrationNumber) {
-        inputRegistrationNumber.sendKeys(registrationNumber);
+    public SimulateFreeCreditPage enterRegistrationNumber(String registrationNumber) {
+        sendKeys(inputRegistrationNumber, WaitStrategy.VISIBLE, registrationNumber);
+        //inputRegistrationNumber.sendKeys(registrationNumber);
         return this;
     }
-
-   /* public void markCheckboxTermsAndConditions() {
-        if (!checkboxTermsAndConditions.isSelected()) {
-            checkboxTermsAndConditions.click();
-        }
-    }*/
 
     public SimulateFreeCreditPage markCheckboxTermsAndConditions() {
-        if (!checkboxTermsAndConditions.isSelected()) {
-            checkboxTermsAndConditions.click();
-        }
+        click(checkboxTermsAndConditions, WaitStrategy.NONE);
         return this;
     }
-
-    /*public void clickContinueButton() {
-        continueButton.click();
-    }*/
 
     public SimulateFreeCreditPage clickOnContinueButton() {
         click(continueButton, WaitStrategy.CLICKABLE, "Continue_button");

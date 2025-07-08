@@ -102,7 +102,7 @@ public class RequestCreditStep1 extends BasePage {
         return this;
     }
 
-    public RequestCreditStep1 selectOptionTipoHousingTypeLabel() {
+    public RequestCreditStep1 selectOptionHousingTypeLabel() {
         click(soyPropietarioRadioButton, WaitStrategy.CLICKABLE);
         return this;
     }
@@ -127,17 +127,11 @@ public class RequestCreditStep1 extends BasePage {
         return this;
     }
 
-    public List<WebElement> getOptionsNivelEstudio() {
-        return optionsNivelEstudio;
-    }
-
-    public List<WebElement> getOptionsEstadoCivil() {
-        return optionsEstadoCivil;
-    }
 
     public RequestCreditStep1 selectOptionMaritalStatus(String options) {
         for (WebElement item : optionsEstadoCivil) {
-            if (item.getText().equals(options)) {
+            String option = getText(item, WaitStrategy.VISIBLE, "title_soltero");
+            if (option.equals(options)) {
                 click(item, WaitStrategy.CLICKABLE, item.getText());/*
                 item.click();*/
                 break;
@@ -147,8 +141,10 @@ public class RequestCreditStep1 extends BasePage {
     }
 
     public RequestCreditStep1 selectOptionEducationLevel(String options) {
+
         for (WebElement item : optionsNivelEstudio) {
-            if (item.getText().equals(options)) {
+            String option = getText(item, WaitStrategy.VISIBLE, "title_soltero");
+            if (option.equals(options)) {
                 click(item, WaitStrategy.CLICKABLE, item.getText());/*
       /*          item.click();*/
                 break;

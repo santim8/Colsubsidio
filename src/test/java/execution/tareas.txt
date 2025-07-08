@@ -19,3 +19,10 @@ se pone text o clik o como se hace buenas pracitcaS?
 -implementar en base64 imagges
 -chage logic in the extend report
 -preguntar a abraham
+-mejorar primer test
+-como solucionar el problema de instancia
+
+-que pasos debemos seguir para implementar en magnifie
+-intentar test cases varias
+-preguntar magnifie
+-estudiar base teorica de los listeners

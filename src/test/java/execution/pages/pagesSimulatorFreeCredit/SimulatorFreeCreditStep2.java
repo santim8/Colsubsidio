@@ -1,5 +1,6 @@
 package execution.pages.pagesSimulatorFreeCredit;
 
+import execution.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,7 +29,7 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     private WebElement inputAmountQuota;
 
     @FindBy(xpath = "//button[.//span[contains(text(), 'Continuar')]]")
-    private WebElement buttonContinuar;
+    private WebElement nextButton;
 
     @FindBy(id = ":r2:-label")
     private WebElement inputAmountLabel;
@@ -45,9 +46,9 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     }
 
 
-    public String getTitle() {
-        wait.until(ExpectedConditions.visibilityOf(title));
-        return title.getText();
+    public SimulatorFreeCreditStep2 validateTitle() {
+        getText(title, WaitStrategy.VISIBLE, "title", 5);
+        return this;
     }
 
     public WebElement getQuantityLabel() {
@@ -61,32 +62,28 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     }
 
     public SimulatorFreeCreditStep2 enterAmount(String amount) {
-        wait.until(ExpectedConditions.visibilityOf(inputAmount));
-        inputAmount.sendKeys(amount);
+        sendKeys(inputAmount, WaitStrategy.VISIBLE, amount);
         return this;
     }
 
-    public WebElement getButtonContinuar() {
+    public WebElement getNextButton() {
         wait.until(ExpectedConditions.visibilityOf(inputAmount));
-        return buttonContinuar;
+        return nextButton;
     }
 
-    public SimulatorFreeCreditStep2 clickOnButtonContinuar() {
-        wait.until(ExpectedConditions.visibilityOf(buttonContinuar));
-        if (buttonContinuar.isEnabled()) {
-            buttonContinuar.click();
-        }
+    public SimulatorFreeCreditStep2 clickNextButton() {
+        click(nextButton, WaitStrategy.CLICKABLE);
         return this;
     }
 
-    public String getInputAmountLabel() {
-        wait.until(ExpectedConditions.visibilityOf(inputAmountLabel));
-        return inputAmountLabel.getText();
+    public SimulatorFreeCreditStep2 validateAmountLabel() {
+        getText(inputAmountLabel, WaitStrategy.VISIBLE, "input_amount_label");
+        return this;
     }
 
-    public String getInputQuantityLabel() {
-        wait.until(ExpectedConditions.visibilityOf(inputQuantityLabel));
-        return inputQuantityLabel.getText();
+    public SimulatorFreeCreditStep2 validateQuantityLabel() {
+        getText(inputQuantityLabel, WaitStrategy.VISIBLE, "input_quantity_label");
+        return this;
     }
 
     public WebElement webElementTitle() {

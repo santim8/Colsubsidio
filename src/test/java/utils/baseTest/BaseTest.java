@@ -17,14 +17,10 @@ public class BaseTest  {
     public void beforeMethod(String url) {
         Driver.initDriver("chrome", url);
         this.driver = DriverManager.getDriver();
-
     }
 
     @AfterMethod
     public void afterMethod() {
-        ExtentReport.addTestCategories(new CategoryType[] {CategoryType.SMOKE, CategoryType.REGRESSION});
-        ExtentReport.addAuthor("Santiago Correa");
-        ExtentReport.addTestID("TC-001");
         Driver.quitDriver();
     }
 }

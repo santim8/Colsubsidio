@@ -1,5 +1,6 @@
 package execution.pages.pagesSimulatorQuotaCredit;
 
+import execution.enums.WaitStrategy;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,28 +22,36 @@ public class SimulateQuotaFreeCredit extends SimulateFreeCreditPage {
     @FindBy(id = ":r1:-label")
     private WebElement documentNumber;
 
+    @FindBy(xpath = "//button[.//p[text()='Continuar']]")
+    private WebElement nextButton;
+
     public SimulateQuotaFreeCredit(WebDriver driver) {
         super(driver);
     }
 
-    public String getDescription() {
-        wait.until(ExpectedConditions.visibilityOf(title));
-        return description.getText();
+    public SimulateQuotaFreeCredit validateDescription() {
+        getText(description, WaitStrategy.VISIBLE, "title");
+        return this;
     }
 
 
-    public WebElement getDocumentType() {
-        wait.until(ExpectedConditions.visibilityOf(documentType));
-        return documentType;
+    public SimulateQuotaFreeCredit validateDocumentType() {
+        getText(documentType, WaitStrategy.VISIBLE, "documentType");
+        return this;
     }
 
-    public WebElement getDocumentNumber() {
-        wait.until(ExpectedConditions.visibilityOf(documentNumber));
-        return documentNumber;
+    public SimulateQuotaFreeCredit validateDocumentNumber() {
+        getText(documentNumber, WaitStrategy.VISIBLE, "documentType");
+        return this;
     }
 
-    public String getTitle() {
-        wait.until(ExpectedConditions.visibilityOf(title));
-        return title.getText();
+    public SimulateQuotaFreeCredit validateTitle() {
+        getText(title, WaitStrategy.VISIBLE, "documentType");
+        return this;
+    }
+
+    public SimulateFreeCreditPage clickNextButton() {
+        click(nextButton, WaitStrategy.CLICKABLE);
+        return this;
     }
 }
