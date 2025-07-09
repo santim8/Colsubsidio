@@ -23,7 +23,7 @@ public final class ExtentReport {
             extent.attachReporter(spark);
             spark.config().setTheme(Theme.STANDARD);
             spark.config().setDocumentTitle("Reporte Automatizado - Suite Colsubsidio");
-            spark.config().setReportName("Resultados Pruebas Onboarding Crédito");
+            spark.config().setReportName("Resultados Pruebas Automatizadas - Colsubsidio");
         }
     }
 

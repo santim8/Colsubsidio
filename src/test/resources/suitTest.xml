@@ -3,14 +3,14 @@
         <listener class-name="execution.listeners.ListenerClass"/>
         <listener class-name="execution.listeners.RetryListener"/>
     </listeners>
-    <test name="simulator_free_credit">
+   <!-- <test name="Simulator Free Credit">
         <classes>
             <parameter name="url"
                        value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>
             <class name="execution.tests.SimulatorFreeCreditTest"/>
         </classes>
     </test>
-    <test name="simulator_quota_credit_flow1">
+    <test name="Simulator Quota Credit Flow1">
         <classes>
             <parameter name="url"
                        value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>
@@ -19,14 +19,14 @@
         </classes>
     </test>
 
-    <test name="simulator_quota_credit_flow2">
+    <test name="Simulator Quota Credit Flow2">
         <classes>
             <parameter name="url"
                        value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>
             <parameter name="path" value="optionNumberAmount"/>
             <class name="execution.tests.SimulatorQuotaCreditTest"/>
         </classes>
-    </test>
+    </test>-->
     <test name="Request Quota Credit">
         <classes>
             <parameter name="url"

@@ -9,6 +9,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 
+/**
+ * The ExplicitWaitFactory class provides methods to perform explicit waits
+ * for web elements using different wait strategies such as CLICKABLE, PRESENCE,
+ * VISIBLE, or NONE. It utilizes WebDriverWait with configurable timeout durations
+ * to ensure that interactions with web elements only proceed when specific conditions
+ * are met. This helps enhance synchronization and reliability during automation execution.
+ */
 public class ExplicitWaitFactory {
 
     public static WebElement performExplicitWait(WaitStrategy waitStrategy, WebElement element) {

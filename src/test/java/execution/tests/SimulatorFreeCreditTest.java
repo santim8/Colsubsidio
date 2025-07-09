@@ -38,7 +38,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
                 .clickProceedLink();
 
         simulateFreeCreditPage
-                .enterRegistrationNumber("1234567890")
+                .enterRegistrationNumber("53119321")
                 .markCheckboxTermsAndConditions()
                 .takeScreenshot(simulateFreeCreditPage, "Initial screen")
                 .clickOnContinueButton();
