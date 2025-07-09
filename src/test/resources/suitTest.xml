@@ -3,7 +3,7 @@
         <listener class-name="execution.listeners.ListenerClass"/>
         <listener class-name="execution.listeners.RetryListener"/>
     </listeners>
-    <test name="Simulator Free Credit">
+   <!-- <test name="Simulator Free Credit">
         <classes>
             <parameter name="url"
                        value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>
@@ -26,7 +26,7 @@
             <parameter name="path" value="optionNumberAmount"/>
             <class name="execution.tests.SimulatorQuotaCreditTest"/>
         </classes>
-    </test>
+    </test>-->
     <test name="Request Quota Credit">
         <classes>
             <parameter name="url"

@@ -1,10 +1,7 @@
 package execution.listeners;
 
 import execution.annotations.FrameworkAnnotation;
-import org.testng.ISuite;
-import org.testng.ISuiteListener;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import org.testng.*;
 import reports.ExtentReport;
 
 import java.lang.reflect.Method;
@@ -25,23 +22,27 @@ public class ListenerClass implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        String nameTest = "test " + result.getTestContext().getSuite().getName();
+        String nameTest = "test " + result.getTestContext().getCurrentXmlTest().getName();
         Object[] parameters = result.getParameters();
-        if (parameters != null && parameters.length > 0 && parameters[0] != null) {
+        //corregir
+        if (parameters != null && parameters.length > 2 && parameters[0] != null) {
             nameTest += "- identification: " + parameters[0];
         }
         ExtentReport.createTest(nameTest);
 
+
         Method method = result.getMethod().getConstructorOrMethod().getMethod();
         FrameworkAnnotation annotation = method.getAnnotation(FrameworkAnnotation.class);
+
+        /*if (annotation == null) {
+            throw new SkipException("El test " + result.getName() +
+                    " debe tener la anotación @FrameworkAnnotation");
+        }
+        */
 
         if (annotation != null) {
             ExtentReport.addAuthors(annotation.authors());
             ExtentReport.addTestCategories(annotation.testCategory());
-
-            ExtentReport.addUserStory("us-azure-id+"+ annotation.userStory());
-            ExtentReport.addTestID("test+azure+id"+annotation.testID());
-
             if ((annotation.userStory() != null && !annotation.userStory().isEmpty())) {
                 ExtentReport.addUserStory("us_azure_id="+ annotation.userStory());
             }
