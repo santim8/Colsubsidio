@@ -3,34 +3,44 @@
         <listener class-name="execution.listeners.ListenerClass"/>
         <listener class-name="execution.listeners.RetryListener"/>
     </listeners>
-   <!-- <test name="Simulator Free Credit">
-        <classes>
-            <parameter name="url"
-                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>
-            <class name="execution.tests.SimulatorFreeCreditTest"/>
-        </classes>
-    </test>
-    <test name="Simulator Quota Credit Flow1">
-        <classes>
-            <parameter name="url"
-                       value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>
-            <parameter name="path" value="optionNumberNQuotas"/>
-            <class name="execution.tests.SimulatorQuotaCreditTest"/>
-        </classes>
-    </test>
+<!--   <test name="Simulator Free Credit">-->
+<!--        <classes>-->
+<!--            <parameter name="url"-->
+<!--                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>-->
+<!--            <class name="execution.tests.SimulatorFreeCreditTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Simulator Quota Credit Flow1">-->
+<!--        <classes>-->
+<!--            <parameter name="url"-->
+<!--                       value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>-->
+<!--            <parameter name="path" value="optionNumberNQuotas"/>-->
+<!--            <class name="execution.tests.SimulatorQuotaCreditTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Simulator Quota Credit Flow2">
+<!--    <test name="Simulator Quota Credit Flow2">-->
+<!--        <classes>-->
+<!--            <parameter name="url"-->
+<!--                       value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>-->
+<!--            <parameter name="path" value="optionNumberAmount"/>-->
+<!--            <class name="execution.tests.SimulatorQuotaCreditTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="Request Quota Credit QA">-->
+<!--        <classes>-->
+<!--            <parameter name="url"-->
+<!--                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding"/>-->
+<!--            <parameter name="path" value="optionNumberAmount"/>-->
+<!--            <class name="execution.tests.RequestQuotaCreditTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Request Quota Credit DEV">
         <classes>
             <parameter name="url"
-                       value="https://transacciones.colsubsidio.com/creditos/simulador/cupo-de-credito/identificate"/>
-            <parameter name="path" value="optionNumberAmount"/>
-            <class name="execution.tests.SimulatorQuotaCreditTest"/>
-        </classes>
-    </test>-->
-    <test name="Request Quota Credit">
-        <classes>
-            <parameter name="url"
-                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding"/>
+                       value="https://d2b80yrnend1dj.cloudfront.net/loans-dev-solicitud/cupo-de-credito/onboarding"/>
             <parameter name="path" value="optionNumberAmount"/>
             <class name="execution.tests.RequestQuotaCreditTest"/>
         </classes>

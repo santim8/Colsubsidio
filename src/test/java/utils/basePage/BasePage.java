@@ -1,7 +1,9 @@
 package utils.basePage;
 
+import execution.enums.EnumDocumentType;
 import execution.enums.WaitStrategy;
 import execution.repositories.ExplicitWaitFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -76,6 +78,14 @@ public class BasePage {
             ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
         } catch (Exception e) {
             ExtentLogger.fail("the click Failed error: " + element.getText() + ": " + e.getMessage());
+        }
+    }
+
+    protected void click(By element, WaitStrategy waitStrategy) {
+        try {
+            ExplicitWaitFactory.performExplicitWait(waitStrategy, element).click();
+        } catch (Exception e) {
+            ExtentLogger.fail("the click Failed error: "+e.getMessage());
         }
     }
 
