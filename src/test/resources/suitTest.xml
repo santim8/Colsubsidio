@@ -3,13 +3,13 @@
         <listener class-name="execution.listeners.ListenerClass"/>
         <listener class-name="execution.listeners.RetryListener"/>
     </listeners>
-   <test name="Simulator Free Credit">
-        <classes>
-            <parameter name="url"
-                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>
-            <class name="execution.tests.SimulatorFreeCreditTest"/>
-        </classes>
-    </test>
+<!--   <test name="Simulator Free Credit">-->
+<!--        <classes>-->
+<!--            <parameter name="url"-->
+<!--                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>-->
+<!--            <class name="execution.tests.SimulatorFreeCreditTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 <!--    <test name="Simulator Quota Credit Flow1">-->
 <!--        <classes>-->
 <!--            <parameter name="url"-->
@@ -27,7 +27,8 @@
 <!--            <class name="execution.tests.SimulatorQuotaCreditTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--    <test name="Request Quota Credit">-->
+
+<!--    <test name="Request Quota Credit QA">-->
 <!--        <classes>-->
 <!--            <parameter name="url"-->
 <!--                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding"/>-->
@@ -35,4 +36,13 @@
 <!--            <class name="execution.tests.RequestQuotaCreditTest"/>-->
 <!--        </classes>-->
 <!--    </test>-->
+
+    <test name="Request Quota Credit DEV">
+        <classes>
+            <parameter name="url"
+                       value="https://d2b80yrnend1dj.cloudfront.net/loans-dev-solicitud/cupo-de-credito/onboarding"/>
+            <parameter name="path" value="optionNumberAmount"/>
+            <class name="execution.tests.RequestQuotaCreditTest"/>
+        </classes>
+    </test>
 </suite>

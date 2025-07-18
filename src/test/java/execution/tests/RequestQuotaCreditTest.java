@@ -4,6 +4,7 @@ package execution.tests;
 import execution.annotations.FrameworkAnnotation;
 import execution.data.DataProviderUtil;
 import execution.enums.CategoryType;
+import execution.enums.EnumDocumentType;
 import execution.enums.EnumsDropdowns;
 import execution.pages.pagesQuotaCredit.Login;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding1;
@@ -41,15 +42,17 @@ public class RequestQuotaCreditTest extends BaseTest {
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
     @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class)
     private void testMethod(
+            String typeDocument,
             String identification,
             String password,
             String cellphoneNumber,
             String email
     ) {
-        basePage
-                .actionMessage(basePage, "Opening the application: Solicitud Colsubsidio")
-                .clickDetailsButton()
-                .clickProceedLink();
+//        basePage
+//                .actionMessage(basePage, "Opening the application: Solicitud Colsubsidio");
+//                .clickDetailsButton()
+//                .clickProceedLink();
+//
 
         solicitudCreditoOnboarding1
                 .actionMessage(solicitudCreditoOnboarding1, "Validating content Onboarding Step 1")
@@ -68,6 +71,11 @@ public class RequestQuotaCreditTest extends BaseTest {
                 .validateTitle()
                 .takeScreenshot(solicitudCreditoOnboarding3, "Screen Onboarding Step 3")
                 .clickStartButton();
+
+
+        if (EnumDocumentType.getCode(typeDocument) != null){
+            login.selectDocumentType(EnumDocumentType.getCode(typeDocument).getValue());
+        }
 
         login
                 .actionMessage(login, "The Login screen is open")

@@ -22,7 +22,13 @@ public class DriverFactory {
             if (browser.equalsIgnoreCase("chrome")) {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-notifications");
+                // Add this argument to ignore SSL certificate errors
+                options.addArguments("--ignore-certificate-errors");
+                // Optionally disable the security warning
+                options.addArguments("--disable-web-security");
+                options.addArguments("--allow-insecure-localhost");
                 driver = new ChromeDriver(options);
+
             }
             return driver;
         }
