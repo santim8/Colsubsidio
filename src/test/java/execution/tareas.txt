@@ -26,3 +26,7 @@ se pone text o clik o como se hace buenas pracitcaS?
 -intentar test cases varias
 -preguntar magnifie
 -estudiar base teorica de los listeners
+
+
+organizar para que los archivos queden bien configurados sin que estén en local
+-preguntar el tipo de documento

@@ -56,7 +56,7 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     }
 
     public SimulatorFreeCreditStep2 enterQuantity(String quantity) {
-        wait.until(ExpectedConditions.visibilityOf(inputQuantity));
+//        wait.until(ExpectedConditions.visibilityOf(inputQuantity));
         inputQuantity.sendKeys(quantity);
         return this;
     }
@@ -67,7 +67,7 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     }
 
     public WebElement getNextButton() {
-        wait.until(ExpectedConditions.visibilityOf(inputAmount));
+//        wait.until(ExpectedConditions.visibilityOf(inputAmount));
         return nextButton;
     }
 
@@ -87,17 +87,17 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     }
 
     public WebElement webElementTitle() {
-        wait.until(ExpectedConditions.visibilityOf(title));
+//        wait.until(ExpectedConditions.visibilityOf(title));
         return title;
     }
 
     public WebElement getInputQuantity() {
-        wait.until(ExpectedConditions.visibilityOf(inputQuantity));
+//        wait.until(ExpectedConditions.visibilityOf(inputQuantity));
         return inputQuantity;
     }
 
     public WebElement getInputAmount() {
-        wait.until(ExpectedConditions.visibilityOf(inputAmount));
+//        wait.until(ExpectedConditions.visibilityOf(inputAmount));
         return inputAmount;
     }
 
@@ -106,13 +106,13 @@ public class SimulatorFreeCreditStep2 extends BasePage {
     }
 
     public SimulatorFreeCreditStep2 enterInputAmountQuota(String amountQuota) {
-        wait.until(ExpectedConditions.visibilityOf(inputAmountQuota));
+//        wait.until(ExpectedConditions.visibilityOf(inputAmountQuota));
         inputAmountQuota.sendKeys(amountQuota);
         return this;
     }
 
     public SimulatorFreeCreditStep2 clickButtonValor() {
-        wait.until(ExpectedConditions.visibilityOf(buttonValor));
+//        wait.until(ExpectedConditions.visibilityOf(buttonValor));
         if (buttonValor.isEnabled()) {
             buttonValor.click();
         }

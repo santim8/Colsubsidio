@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gson.version>2.10.1</gson.version>
         <rest.assured.version>5.3.1</rest.assured.version>
+        <sdk.version>6.0.0-SNAPSHOT</sdk.version>
     </properties>
 
     <dependencies>
@@ -33,13 +34,11 @@
             <artifactId>gson</artifactId>
             <version>${gson.version}</version>
         </dependency>
-
-        <!-- RestAssured for API testing -->
-        <!--  <dependency>
-              <groupId>io.rest-assured</groupId>
-              <artifactId>rest-assured</artifactId>
-              <version>${rest.assured.version}</version>
-          </dependency>-->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest.assured.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
@@ -50,9 +49,28 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.globant.aut</groupId>
+            <artifactId>sdk-figma</artifactId>
+            <version>${sdk.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/sdk-figma-${sdk.version}.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.globant.aut</groupId>
+            <artifactId>sdk-java</artifactId>
+            <version>${sdk.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/sdk-java-${sdk.version}.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.globant.aut</groupId>
+            <artifactId>sdk-jira</artifactId>
+            <version>${sdk.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/sdk-jira-${sdk.version}.jar</systemPath>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

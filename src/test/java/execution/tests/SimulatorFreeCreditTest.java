@@ -33,14 +33,10 @@ public class SimulatorFreeCreditTest extends BaseTest {
     @Test
     public void testSimulator(ITestContext iTestContext) {
 
-        basePage
-                .clickDetailsButton()
-                .clickProceedLink();
-
         simulateFreeCreditPage
                 .enterRegistrationNumber("53119321")
                 .markCheckboxTermsAndConditions()
-                .takeScreenshot(simulateFreeCreditPage, "Initial screen")
+                .takeScreenshotReport(simulateFreeCreditPage, "Initial screen")
                 .clickOnContinueButton();
 
         simulatorFreeCreditStep2
@@ -49,13 +45,13 @@ public class SimulatorFreeCreditTest extends BaseTest {
                 .validateTitle()
                 .validateAmountLabel()
                 .validateQuantityLabel()
-                .takeScreenshot(simulatorFreeCreditStep2, "Second form screen")
+                .takeScreenshotReport(simulatorFreeCreditStep2, "Second form screen")
                 .clickNextButton();
 
         simulatorFreeCreditStep3
                 .validateTitle()
                 .clickOnMostrarDetails()
-                .takeScreenshot(simulatorFreeCreditStep3, "Summary credit screen")
+                .takeScreenshotReport(simulatorFreeCreditStep3, "Summary credit screen")
                 .actionMessage(simulatorFreeCreditStep3, "Validating the content summary credit")
                 .validateDescription()
                 .validateSummaryText()

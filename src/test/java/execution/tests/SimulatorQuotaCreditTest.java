@@ -4,7 +4,6 @@ import execution.annotations.FrameworkAnnotation;
 import execution.enums.CategoryType;
 import execution.enums.EnumSimulatorQuota;
 import execution.enums.EnumsRouteFlows;
-import execution.listeners.RetryAnalyzer;
 import execution.pages.pagesSimulatorQuotaCredit.SimulateQuotaFreeCredit;
 import execution.pages.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep2;
 import execution.pages.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep3;
@@ -43,7 +42,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
                 .validateDocumentNumber()
                 .validateTitle()
                 .validateDocumentType()
-                .takeScreenshot(simulateQuotaCredit, "Identification Screen")
+                .takeScreenshotReport(simulateQuotaCredit, "Identification Screen")
                 .clickNextButton();
 
         simulatorFreeCreditStep2
@@ -66,7 +65,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
                 .validateTitle()
                 .clickOnMostrarDetails()
                 .validatePurchaseValue()
-                .takeScreenshot(simulatorQuotaCreditStep3, "Summary credit screen")
+                .takeScreenshotReport(simulatorQuotaCreditStep3, "Summary credit screen")
                 .actionMessage(simulatorQuotaCreditStep3, "Validating the content summary credit")
                 .validateDescription()
                 .validateSummaryText()
