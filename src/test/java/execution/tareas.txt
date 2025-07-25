@@ -27,6 +27,9 @@ se pone text o clik o como se hace buenas pracitcaS?
 -preguntar magnifie
 -estudiar base teorica de los listeners
 
-
-organizar para que los archivos queden bien configurados sin que estén en local
--preguntar el tipo de documento
+////seman
+-organizar para que los archivos queden bien configurados sin que estén en local
+-organizar y adjuntar imagen
+-limpiar codigo con waits
+-adjuntar al archvio resultado
+-organizar imagen figma

@@ -12,11 +12,14 @@ import execution.driver.DriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import reports.ExtentLogger;
+import utils.ScreenshotUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -110,14 +113,10 @@ public class MagnifaiManager {
         System.out.println("set Window Size: " + windowSize);
     }
 
-//    public static void attachResultImage(String assetId, String name) throws IOException {
-//        MagnifAIAsset magnifaiAsset = Assets.get(assetId);
-//        var resultTmp = new File(getAssetsFolder() + name + ".png");
-//        Path path = Files.write(resultTmp.toPath(), magnifaiAsset.getAssetFile(), StandardOpenOption.CREATE);
-//        try (InputStream is = new FileInputStream(getAssetsFolder() + name + ".png")) {
-//            Allure.addAttachment(name, is);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public static void attachResultImage(String assetId, String name, BigDecimal tin) throws IOException {
+        MagnifAIAsset magnifaiAsset = Assets.get(assetId);
+        File resultTmp = new File(ScreenshotUtils.getScreenshotsFolder() + name + ".png");
+        Files.write(resultTmp.toPath(), magnifaiAsset.getAssetFile(), StandardOpenOption.CREATE);
+        ExtentLogger.pass("Result Image:1, result obtained: " +tin.toString(), true, name);
+    }
 }

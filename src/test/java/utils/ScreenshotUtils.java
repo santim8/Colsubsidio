@@ -10,42 +10,27 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 
 
 final public class ScreenshotUtils {
 
     private ScreenshotUtils (){}
 
-    protected static String SCREENSHOTS_FOLDER = "src/test/resources/images";
+    protected static String SCREENSHOTS_FOLDER = "src/test/resources/images/";
 
     public static String getScreenshotsFolder() {
         return SCREENSHOTS_FOLDER;
     }
 
     public static String getScreenshotPath(String fileName) {
-        return SCREENSHOTS_FOLDER + File.separator + fileName;
+        return SCREENSHOTS_FOLDER + fileName + ".png";
     }
 
     public static String getBase64Image() {
         TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
         return ts.getScreenshotAs(OutputType.BASE64);
     }
-    public static File getFileImage(String fileName) throws IOException {
-        TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
-        File ss = ts.getScreenshotAs(OutputType.FILE);
-        File screenshotReference = new File(getScreenshotsFolder() + fileName);
-        FileUtils.copyFile(ss, screenshotReference);
-        return screenshotReference;
-    }
-
-    public static void takeScreenScreenShootAndSaved(String fileName) throws IOException {
-        getFileImage(fileName);
-    }
-
-    public static File getFileImage2(String fileName) throws IOException {
-        return new File(getScreenshotsFolder() + File.separator + fileName);
-    }
-
 
     public static File captureAndSaveScreenshot(String fileName) throws IOException {
         try {
@@ -76,12 +61,19 @@ final public class ScreenshotUtils {
     }
 
     public static File getScreenshotFile(String fileName) {
-        Path screenshotPath = Paths.get(SCREENSHOTS_FOLDER, fileName);
+        Path screenshotPath = Paths.get(SCREENSHOTS_FOLDER, fileName + ".png");
         if (!Files.exists(screenshotPath)) {
             return null;
         }
         return  Files.exists(screenshotPath) ? screenshotPath.toFile() : null;
     }
 
-
+    public static String convertFileToBase64(String filePath) {
+        try {
+            byte[] fileContent = FileUtils.readFileToByteArray(new File(filePath));
+            return Base64.getEncoder().encodeToString(fileContent);
+        } catch (IOException e) {
+            throw new RuntimeException("Error converting file to Base64: " + e.getMessage());
+        }
+    }
 }

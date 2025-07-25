@@ -16,7 +16,7 @@ public class ExtentManager {
 
     private ExtentManager(){}
 
-    static ExtentTest getExtentTest(){
+    public static ExtentTest getExtentTest(){
         return extTest.get();
     }
 

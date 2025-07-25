@@ -16,39 +16,38 @@ import java.util.concurrent.CompletableFuture;
 public class BaseTest {
     protected WebDriver driver;
 
-//    @BeforeSuite
-//    public void beforeSuite() throws IOException {
-//        AutSDKProperties.resetDefaults();
-//        FigmaProperties.loadPropertyFile("figma.properties");
-//        AutSDKProperties.loadPropertyFile("sdk.properties");
-//
-//
-//        CompletableFuture<Void> figmaProperties = CompletableFuture.runAsync(() -> {
-//            try {
-//                FigmaProperties.loadPropertyFile("figma.properties");
-//            } catch (IOException e) {
-////                logger.error("Error loading Figma properties", e);
-//            }
-//        });
-//
-//        CompletableFuture<Void> sdkProperties = CompletableFuture.runAsync(() -> {
-//            try {
-//                AutSDKProperties.loadPropertyFile("sdk.properties");
-//            } catch (IOException e) {
-////                logger.error("Error loading SDK properties", e);
-//            }
-//        });
-//
-//        // Esperar a que todo termine
-//        CompletableFuture.allOf(figmaProperties, sdkProperties).join();
-//        try {
-//            MagnifaiManager.setProjectId();
-//            MagnifaiManager.setExecutionId();
-//        } catch (AugmentedException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//
-//    }
+    @BeforeSuite
+    public void beforeSuite() throws IOException {
+        AutSDKProperties.resetDefaults();
+        FigmaProperties.loadPropertyFile("figma.properties");
+        AutSDKProperties.loadPropertyFile("sdk.properties");
+
+
+        CompletableFuture<Void> figmaProperties = CompletableFuture.runAsync(() -> {
+            try {
+                FigmaProperties.loadPropertyFile("figma.properties");
+            } catch (IOException e) {
+//                logger.error("Error loading Figma properties", e);
+            }
+        });
+
+        CompletableFuture<Void> sdkProperties = CompletableFuture.runAsync(() -> {
+            try {
+                AutSDKProperties.loadPropertyFile("sdk.properties");
+            } catch (IOException e) {
+//                logger.error("Error loading SDK properties", e);
+            }
+        });
+
+
+        CompletableFuture.allOf(figmaProperties, sdkProperties).join();
+        try {
+            MagnifaiManager.setProjectId();
+            MagnifaiManager.setExecutionId();
+        } catch (AugmentedException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
     @BeforeMethod
     @Parameters({"url"})
