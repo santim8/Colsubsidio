@@ -45,4 +45,10 @@
             <class name="execution.tests.RequestQuotaCreditTest"/>
         </classes>
     </test>
+
+<!--        <test name="validate apis">-->
+<!--            <classes>-->
+<!--                <class name="execution.tests.ApiTest"/>-->
+<!--            </classes>-->
+<!--        </test>-->
 </suite>

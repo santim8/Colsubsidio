@@ -26,3 +26,10 @@ se pone text o clik o como se hace buenas pracitcaS?
 -intentar test cases varias
 -preguntar magnifie
 -estudiar base teorica de los listeners
+
+////seman
+-organizar para que los archivos queden bien configurados sin que estén en local
+-organizar y adjuntar imagen
+-limpiar codigo con waits
+-adjuntar al archvio resultado
+-organizar imagen figma
