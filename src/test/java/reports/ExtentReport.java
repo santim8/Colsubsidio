@@ -19,7 +19,7 @@ public final class ExtentReport {
     public static void initReports() {
         if (Objects.isNull(extent)) {
             extent = new ExtentReports();
-            ExtentSparkReporter spark = new ExtentSparkReporter("C:/Users/santiago.correa03/IdeaProjects/colsubsidioFramework/target");
+            ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir")+"/target");
             extent.attachReporter(spark);
             spark.config().setTheme(Theme.STANDARD);
             spark.config().setDocumentTitle("Reporte Automatizado - Suite Colsubsidio");
@@ -33,7 +33,7 @@ public final class ExtentReport {
         }
         ExtentManager.unload();
         try {
-            Desktop.getDesktop().browse(new File("C:\\Users\\santiago.correa03\\IdeaProjects\\colsubsidioFramework\\target\\Index.html").toURI());
+            Desktop.getDesktop().browse(new File(System.getProperty("user.dir") + "/target/Index.html").toURI());
             //TODO change logic
             //Desktop.getDesktop().browse(new File(FrameworkConstants.getExtentReportFilePath()).toURI());
         } catch (IOException e) {

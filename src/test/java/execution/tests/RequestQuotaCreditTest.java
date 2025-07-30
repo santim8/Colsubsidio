@@ -14,6 +14,7 @@ import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding2;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding3;
 import execution.pages.pagesQuotaCredit.requestFlow.RequestCreditStep1;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.ScreenshotUtils;
@@ -56,6 +57,10 @@ public class RequestQuotaCreditTest extends BaseTest {
             String email
     ) throws IOException, InterruptedException {
 
+        var dir = System.getProperty("user.dir");
+        var user = System.getProperty("user.name");
+        var userURI = new File(ScreenshotUtils.getScreenshotPath("tin"));
+        var tin = userURI.toURI();
         solicitudCreditoOnboarding1
                 .setDimensionsScreen(solicitudCreditoOnboarding1, 1920, 1100)
                 .actionMessage(solicitudCreditoOnboarding1, "Validating content Onboarding Step 1")
@@ -73,21 +78,20 @@ public class RequestQuotaCreditTest extends BaseTest {
                 .actionMessage(solicitudCreditoOnboarding3, "Validating content Onboarding Step 1")
                 .validateTitle()
                 .takeScreenshotReport(solicitudCreditoOnboarding3, "Screen Onboarding Step 3")
-                .clickStartButton()
-                .takeScreenshotAndSaveItLocal(solicitudCreditoOnboarding3, "testNew");
+                .clickStartButton();
 
         login
+                .selectDocumentType(typeDocument)
                 .actionMessage(login, "The Login screen is open")
-                .takeScreenshotAndSaveItLocal(login, "testNew")
                 .enterIdentification(identification)
                 .enterPassword(password)
+                .takeScreenshotAndSaveItLocal(login, "testNew")
                 .takeScreenshotReport(login, "Login screen")
                 .waitInteractionUser(login, "Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.")
                 .actionMessage(login, "The login is succesfully");
 
-
         File imageLogging = FigmaImageManager.getInstance().getImage(FigmaScreensData.SCREEN1.getKey());
-        MagnifaiMethods.flexCompare(ScreenshotUtils.getScreenshotFile("testNew"), imageLogging, new BigDecimal("80"), "validating figma comparison");
+        MagnifaiMethods.figmaCompare(ScreenshotUtils.getScreenshotFile("testNew"), imageLogging, new BigDecimal("80"), "validating figma comparison");
 /*
         simulateFreeCreditPage
                 .markCheckboxTermsAndConditions()

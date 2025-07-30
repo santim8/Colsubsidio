@@ -55,7 +55,7 @@ public class Login extends BasePage {
             return this;
         }
         click(dropdownDocumentType, WaitStrategy.CLICKABLE);
-        click(By.xpath("//option[@ng-reflect-ng-value = '" + documentType+ "']"), WaitStrategy.CLICKABLE);
+        click(By.xpath("//option[@ng-reflect-ng-value = '" + EnumDocumentType.getCode(documentType).getValue()+ "']"), WaitStrategy.CLICKABLE);
         return this;
     }
 }

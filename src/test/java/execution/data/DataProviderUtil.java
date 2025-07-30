@@ -16,14 +16,14 @@ final public class DataProviderUtil {
      * Provides test data for user registration SSO
      * Each row contains:
      * - Document Type
-     *      "CC", CEDULA_CIUDADANIA
-     *      "TI", TARJETA_IDENTIDAD
-     *      "RC", REGISTRO_CIVIL
-     *      "CE", CEDULA_EXTRANJERIA
-     *      "CD", CARNE_DIPLOMATICO
-     *      "PA", PASAPORTE
-     *      "PE", PERMISO_ESPECIAL_PERMANENCIA
-     *      "PT", PERMISO_PROTECCION_TEMPORAL
+     * "CC", CEDULA_CIUDADANIA
+     * "TI", TARJETA_IDENTIDAD
+     * "RC", REGISTRO_CIVIL
+     * "CE", CEDULA_EXTRANJERIA
+     * "CD", CARNE_DIPLOMATICO
+     * "PA", PASAPORTE
+     * "PE", PERMISO_ESPECIAL_PERMANENCIA
+     * "PT", PERMISO_PROTECCION_TEMPORAL
      * - Identification number (documento de identidad)
      * - Password
      * - Phone number
@@ -48,10 +48,11 @@ final public class DataProviderUtil {
 //                {"CC", "80796433", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //no tiene preaprobado
 //                {"CC","79278366", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//no tiene preaprobado
 //                {"CC","52518990", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
-                {"CC","39762639", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //modificacion de cupo
+//                {"CC","39762639", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //modificacion de cupo
 //                {"CC","1094913008", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //tiene solicitud en curso
 //                {"CC","1014252100", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//tiene solicitud en curso
 //                {"CC","79366788", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},// no-afiliado
+//                {"CC","1013622493", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},// no-afiliado
 //                {"CC","80925970", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
 //                {"CC","79121567", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
 //                {"CC","7617444", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
@@ -76,6 +77,8 @@ final public class DataProviderUtil {
 //                {"CC", "467970", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //lista restritivas
 //                {"CC", "20739675", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //angie users
 //                {"CC", "93341102", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //con menos del salario minimon
+                {"PA", "95123024932", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //pasaporte
+//                {"PT", "96062406280", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //temporal
         };
     }
 }
