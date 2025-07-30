@@ -113,10 +113,10 @@ public class MagnifaiManager {
         System.out.println("set Window Size: " + windowSize);
     }
 
-    public static void attachResultImage(String assetId, String name, BigDecimal tin) throws IOException {
+    public static void attachResultImage(String assetId, String name, BigDecimal resultComparison) throws IOException {
         MagnifAIAsset magnifaiAsset = Assets.get(assetId);
         File resultTmp = new File(ScreenshotUtils.getScreenshotsFolder() + name + ".png");
         Files.write(resultTmp.toPath(), magnifaiAsset.getAssetFile(), StandardOpenOption.CREATE);
-        ExtentLogger.pass("Result Image:1, result obtained: " +tin.toString(), true, name);
+        ExtentLogger.pass("Result Image:1, result obtained: " +resultComparison.toString(), true, name);
     }
 }
