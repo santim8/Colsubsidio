@@ -57,10 +57,6 @@ public class RequestQuotaCreditTest extends BaseTest {
             String email
     ) throws IOException, InterruptedException {
 
-        var dir = System.getProperty("user.dir");
-        var user = System.getProperty("user.name");
-        var userURI = new File(ScreenshotUtils.getScreenshotPath("tin"));
-        var tin = userURI.toURI();
         solicitudCreditoOnboarding1
                 .setDimensionsScreen(solicitudCreditoOnboarding1, 1920, 1100)
                 .actionMessage(solicitudCreditoOnboarding1, "Validating content Onboarding Step 1")

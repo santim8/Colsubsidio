@@ -33,7 +33,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
     public void testSimulatorQuotaCredit(String path) {
         simulateQuotaCredit
                 .actionMessage(simulateQuotaCredit, "Opening the Simulator Quota Credit")
-                .enterRegistrationNumber("1023013419")
+                .enterRegistrationNumber("79278366")
                 .markCheckboxTermsAndConditions()
                 .actionMessage(simulateQuotaCredit, "Validating content screen");
 

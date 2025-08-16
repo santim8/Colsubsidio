@@ -3,7 +3,14 @@
         <listener class-name="execution.listeners.ListenerClass"/>
         <listener class-name="execution.listeners.RetryListener"/>
     </listeners>
-<!--   <test name="Simulator Free Credit">-->
+
+    <test name="validate apis">
+        <classes>
+            <class name="execution.tests.ApiTest"/>
+        </classes>
+    </test>
+
+<!--    <test name="Simulator Free Credit">-->
 <!--        <classes>-->
 <!--            <parameter name="url"-->
 <!--                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/simulador/libre-inversion/identificate"/>-->
@@ -37,18 +44,12 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-    <test name="Request Quota Credit DEV">
-        <classes>
-            <parameter name="url"
-                       value="https://d2b80yrnend1dj.cloudfront.net/loans-dev-solicitud/cupo-de-credito/onboarding"/>
-            <parameter name="path" value="optionNumberAmount"/>
-            <class name="execution.tests.RequestQuotaCreditTest"/>
-        </classes>
-    </test>
-
-<!--        <test name="validate apis">-->
-<!--            <classes>-->
-<!--                <class name="execution.tests.ApiTest"/>-->
-<!--            </classes>-->
-<!--        </test>-->
+<!--    <test name="Request Quota Credit DEV">-->
+<!--        <classes>-->
+<!--            <parameter name="url"-->
+<!--                       value="https://d2b80yrnend1dj.cloudfront.net/loans-dev-solicitud/cupo-de-credito/onboarding"/>-->
+<!--            <parameter name="path" value="optionNumberAmount"/>-->
+<!--            <class name="execution.tests.RequestQuotaCreditTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

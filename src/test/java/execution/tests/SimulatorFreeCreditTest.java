@@ -34,7 +34,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
     public void testSimulator(ITestContext iTestContext) {
 
         simulateFreeCreditPage
-                .enterRegistrationNumber("53119321")
+                .enterRegistrationNumber("79278366")
                 .markCheckboxTermsAndConditions()
                 .takeScreenshotReport(simulateFreeCreditPage, "Initial screen")
                 .clickOnContinueButton();
