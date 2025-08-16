@@ -18,6 +18,27 @@
     </properties>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>io.rest-assured</groupId>-->
+<!--            <artifactId>rest-assured</artifactId>-->
+<!--            <version>5.2.0</version>  &lt;!&ndash; Versión recomendada &ndash;&gt;-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>io.rest-assured</groupId>-->
+<!--            <artifactId>rest-assured-common</artifactId>-->
+<!--            <version>5.2.0</version>  &lt;!&ndash; Versión recomendada &ndash;&gt;-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>io.rest-assured</groupId>-->
+<!--            <artifactId>json-path</artifactId>-->
+<!--            <version>5.2.0</version> &lt;!&ndash; Para manejo de JSON &ndash;&gt;-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>

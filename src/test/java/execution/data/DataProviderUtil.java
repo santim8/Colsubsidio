@@ -33,8 +33,8 @@ final public class DataProviderUtil {
      * @return Object[][] containing test data for multiple users
      */
 
-    @DataProvider(name = "fillTheCheckoutStepOne")
-    public static Object[][] fillTheCheckoutStepOne() {
+    @DataProvider(name = "fillTheCheckoutStepOne2")
+    public static Object[][] fillTheCheckoutStepOne2() {
         return new Object[][]{
 //                {"CC","1104637957", "Colsubsidio2025.", "3001234567", "test1@hotmail.com"},
 //                {"CC","1104637957", "Colsubsidio2025.", "3001234567", "test1@hotmail.com"},
@@ -44,15 +44,18 @@ final public class DataProviderUtil {
 //                {"CC","4119384", "Colsubsidio2025.", "3001234567", "test4@hotmail.com"},
 //                {"CC","1007295347", "Colsubsidio2025.", "3001234567", "test5@hotmail.com"},//TODO preaprobado
 //                {"CC","53119321", "Colsubsidio2025.", "3001234567", "test6@hotmail.com"}, //TODO preaprobado
+//                {"CC","39762639", "Colsubsidio2025.", "3001234567", "test6@hotmail.com"}, //TODO modificacion
+//                {"CC","39762639", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //TODO modificacion de cupo
+//                {"CC","7617444", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //TODO modificacion de cupo
 //                {"CC","1023013419", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//TODO
 //                {"CC", "80796433", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //no tiene preaprobado
-//                {"CC","79278366", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//no tiene preaprobado
+//                {"CC","79278366", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//no tiene preaprobado TODO: funciona
 //                {"CC","52518990", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
-//                {"CC","39762639", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //modificacion de cupo
+//                {"CC","39762639", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //TODO modificacion de cupo
 //                {"CC","1094913008", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"}, //tiene solicitud en curso
 //                {"CC","1014252100", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//tiene solicitud en curso
 //                {"CC","79366788", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},// no-afiliado
-//                {"CC","1013622493", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},// no-afiliado
+//                {"CC","1013622493", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},// no-afiliado  ....
 //                {"CC","80925970", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
 //                {"CC","79121567", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
 //                {"CC","7617444", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},
@@ -77,8 +80,56 @@ final public class DataProviderUtil {
 //                {"CC", "467970", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //lista restritivas
 //                {"CC", "20739675", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //angie users
 //                {"CC", "93341102", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //con menos del salario minimon
-                {"PA", "95123024932", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //pasaporte
+//                {"PA", "95123024932", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //pasaporte
 //                {"PT", "96062406280", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //temporal
+//                {"CC", "19246507", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estados redenan
+//                {"CC", "1024539415", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //temporal
+//                {"CC", "1030691913", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //temporal
+//                {"CC", "94379336", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //temporal
+        };
+    }
+
+    @DataProvider(name = "fillTheCheckoutStepOne")
+    public static Object[][] fillTheCheckoutStepOne() {
+        return new Object[][]{
+                {"CC", "79278366", "Colsubsidio2025.", "3001234567", "caritopruebas1@hotmail.com"},//no tiene preaprobado TODO: funciona
+//                {"CC", "19184974", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //K
+//                {"CC", "10216105", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, // V VALIDAR
+//                {"CC", "52526685", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //NO
+//                {"CC", "80833648", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //C
+//                {"CC", "10216105", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //RANGO EDAD
+//                {"CC", "1023944601", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //Y
+//                {"CC", "19246507", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //M
+//                {"CC", "1024539415", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //CONTRASEÑA INCORRECTA
+//                {"CC", "51951303", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"},//CONTRASEÑA INCORRECTA
+//                {"CC", "1013595547", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"},//titular no afiliado
+//                {"CC", "1040111207", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //CONTRASEÑA INCORRECTA
+//                {"CC", "52634111", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"},   //CONTRASEÑA INCORRECTA
+//                {"CC", "37713491", "Colsubsidio2025.", "pruebalistasres1@mecha10216105 nicspedia.com", "2/02/1994"}, //L TODO: BUG
+//                {"CC", "51736584", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //no está afiliado
+//                {"CC", "79584194", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //R
+//                {"CC", "547911", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //B
+//                {"CC", "80810798", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //tarjeta mal
+//                {"CC", "28917807", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //F
+//                {"CC", "52429413", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"} //tarjeta mal
+//                {"CC", "20156603", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //no tiene contraseña
+//                {"CC", "80179000", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //validar muestra error generico
+//                {"CC", "1016051607", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //validar muestra error generico amparado
+//                {"CC", "51951303", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //no está afiliado, RETIRADO
+//                {"CC", "1040111204", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estado T
+//                {"CC", "1030636396", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estado T
+//                {"CC", "1097397286", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estado T
+//                {"CC", "1140814422", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estado Z
+//                {"CC", "11259747", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estado J
+//                {"CC", "41336668", "Colsubsidio2025.", "pruebalistasres1@mechanicspedia.com", "2/02/1994"}, //estado J
+        };
+    }
+
+    @DataProvider(name ="fillDataApi")
+    public static Object[][] fillDataApi() {
+        return new Object[][]{
+                {"CC", "1023013504"},
+//                {"CC", "39762639"},
         };
     }
 }
