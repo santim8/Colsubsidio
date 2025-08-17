@@ -8,8 +8,6 @@ import java.util.Map;
 import static io.restassured.RestAssured.*;
 
 public class ApiConfig {
-    private static final String BASE_URL = "https://colsubsidio-test.apigee.net";
-    private static final String OAUTH_TOKEN_URL = "oauth/client_credential/accesstoken?grant_type=client_credentials";
     private static final String CLIENT_ID = "cmnGMnGPVKLJwWLfWxqFCSZOR5hIjhWb";
     private static final String CLIENT_SECRET = "uKCYJXAVkLY5gsWt";
     private static String token;

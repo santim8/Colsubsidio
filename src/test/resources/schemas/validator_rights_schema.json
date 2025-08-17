@@ -1,0 +1,201 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/validator_rights_schema.json",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "estado": { "type": ["number", "string"] },
+    "mensaje": { "type": "string" },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "afiliado": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "bp": { "type": "string" },
+              "numeroDocumento": { "type": "string" },
+              "tipoDocumento": { "type": "string" },
+              "primerNombre": { "type": "string" },
+              "segundoNombre": { "type": "string" },
+              "primerApellido": { "type": "string" },
+              "segundoApellido": { "type": "string" },
+              "fechaNacimiento": { "type": "string" },
+              "fechaActualizacion": { "type": "string" },
+              "edad": { "type": "string" },
+              "genero": { "type": "string" },
+              "estadoCivil": { "type": "string" },
+              "personasACargo": { "type": "string" },
+              "nivelEducativo": { "type": "string" },
+              "telefono": { "type": "string" },
+              "motivoRetiro": { "type": "string" },
+              "estado": { "type": "string" },
+              "correoElectronico": { "type": "string" },
+              "contacto": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "direccion": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "pais": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "id": { "type": "string" },
+                      "nombre": { "type": "string" }
+                    }
+                  },
+                  "departamento": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "id": { "type": "string" },
+                      "nombre": { "type": "string" }
+                    }
+                  },
+                  "ciudad": {
+                    "oneOf": [
+                      { "type": "object", "additionalProperties": true },
+                      { "type": "string" }
+                    ]
+                  },
+                  "localidad": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "id": { "type": "string" },
+                      "nombre": { "type": "string" }
+                    }
+                  },
+                  "direccionPrincipal": { "type": "string" },
+                  "direccionSecundaria": { "type": "string" }
+                }
+              },
+              "afiliacion": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "fechaAfiliacion": { "type": "string" },
+                  "categoria": { "type": "string" },
+                  "grupo": { "type": "string" },
+                  "tipoSalario": { "type": "string" },
+                  "salario": { "type": "string" },
+                  "salarioOtros": { "type": "string" },
+                  "fechaRetiro": { "type": ["string", "null"] },
+                  "tipoCargo": { "type": "string" },
+                  "horasLaboradas": { "type": "string" },
+                  "tipoTrabajador": { "type": "string" },
+                  "porcentajeAporte": { "type": "string" },
+                  "subsidio": { "type": "string" },
+                  "servicios": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "nombre": { "type": "string" }
+                    }
+                  }
+                }
+              },
+              "cuotaMonetaria": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "tarjetaMultiservicios": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "metodoPago": {
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                      "id": { "type": "string" },
+                      "nombre": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "empleadores": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "empleadoresConcurrentes": { "type": "string" },
+              "companias": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "properties": {
+                    "bp": { "type": "string" },
+                    "tipoDocumento": { "type": "string" },
+                    "numberoDocumento": { "type": "string" },
+                    "nombre": { "type": "string" },
+                    "tipoAportante": { "type": "string" },
+                    "claserAportante": { "type": "string" },
+                    "fechaInicioActividad": { "type": "string" },
+                    "estado": { "type": "string" },
+                    "fechaIngresoAfiliado": { "type": "string" },
+                    "fechaInicioVigencia": { "type": "string" },
+                    "fechaFinVigencia": { "type": ["string", "null"] },
+                    "salario": { "type": "string" },
+                    "sucursal": { "type": "string" },
+                    "telefono": { "type": "string" },
+                    "localidad": { "type": "string" },
+                    "direccion": {
+                      "type": ["object", "null"],
+                      "additionalProperties": true
+                    },
+                    "empresaPrincipal": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+
+          "pacs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "bp": { "type": "string" },
+                "tipoDocumento": { "type": "string" },
+                "numeroDocumento": { "type": ["string", "number"] },
+                "primerNombre": { "type": "string" },
+                "segundoNombre": { "type": "string" },
+                "apellido": { "type": "string" },
+                "segundoApellido": { "type": "string" },
+                "edad": { "type": "string" },
+                "genero": { "type": "string" },
+                "fechaNacimiento": { "type": "string" },
+                "relacion": { "type": "object", "additionalProperties": true },
+                "fechaInicioVigencia": { "type": "string" },
+                "fechaFinVigencia": { "type": ["string", "null"] },
+                "fechaRegistroRetiro": { "type": ["string", "null"] },
+                "discapacidad": { "type": "string" },
+                "fechaLimiteComprobanteNutricional": { "type": ["string", "number", "null"] },
+                "documentacion": { "type": "object", "additionalProperties": true },
+                "tarjeta": { "type": "object", "additionalProperties": true },
+                "cuotaMonetaria": { "type": "object", "additionalProperties": true },
+                "nivelEducativo": { "type": "string" },
+                "estado": { "type": "string" },
+                "validado": { "type": ["object", "null"], "additionalProperties": true }
+              }
+            }
+          },
+
+          "validado": { "type": ["object", "null"], "additionalProperties": true }
+        },
+        "required": ["afiliado", "empleadores"]
+      }
+    }
+  },
+  "required": ["estado", "mensaje", "data"]
+}
