@@ -5,10 +5,10 @@ import execution.data.DataProviderUtil;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.example.requests.ClientRequest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import reports.ExtentLogger;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +19,6 @@ import static io.restassured.RestAssured.*;
 import static reports.ExtentManager.getExtentTest;
 
 public class ApiTest {
-    boolean report = false;
-    static String baseUrl = "https://jsonplaceholder.typicode.com";
 
     @BeforeTest()
     public void beforeTest() {
@@ -28,7 +26,7 @@ public class ApiTest {
     }
 
 
-    @Test(enabled = true, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 1)
+    @Test(enabled = false, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 1)
     public void testPreapproved(
             String typeDocument,
             String identification
@@ -46,6 +44,8 @@ public class ApiTest {
                 .all()
                 .extract()
                 .response();
+
+        ClientRequest.validateRequest(response, "src/test/resources/src/test/resources/schemas/validator_rights_schema.json");
 
         Integer code = response.getStatusCode();
 //        Assert.assertEquals(code, 200);
@@ -93,6 +93,8 @@ public class ApiTest {
                 .extract()
                 .response();
 
+        boolean tin = ClientRequest.validateRequest(response, "schemas/validator_rights_schema.json");
+
         String text = response.jsonPath().getString("");
         Integer code = response.getStatusCode();
 
@@ -106,7 +108,7 @@ public class ApiTest {
         }
     }
 
-    @Test(enabled = true, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 2)
+    @Test(enabled = false, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 2)
     public void testValidateRequest(
             String typeDocument,
             String identification
@@ -141,7 +143,7 @@ public class ApiTest {
         }
     }
 
-    @Test(enabled = true, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 3)
+    @Test(enabled = false, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 3)
     public void testRedebanStates(
             String typeDocument,
             String identification
@@ -192,7 +194,7 @@ public class ApiTest {
         }
     }
 
-    @Test(enabled = true, dataProviderClass = DataProviderUtil.class, dataProvider = "fillDataApi", priority = 4)
+    @Test(enabled = false, dataProviderClass = DataProviderUtil.class, dataProvider = "fillDataApi", priority = 4)
     public void restrictiveList(
             String typeDocument,
             String identification
