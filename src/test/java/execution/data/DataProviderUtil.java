@@ -128,8 +128,8 @@ final public class DataProviderUtil {
     @DataProvider(name ="fillDataApi")
     public static Object[][] fillDataApi() {
         return new Object[][]{
-                {"CC", "1023013504"},
-//                {"CC", "39762639"},
+//                {"CC", "1023013504"},
+                {"CC", "11259747"},
         };
     }
 }

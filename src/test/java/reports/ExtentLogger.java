@@ -2,7 +2,13 @@ package reports;
 
 
 import com.aventstack.extentreports.MediaEntityBuilder;
+import org.example.models.CardValidationResponse;
 import utils.ScreenshotUtils;
+import com.aventstack.extentreports.markuputils.MarkupHelper;
+import com.aventstack.extentreports.markuputils.CodeLanguage;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 
 public final class ExtentLogger {
 
@@ -25,6 +31,18 @@ public final class ExtentLogger {
 
     public static void info(String message) {
         ExtentManager.getExtentTest().info(message);
+    }
+
+    public static void infoPretty(Object cardValidationResponse) {
+        try {
+            ObjectMapper om = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+            String pretty = om.writeValueAsString(cardValidationResponse);
+            ExtentManager.getExtentTest().info(MarkupHelper.createCodeBlock(pretty, CodeLanguage.JSON));
+        } catch (Exception e) {
+            // Fallback if serialization fails
+            ExtentLogger.info(String.valueOf(cardValidationResponse));
+        }
+
     }
 
     public static void pass(String message, boolean isScreenshotNeeded) {
