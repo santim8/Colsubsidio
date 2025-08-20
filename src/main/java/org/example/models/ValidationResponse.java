@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CardValidationResponse {
+public class ValidationResponse {
 
     private ResultadoValidacion resultadoValidacion;
     private List<Resultado> resultado;

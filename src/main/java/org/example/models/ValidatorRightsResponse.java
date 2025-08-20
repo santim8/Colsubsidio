@@ -37,6 +37,19 @@ public class ValidatorRightsResponse {
         private String numeroDocumento;
         private String tipoDocumento;
         private String primerNombre;
-        // add more fields if API returns them (e.g., segundoNombre, apellidos, etc.)
+        private String segundoNombre;
+        private String primerApellido;
+        private String segundoApellido;
+        private String fechaNacimiento;
+        private String fechaActualizacion;
+        private String edad;
+        private String genero;
+        private String estadoCivil;
+        private String personasACargo;
+        private String nivelEducativo;
+        private String telefono;
+        private String motivoRetiro;
+        private String estado;
+        private String correoElectronico;
     }
 }
