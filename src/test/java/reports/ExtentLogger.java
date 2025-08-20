@@ -2,7 +2,6 @@ package reports;
 
 
 import com.aventstack.extentreports.MediaEntityBuilder;
-import org.example.models.CardValidationResponse;
 import utils.ScreenshotUtils;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.markuputils.CodeLanguage;
@@ -33,7 +32,7 @@ public final class ExtentLogger {
         ExtentManager.getExtentTest().info(message);
     }
 
-    public static void infoPretty(Object cardValidationResponse) {
+    public static void infoJsonPretty(Object cardValidationResponse) {
         try {
             ObjectMapper om = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
             String pretty = om.writeValueAsString(cardValidationResponse);

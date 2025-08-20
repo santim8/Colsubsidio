@@ -5,7 +5,7 @@ import execution.api.ServicesUtils;
 import execution.data.DataProviderUtil;
 import io.restassured.response.Response;
 import org.example.models.PreApprovedResponse;
-import org.example.models.CardValidationResponse;
+import org.example.models.ValidationResponse;
 import org.example.models.ValidatorRightsResponse;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -28,23 +28,27 @@ public class ApiTest extends BaseRequest {
     }
 
 
-    @Test(enabled = true, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 1)
-    public void testPreapproved(
-            String typeDocument,
-            String identification
-    ) {
-        Response response = requestGet("https://platform-test-external.colsubsidio.com/loans/loans/external/v1/preapproved/CO1C/" + identification, null, null);
-        Assert.assertEquals(response.getStatusCode(), 200, "Status should be 200");
-        PreApprovedResponse preApprovedResponse = response.as(PreApprovedResponse.class);
-        reportPreapproved(preApprovedResponse, typeDocument, identification);
-    }
-
     @Test(enabled = true, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class)
-    public void testValidatorRights(
+    public void testValidationServices(
             String typeDocument,
             String identification
     ) {
-        Boolean isAffiliate = ServicesUtils.isAffiliate("CO1C", identification);
+        boolean isAffiliate = ServicesUtils.isAffiliate("CO1C", identification);
+
+        if (isAffiliate) {
+            ExtentLogger.pass("the user " + typeDocument + " " + identification + " is affiliate and titular");
+        } else {
+            ExtentLogger.fail("the user " + typeDocument + " " + identification + " is <b>NOT</b> affiliate or titular");
+        }
+
+        boolean hasCredentialsSSO = ServicesUtils.hasCredentialsSSO("CO1C", identification);
+        if (hasCredentialsSSO) {
+            ExtentLogger.pass("the user " + typeDocument + " " + identification + " has SSO password ");
+        } else {
+            ExtentLogger.fail("the user " + typeDocument + " " + identification + " has <b>NOT</b> affiliate or titular");
+        }
+        ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
+        ////////////////////////////////////////////////////////////////////////////
         String token = getAccessToken();
         Map<String, String> params = Map.of(
                 "numeroId", identification,
@@ -59,16 +63,11 @@ public class ApiTest extends BaseRequest {
         Assert.assertEquals(response.getStatusCode(), 200, "The service Validator Rights is failing");
         ValidatorRightsResponse validatorRightsResponse = response.as(ValidatorRightsResponse.class);
         reportValidatorRights(validatorRightsResponse, identification);
-    }
-
-    @Test(enabled = true, dataProvider = "fillDataApi", dataProviderClass = DataProviderUtil.class, priority = 3)
-    public void testCardValidations(
-            String typeDocument,
-            String identification
-    ) {
-        baseURI = "https://platform-test-internal.colsubsidio.com";
-        Map<String, String> headers = new HashMap<>();
-        headers.put("x-api-key", "rRXXnTUnej71MueSIqZdV91GgXe0tEIZ1kkV0B3h");
+        ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
+        ///////////////////////////////////////////////////////////////////////////
+        headers = Map.of(
+                "x-api-key", "rRXXnTUnej71MueSIqZdV91GgXe0tEIZ1kkV0B3h"
+        );
 
         String json = "{\n" +
                 "  \"documento\": {\n" +
@@ -77,99 +76,148 @@ public class ApiTest extends BaseRequest {
                 "  }\n" +
                 "}";
 
-        Response response = requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/external/v1/card-validations", headers, null, json);
+        response = requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/external/v1/card-validations", headers, null, json);
         Assert.assertEquals(response.getStatusCode(), 200, "The service CARD VALIDATIONS is failing");
-        CardValidationResponse cardValidationResponse = response.as(CardValidationResponse.class);
-        reportValidationCards(cardValidationResponse, typeDocument, identification);
-    }
+        ValidationResponse validationResponse = response.as(ValidationResponse.class);
+        reportValidationCards(validationResponse, typeDocument, identification);
 
-    @Test(enabled = true, dataProviderClass = DataProviderUtil.class, dataProvider = "fillDataApi", priority = 4)
-    public void restrictiveList(
-            String typeDocument,
-            String identification
-    ) {
-        String token = getAccessToken();
-        baseURI = "https://colsubsidio-test.apigee.net/api/v2/credito/elegibilidad/listasrestrictivas";
-        Map<String, String> headers = new HashMap<>();
+        /////////////////////////////////////////////////////////////////////////
+//        String token = getAccessToken();
         String body = "{\n" +
-                "  \"numeroDocumento\": \"1030691913\",\n" +
-                "  \"primerNombre\": \"EDWIN\",\n" +
-                "  \"primerApellido\": \"GUERRERO\",\n" +
-                "  \"numeroDocumentoEmpresa\": \"" + identification + "\"\n" +
+                "  \"numeroDocumento\": \"" + identification + "\",\n" +
+                "  \"tipoDocumento\": \"CO1C\"\n" +
                 "}";
+        headers = Map.of(
+                "Authorization", "Bearer " + token,
+                "accept", "application/json",
+                "content-type", "application/json"
+        );
 
-        headers.put("Authorization", "Bearer " + token);
-        headers.put("accept", "application/json");
-        headers.put("content-type", "application/json");
+        response = requestPost("https://colsubsidio-test.apigee.net/api/v2/credito/elegibilidad/listasrestrictivas", headers, null, body);
+        Assert.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
+        validationResponse = response.as(ValidationResponse.class);
+        reportValidationListRestrictive(validationResponse, typeDocument, identification);
+        ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
 
-        Response response = requestPost("https://colsubsidio-test.apigee.net/api/v2/credito/elegibilidad/listasrestrictivas", headers, null, body);
-        var data = response.jsonPath();
-        Integer code = response.getStatusCode();
-        if (code != 200) {
+        /// /////////////////////////////////////////////////////////////////////
 
-        }
-
-        if (getExtentTest() != null) {
-            if (code.equals(200)) {
-                ExtentLogger.pass("The service <b>restrictive list</b> is working correctly");
-            } else {
-                ExtentLogger.fail("The service <b>restrictive list</b> is NOT working correctly");
-            }
-        }
+        response = requestGet("https://platform-test-external.colsubsidio.com/loans/loans/external/v1/preapproved/CO1C/" + identification, null, null);
+        Assert.assertEquals(response.getStatusCode(), 200, "Status should be 200");
+        PreApprovedResponse preApprovedResponse = response.as(PreApprovedResponse.class);
+        reportPreapproved(preApprovedResponse, typeDocument, identification);
     }
 
     private void reportPreapproved(PreApprovedResponse preApprovedResponse, String typeDocument, String identification) {
         if (getExtentTest() != null) {
-            ExtentLogger.pass("The service preapproved is working correctly");
+            ExtentLogger.pass("The <b>service preapproved</b> is working correctly");
             if (preApprovedResponse.getData().isHasCredit()) {
-                ExtentLogger.info("The user " + typeDocument + " " + identification + " has preapproved");
-                ExtentLogger.infoPretty(preApprovedResponse.getData());
+                ExtentLogger.info("The user " + typeDocument + " " + identification + " has <b>PREAPPROVED</b>");
             } else {
-                ExtentLogger.fail("The user " + typeDocument + " " + identification + " has NOT preapproved");
+                ExtentLogger.info("The user " + typeDocument + " " + identification + " has <b>NOT PREAPPROVED</b>");
             }
+            ExtentLogger.infoJsonPretty(preApprovedResponse.getData());
         }
     }
 
     private void reportValidatorRights(ValidatorRightsResponse validatorRightsResponse, String identification) {
         if (getExtentTest() != null) {
-            ExtentLogger.pass("The service <b>validate rights</b> is working");
+            ExtentLogger.pass("The <b>service validate rights</b> is working");
             if (!validatorRightsResponse.getData().isEmpty()) {
-                ValidatorRightsResponse.Afiliado afiliado = validatorRightsResponse.getData().get(0).getAfiliado();
-                ExtentLogger.pass("The user " + afiliado.getPrimerNombre() + " is affiliate " + afiliado.getTipoDocumento() + " " + afiliado.getNumeroDocumento());
-                if (validatorRightsResponse.getData().get(0).getAfiliado().getNumeroDocumento().equals(identification)) {
-                    ExtentLogger.pass("The user is titular");
-                } else {
-                    ExtentLogger.fail("The user is  <b>NOT</b> titular");
+                if (validatorRightsResponse.getData().get(0).getAfiliado().getEstado().equals("RETIR")) {
+                    ExtentLogger.fail("the user" + "CC" + " " + identification + " is <b>RETIRED</b>");
+                } else if (validatorRightsResponse.getData().get(0).getAfiliado().getEstado().equals("VIGEN")) {
+                    ExtentLogger.pass("the user" + "CC" + " " + identification + " is <b>ViGENT</b>");
                 }
+                if (validatorRightsResponse.getData().get(0).getAfiliado().getNumeroDocumento().equals(identification)) {
+                    ExtentLogger.pass("the user" + "CC" + " " + identification + " is <b>TITULAR</b>");
+                } else {
+                    ExtentLogger.fail("the user" + "CC" + " " + identification + " is N <b> NOT TITULAR</b>");
+                }
+                ExtentLogger.infoJsonPretty(validatorRightsResponse.getData());
             } else {
                 ExtentLogger.fail("The user is  <b>NOT</b> affiliate");
             }
-            ExtentLogger.infoPretty(validatorRightsResponse.getData());
         } else {
             ExtentLogger.fail("The user is  <b>NOT</b> affiliate");
         }
     }
 
 
-    private void reportValidationCards(CardValidationResponse cardValidationResponse, String typeDocument, String identification) {
+    private void reportValidationCards(ValidationResponse validationResponse, String typeDocument, String identification) {
         if (getExtentTest() != null) {
-            ExtentLogger.pass("The service validate cards is validating the user");
-            String state = cardValidationResponse.getResultadoValidacion().getEstado();
+            ExtentLogger.pass("The <b>service validate cards</b> is validating the user");
+            String state = validationResponse.getResultadoValidacion().getEstado();
             if (state.equals("OK")) {
                 ExtentLogger.pass("The user " + typeDocument + " " + identification + " pass the ASKARD validations");
             } else if (state.equals("VALIDATION_ERROR")) {
-                ExtentLogger.info("The user " + typeDocument + " " + identification + " NOT pass the ASKARD validations");
-                String codeValidation = cardValidationResponse.getResultadoValidacion().getDatosError().getCodigoErrorValidacion();
+                ExtentLogger.fail("The user " + typeDocument + " " + identification + " NOT pass the ASKARD validations");
+                String codeValidation = validationResponse.getResultadoValidacion().getDatosError().getCodigoErrorValidacion();
                 if (codeValidation.equals("CARD_STATUS")) {
-                    ExtentLogger.fail("The user don't have CARD");
+                    ExtentLogger.fail("The user has not CARD");
                 } else if (codeValidation.equals("INVALID_REQUIREMENTS")) {
-                    ExtentLogger.fail("The user have a active CARD with some state or amparada");
+                    ExtentLogger.fail("The user has a active CARD with some state or amparada");
                 }
-                ExtentLogger.infoPretty(cardValidationResponse.getResultadoValidacion());
             } else {
-                ExtentLogger.info("No identificado");
+                ExtentLogger.info("the state is not recognized");
             }
+            ExtentLogger.infoJsonPretty(validationResponse.getResultadoValidacion());
         }
+    }
+
+    private void reportValidationListRestrictive(ValidationResponse validationResponse, String typeDocument, String identification) {
+        if (getExtentTest() != null) {
+            ExtentLogger.pass("The <b>service restrictive cards</b> is validating the user");
+            String state = validationResponse.getResultadoValidacion().getEstado();
+            if (state.equals("OK")) {
+                ExtentLogger.pass("The user " + typeDocument + " " + identification + " pass the LIST RESTRICTIVE validations");
+            } else if (state.equals("VALIDATION_ERROR")) {
+                ExtentLogger.fail("The user " + typeDocument + " " + identification + " <b>NOT</b> pass LIST RESTRICTIVE validations");
+                String codeValidation = validationResponse.getResultadoValidacion().getDatosError().getCodigoErrorValidacion();
+            } else {
+                ExtentLogger.info("the state is not recognized");
+            }
+            ExtentLogger.infoJsonPretty(validationResponse.getResultadoValidacion());
+        }
+    }
+
+
+    @Test(enabled = false, dataProviderClass = DataProviderUtil.class, dataProvider = "fillDataApi", priority = 4)
+    public void restrictiveList(
+            String typeDocument,
+            String identification
+    ) {
+        Map<String, String> headers = Map.of(
+                "Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQMTAzMDU5MzU5Nl8yIiwiY3VzdG9tZXIiOnsiZG9jdW1lbnROdW1iZXIiOiIxMDMwNTkzNTk2IiwiZG9jdW1lbnRUeXBlIjoiMiIsInRva2VuSWQiOiJBUUlDNXdNMkxZNFNmY3g3Ym5SczAycUpSMVZ6alNfNHJFVk01ZzZ4c2tXd0Y0WS4qQUFKVFNRQUNNREVBQWxOTEFCUXROekl6TWpVNE1USXdNVGcxT1RFNU56UTBOUS4uKiIsInRlbGVwaG9uZU51bWJlciI6Iis1NzMyMjM5ODQwOTYiLCJtYWlsIjoicHJ1ZWJhcmV0b21hOEBwb3dlcnNjcmV3cy5jb20iLCJ0aW1lU2Vzc2lvbiI6IjYwIiwidXNlcm5hbWUiOiJQMTAzMDU5MzU5Nl8yIiwiZmlyc3ROYW1lIjoiUHJ1ZWJhIiwibGFzdE5hbWUiOiJyZXQifSwiaWF0IjoxNzU1NjI0NDM0LCJleHAiOjE3NTU2MjgwMzR9.vXOBqYAmjUM_iXkdxCMgfp_exra2-DRVITa58Jvdg7y5aB-h5Xr3juPy_6YFRgfZ6vWaWAMKqCbNQCP9rfjQ9A",
+                "accept", "application/json",
+                "content-type", "application/json"
+        );
+
+        Response response = requestGet("https://platform-test-external.colsubsidio.com/loans/loan-offer/external/v1/product/2/request/offer/177601", headers, null);
+        Assert.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
+        var data = response.jsonPath();
+    }
+
+    @Test(enabled = true, dataProviderClass = DataProviderUtil.class, dataProvider = "fillDataApi", priority = 4)
+    public void validateSSO(
+            String typeDocument,
+            String identification
+    ) {
+        String token = getAccessToken();
+        String body = "{\n" +
+                "  \"contrasenha\": \"Colsubsidio2025.\",\n" +
+                "  \"documento\": {\n" +
+                "    \"tipo\": \"2\",\n" +
+                "    \"numero\": \"" + identification + "\"\n" +
+                "  }\n" +
+                "}";
+        Map<String, String> headers = Map.of(
+                "Authorization", "Bearer " + token,
+                "accept", "application/json"
+        );
+
+        Response response = requestPost("https://colsubsidio-test.apigee.net/api/v2/autenticacion/usuarios/login/personas", headers, null, body);
+        Assert.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
+        var data = response.jsonPath();
     }
 }
 
