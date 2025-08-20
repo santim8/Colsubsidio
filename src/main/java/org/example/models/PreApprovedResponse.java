@@ -30,8 +30,5 @@ public class PreApprovedResponse {
     public static class Credit {
         private String productType;
         private String amount;
-//        private String hasLibranza;
-//        private String creditTerm;
-//        private String effectiveDate;
     }
 }
