@@ -21,17 +21,11 @@ import static reports.ExtentManager.getExtentTest;
 
 public class ApiTest extends BaseRequest {
     private static final String VARIABLE = "https://platform-test-external.colsubsidio.com";
-    private String baseApigee;
-    private String basePlatformExt;
-    private String basePlatformInt;
-    private String apiKey;
-    private String token;
+    private SoftAssert softly;
 
     @BeforeTest()
     public void beforeTest() {
-        baseApigee = "https://colsubsidio-test.apigee.net";
-        basePlatformInt = "https://platform-test-internal.colsubsidio.com";
-        basePlatformExt = "https://platform-test-external.colsubsidio.com";
+        softly = new SoftAssert();
     }
 
 
@@ -40,16 +34,8 @@ public class ApiTest extends BaseRequest {
             String typeDocument,
             String identification
     ) {
-        SoftAssert softly = new SoftAssert();
-
+        // 1) Local checks
         boolean isAffiliate = ServicesUtils.isAffiliate(typeDocument, identification);
-        if (isAffiliate)
-            ExtentLogger.pass("the user " + typeDocument + " " + identification + " is affiliate and titular");
-        else {
-            ExtentLogger.fail("the user " + typeDocument + " " + identification + " is <b>NOT</b> affiliate or titular");
-            softly.fail("Affiliate check failed");
-        }
-
         if (isAffiliate)
             ExtentLogger.pass("User %s %s is affiliated and titular".formatted(typeDocument, identification));
         else {
@@ -58,35 +44,41 @@ public class ApiTest extends BaseRequest {
         }
 
         boolean hasCredentialsSSO = TokenManager.hasCredentialsSSO(typeDocument, identification);
-        if (hasCredentialsSSO) {
-            ExtentLogger.pass("the user " + typeDocument + " " + identification + " has SSO password ");
-        } else {
-            ExtentLogger.fail("the user " + typeDocument + " " + identification + " has <b>NOT</b> affiliate or titular");
+        if (hasCredentialsSSO)
+            ExtentLogger.pass("User %s %s has SSO credentials".formatted(typeDocument, identification));
+        else {
+            ExtentLogger.fail("User %s %s lacks SSO credentials".formatted(typeDocument, identification));
+            softly.fail("SSO check failed");
         }
-        ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
 
+        // 2) Validator rights
         Response response = ServicesUtils.validatorRightsResponse(typeDocument, identification);
-        Assert.assertEquals(response.getStatusCode(), 200, "The service Validator Rights is failing");
+        softly.assertEquals(response.getStatusCode(), 200, "The service VALIDATOR RIGHTS is failing");
         ValidatorRightsResponse validatorRightsResponse = response.as(ValidatorRightsResponse.class);
         reportValidatorRights(validatorRightsResponse, identification);
         ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
 
+        // 3) Card validations
         response = ServicesUtils.validationCardsResponse(typeDocument, identification);
-        Assert.assertEquals(response.getStatusCode(), 200, "The service CARD VALIDATIONS is failing");
+        softly.assertEquals(response.getStatusCode(), 200, "The service CARD VALIDATIONS is failing");
         ValidationResponse validationResponse = response.as(ValidationResponse.class);
         reportValidationCards(validationResponse, typeDocument, identification);
         ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
 
+        // 4) Restrictive list
         response = ServicesUtils.validationListRestrictiveResponse(typeDocument, identification);
-        Assert.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
+        softly.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
         validationResponse = response.as(ValidationResponse.class);
         reportValidationListRestrictive(validationResponse, typeDocument, identification);
         ExtentLogger.info("<hr style='border:1px solid #ccc;'>");
 
+        // 5) Preapproved
         response = ServicesUtils.validationPreapprovedResponse(typeDocument, identification);
-        Assert.assertEquals(response.getStatusCode(), 200, "Status should be 200");
+        softly.assertEquals(response.getStatusCode(), 200, "Status should be 200");
         PreApprovedResponse preApprovedResponse = response.as(PreApprovedResponse.class);
         reportPreapproved(preApprovedResponse, typeDocument, identification);
+
+        softly.assertAll();
     }
 
     private void reportPreapproved(PreApprovedResponse preApprovedResponse, String typeDocument, String identification) {
@@ -154,7 +146,6 @@ public class ApiTest extends BaseRequest {
                 ExtentLogger.pass("The user " + typeDocument + " " + identification + " pass the LIST RESTRICTIVE validations");
             } else if (state.equals("VALIDATION_ERROR")) {
                 ExtentLogger.fail("The user " + typeDocument + " " + identification + " <b>NOT</b> pass LIST RESTRICTIVE validations");
-                String codeValidation = validationResponse.getResultadoValidacion().getDatosError().getCodigoErrorValidacion();
             } else {
                 ExtentLogger.info("the state is not recognized");
             }
