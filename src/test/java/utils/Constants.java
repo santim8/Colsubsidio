@@ -11,6 +11,9 @@ public class Constants {
     public static final String BASE_URL                 = "https://63b6dfe11907f863aa04ff81.mockapi.io";
     public static final  String URL                      = "/api/v1/%s";
     public static final  String URL_WITH_PARAM           = "/api/v1/%s/%s";
+    public static final String baseApigee = "https://colsubsidio-test.apigee.net";
+    public static final String basePlatformInt = "https://platform-test-internal.colsubsidio.com";
+    public static final String basePlatformExt = "https://platform-test-external.colsubsidio.com";
 
     private Constants() {
     }

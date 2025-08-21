@@ -1,9 +1,7 @@
 package utils.baseTest;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import utils.Constants;
-
 import java.util.Collections;
 import java.util.Map;
 
@@ -18,6 +16,7 @@ public class BaseRequest {
                 .headers(headers != null ? headers : Collections.emptyMap())
                 .params(params != null ? params : Collections.emptyMap())
                 .contentType(Constants.VALUE_CONTENT_TYPE)
+                .accept(Constants.VALUE_CONTENT_TYPE)
                 .when()
                 .get(endpoint)
                 .then()
@@ -34,6 +33,7 @@ public class BaseRequest {
                 .params(params != null ? params : Collections.emptyMap())
                 .contentType(Constants.VALUE_CONTENT_TYPE)
                 .body(body)
+                .accept(Constants.VALUE_CONTENT_TYPE)
                 .post(endpoint)
                 .then()
                 .log()
