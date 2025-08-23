@@ -14,6 +14,10 @@ public class Constants {
     public static final String baseApigee = "https://colsubsidio-test.apigee.net";
     public static final String basePlatformInt = "https://platform-test-internal.colsubsidio.com";
     public static final String basePlatformExt = "https://platform-test-external.colsubsidio.com";
+    public static final String validationPreapproved = "https://platform-test-external.colsubsidio.com/loans/loans/external/v1/preapproved";
+    public static final String validatorRights = "https://colsubsidio-test.apigee.net/api/v2/afiliacion/validador";
+    public static final String validationListRestrictive = "https://colsubsidio-test.apigee.net/api/v2/credito/elegibilidad/listasrestrictivas";
+    public static final String validationCards = "https://platform-test-internal.colsubsidio.com/loans/eligibility/external/v1/card-validations";
 
     private Constants() {
     }

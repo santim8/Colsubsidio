@@ -2,7 +2,6 @@ package execution.api;
 
 import execution.enums.EnumDocumentTypeServices;
 import io.restassured.response.Response;
-import org.example.models.ValidatorRightsResponse;
 import java.util.Map;
 import static execution.api.TokenManager.getAccessToken;
 import static io.restassured.RestAssured.baseURI;
@@ -39,36 +38,6 @@ public class ServicesUtils {
         }
     }
 
-    public static boolean hasCredentialsSSO(String typeDocument, String identification) {
-        String token = getAccessToken();
-        String body = """
-                {
-                "contrasenha": "Colsubsidio2025.", 
-                "documento": {
-                    "tipo": "%s",
-                    "numero": "%s"
-                    }
-                }""".formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification);
-
-        Map<String, String> headers = Map.of(
-                "Authorization", "Bearer " + token,
-                "accept", "application/json"
-        );
-        try {
-            Response response = requestPost("https://colsubsidio-test.apigee.net/api/v2/autenticacion/usuarios/login/personas", headers, null, body);
-            if (response.getStatusCode() == 200) {
-                return true;
-            } else if (response.getStatusCode() == 401) {
-                return false;
-            }
-            System.out.println("the service Validate Holder is failing");
-            return false;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
     public static Response validatorRightsResponse(String typeDocument, String identification) {
         String token = getAccessToken();
         Map<String, String> params = Map.of(
@@ -80,7 +49,6 @@ public class ServicesUtils {
         );
 
         Response response = requestGet(baseApigee + "/api/v2/afiliacion/validador", headers, params);
-        ValidatorRightsResponse validatorRightsResponse = response.as(ValidatorRightsResponse.class);
         return response;
     }
 
@@ -111,7 +79,16 @@ public class ServicesUtils {
     }
 
     public static Response validationPreapprovedResponse(String typeDocument, String identification) {
-        String re = basePlatformExt + "/loans/loans/external/v1/preapproved/%s/%s".formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification);
         return requestGet(basePlatformExt + "/loans/loans/external/v1/preapproved/%s/%s".formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification), null, null);
+    }
+
+    public Response getOffers(String typeDocument, String identification) {
+        Map<String, String> headers = Map.of(
+                "Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQMTAzMDU5MzU5Nl8yIiwiY3VzdG9tZXIiOnsiZG9jdW1lbnROdW1iZXIiOiIxMDMwNTkzNTk2IiwiZG9jdW1lbnRUeXBlIjoiMiIsInRva2VuSWQiOiJBUUlDNXdNMkxZNFNmY3g3Ym5SczAycUpSMVZ6alNfNHJFVk01ZzZ4c2tXd0Y0WS4qQUFKVFNRQUNNREVBQWxOTEFCUXROekl6TWpVNE1USXdNVGcxT1RFNU56UTBOUS4uKiIsInRlbGVwaG9uZU51bWJlciI6Iis1NzMyMjM5ODQwOTYiLCJtYWlsIjoicHJ1ZWJhcmV0b21hOEBwb3dlcnNjcmV3cy5jb20iLCJ0aW1lU2Vzc2lvbiI6IjYwIiwidXNlcm5hbWUiOiJQMTAzMDU5MzU5Nl8yIiwiZmlyc3ROYW1lIjoiUHJ1ZWJhIiwibGFzdE5hbWUiOiJyZXQifSwiaWF0IjoxNzU1NjI0NDM0LCJleHAiOjE3NTU2MjgwMzR9.vXOBqYAmjUM_iXkdxCMgfp_exra2-DRVITa58Jvdg7y5aB-h5Xr3juPy_6YFRgfZ6vWaWAMKqCbNQCP9rfjQ9A",
+                "accept", "application/json",
+                "content-type", "application/json"
+        );
+
+        return requestGet("https://platform-test-external.colsubsidio.com/loans/loan-offer/external/v1/product/2/request/offer/177601", headers, null);
     }
 }

@@ -63,7 +63,6 @@ public class TokenManager {
         );
         try {
             Response response = requestPost("https://colsubsidio-test.apigee.net/api/v2/autenticacion/usuarios/login/personas", headers, null, body);
-            var tin = response.jsonPath();
             if (response.getStatusCode() != 200) {
                 return null;
             }

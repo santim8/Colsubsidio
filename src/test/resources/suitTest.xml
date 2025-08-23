@@ -4,7 +4,7 @@
         <listener class-name="execution.listeners.RetryListener"/>
     </listeners>
 
-    <test name="validate apis">
+    <test name="Validation Service User">
         <classes>
             <class name="execution.tests.ApiTest"/>
         </classes>
