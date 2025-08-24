@@ -48,8 +48,7 @@ public class ServicesUtils {
                 "Authorization", "Bearer " + token
         );
 
-        Response response = requestGet(baseApigee + "/api/v2/afiliacion/validador", headers, params);
-        return response;
+        return requestGet(baseApigee + "/api/v2/afiliacion/validador", headers, params);
     }
 
 

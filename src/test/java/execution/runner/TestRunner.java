@@ -8,13 +8,13 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "execution.api.StepDefinitions",
-        snippets = CucumberOptions.SnippetType.CAMELCASE,
-        monochrome = true,
-        tags = "@smokeTest",
+        snippets = CucumberOptions.SnippetType.CAMELCASE
+//        monochrome = true,
+//        tags = "@smokeTest",
         //dryRun = true,
-        plugin = {"pretty:target/cucumber/cucumber.txt",
-                "html:target/cucumber/report",
-                "json:target/cucumber.json"}
+//        plugin = {"pretty:target/cucumber/cucumber.txt",
+//                "html:target/cucumber/report",
+//                "json:target/cucumber.json"}
 )
 public class TestRunner {
 }
