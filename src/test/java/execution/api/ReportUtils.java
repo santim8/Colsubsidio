@@ -99,12 +99,35 @@ public class ReportUtils {
                 return;
             }
             if (validationResponse.getResultado().get(0).getCodigo() == 200) {
-                ExtentLogger.pass("The service validate rights is working url: " + Constants.validationListRestrictive);
+                ExtentLogger.pass("The service restrictive list is working url: " + Constants.validationListRestrictive);
                 String state = validationResponse.getResultadoValidacion().getEstado();
                 if (state.equals("OK")) {
                     ExtentLogger.pass("✅The user pass the LIST RESTRICTIVE validations");
                 } else if (state.equals("VALIDATION_ERROR")) {
                     ExtentLogger.fail("❌The user DOES NOT pass LIST RESTRICTIVE validations");
+                } else {
+                    ExtentLogger.info("❌the state is not recognized");
+                }
+                ExtentLogger.infoJsonPretty(validationResponse.getResultadoValidacion());
+            }
+        }
+    }
+
+    public static void reportValidationBizagi(ValidationResponse validationResponse, Response response) {
+        ExtentLogger.info("<b>Validation Bizagi</b>");
+        if (getExtentTest() != null) {
+            if (response.getStatusCode() != 200) {
+                ExtentLogger.fail("the service <b>Validation Bizagi</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationListRestrictive);
+                ExtentLogger.info("Response: " + response.jsonPath().get());
+                return;
+            }
+            if (validationResponse.getResultado().get(0).getCodigo() == 200) {
+                ExtentLogger.pass("The service Validation Bizagi is working url: " + Constants.validationBizagi);
+                String state = validationResponse.getResultadoValidacion().getEstado();
+                if (state.equals("OK")) {
+                    ExtentLogger.pass("✅The user pass the Validation Bizagi validations");
+                } else if (state.equals("VALIDATION_ERROR")) {
+                    ExtentLogger.fail("❌The user DOES NOT pass Validation Bizagi validations");
                 } else {
                     ExtentLogger.info("❌the state is not recognized");
                 }

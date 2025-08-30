@@ -27,38 +27,47 @@ public class UserSteps {
     private ValidatorRightsResponse validatorRightsResponse;
     private final int MIN_ADULT_YEARS = 18;
     private ValidationResponse validationResponse;
+    private String docType;
+    private String docNumber;
     private PreApprovedResponse preApprovedResponse;
 
     @Given("The user is affiliate and titular")
     public void theUserIsAffiliateAndTitular() {
-        boolean isAffiliate = ServicesUtils.isAffiliate("CC", "7277260");
+        boolean isAffiliate = ServicesUtils.isAffiliate(docType, "7277260");
         logger.info("validating the user is affiliate and titular");
         Assert.assertTrue(isAffiliate);
     }
 
+    @Given("a user with docType {string} and docNumber {string}")
+    public void aUserWithDocTypeAndDocNumber(String docType, String docNumber) {
+        this.docType = docType;
+        this.docNumber = docNumber;
+        logger.info("Using user docType: " + docType + " and " + "identification: " + docNumber);
+    }
+
     @Given("The User has credentials")
     public void theUserHasCredentials() {
-        boolean isAffiliate = ServicesUtils.isAffiliate("CC", "7277260");
+        boolean isAffiliate = ServicesUtils.isAffiliate(docType, docNumber);
         logger.info("validating has credentials");
         Assert.assertTrue(isAffiliate);
     }
 
     @When("I GET request the preapproved response")
     public void iGetThePreapproved() {
-        response = ServicesUtils.validationPreapprovedResponse("CC", "7277260");
+        response = ServicesUtils.validationPreapprovedResponse(docType, docNumber);
         logger.info("validating credit preapproved");
     }
 
     @When("I POST request the validation card response")
     public void iPostTheValidationCard() {
-        response = ServicesUtils.validationCardsResponse("CC", "7277260");
+        response = ServicesUtils.validationCardsResponse(docType, docNumber);
         validationResponse = response.as(ValidationResponse.class);
         logger.info("validating cards state");
     }
 
     @When("I Get request the validation rights response")
     public void iGetValidationRights() {
-        response = ServicesUtils.validatorRightsResponse("CC", "7277260");
+        response = ServicesUtils.validatorRightsResponse(docType, docNumber);
         validatorRightsResponse = response.as(ValidatorRightsResponse.class);
         logger.info("validating validation rights");
     }
@@ -66,15 +75,8 @@ public class UserSteps {
     @When("I POST request the validation restrictive list response")
     public void iPostValidationRestrictiveList() {
         logger.info("validating user in restrictive list");
-        response = ServicesUtils.validationListRestrictiveResponse("CC", "7277260");
+        response = ServicesUtils.validationListRestrictiveResponse("CC", docNumber);
         validationResponse = response.as(ValidationResponse.class);
-    }
-
-    @When("I GET request validation preapproved response")
-    public void iGetValidationPreapproved() {
-        logger.info("validating user in validation preapproved");
-        response = ServicesUtils.validationPreapprovedResponse("CC", "7277260");
-        preApprovedResponse = response.as(PreApprovedResponse.class);
     }
 
 
