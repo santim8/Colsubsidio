@@ -18,6 +18,13 @@ public class Constants {
     public static final String validatorRights = "https://colsubsidio-test.apigee.net/api/v2/afiliacion/validador";
     public static final String validationListRestrictive = "https://colsubsidio-test.apigee.net/api/v2/credito/elegibilidad/listasrestrictivas";
     public static final String validationCards = "https://platform-test-internal.colsubsidio.com/loans/eligibility/external/v1/card-validations";
+    public static final String validationBizagi = "https://platform-test-internal.colsubsidio.com/loans/eligibility/internal/v1/affiliation-validations";
+    public static final String RETIRED = "RETIR";
+    public static final String ACTIVE = "VIGEN";
+    public static final String VALIDATION_ERROR = "VALIDATION_ERROR";
+    public static final String OK = "OK";
+    public static final String CARD_STATUS = "CARD_STATUS";
+
 
     private Constants() {
     }

@@ -16,9 +16,20 @@
         <rest.assured.version>5.3.1</rest.assured.version>
         <sdk.version>6.0.0-SNAPSHOT</sdk.version>
         <cucumber.version>7.13.0</cucumber.version>
+        <log4j.version>2.20.0</log4j.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>

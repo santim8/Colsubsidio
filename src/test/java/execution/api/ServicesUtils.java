@@ -48,8 +48,7 @@ public class ServicesUtils {
                 "Authorization", "Bearer " + token
         );
 
-        Response response = requestGet(baseApigee + "/api/v2/afiliacion/validador", headers, params);
-        return response;
+        return requestGet(baseApigee + "/api/v2/afiliacion/validador", headers, params);
     }
 
 
@@ -90,5 +89,24 @@ public class ServicesUtils {
         );
 
         return requestGet("https://platform-test-external.colsubsidio.com/loans/loan-offer/external/v1/product/2/request/offer/177601", headers, null);
+    }
+
+    public static Response validationBizagi(String typeDocument, String identification) {
+        Map<String, String> headers = Map.of(
+                "x-api-key", "ecn24ysGnZ4X17cU5lX4Q9gyFvyPR7fD1DkwR7I7"
+        );
+
+
+        String json = "{\n" +
+                "  \"idCaso\": \"564789\",\n" +
+                "  \"documento\": {\n" +
+                "    \"tipo\": \"CO1C\",\n" +
+                "    \"numero\": \"1026564175\"\n" +
+                "  }\n" +
+                "}";
+
+        Response tin = requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/internal/v1/affiliation-validations", headers, null, json);
+        var data = tin.jsonPath();
+        return tin;
     }
 }

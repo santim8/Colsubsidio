@@ -12,6 +12,8 @@ public class TokenManager {
     private static final String CLIENT_ID = "cmnGMnGPVKLJwWLfWxqFCSZOR5hIjhWb";
     private static final String CLIENT_SECRET = "uKCYJXAVkLY5gsWt";
     private static String token;
+    private static String tokenSSO;
+    private static AuthenticationResponse authenticationResponse;
 
     private TokenManager() {
     }
@@ -46,7 +48,7 @@ public class TokenManager {
         return token;
     }
 
-    public static String setTokenSSO(String typeDocument, String identification) {
+    public static void setTokenSSO(String typeDocument, String identification) {
         String token = getAccessToken();
         String body = """
                 {
@@ -64,21 +66,29 @@ public class TokenManager {
         try {
             Response response = requestPost("https://colsubsidio-test.apigee.net/api/v2/autenticacion/usuarios/login/personas", headers, null, body);
             if (response.getStatusCode() != 200) {
-                return null;
+                tokenSSO = null;
+                return;
             }
-            AuthenticationResponse authenticationResponse = response.as(AuthenticationResponse.class);
-            return authenticationResponse.getObtenerToken().get(0).getToken();
+            authenticationResponse = response.as(AuthenticationResponse.class);
+            tokenSSO = authenticationResponse.getObtenerToken().get(0).getToken();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return null;
+            tokenSSO = null;
         }
     }
 
-    public static String getAccessTokenSSO(String typeDocument, String identification) {
-        if (token == null) {
+    public static AuthenticationResponse getAccessTokenSSOModel(String typeDocument, String identification) {
+        if (authenticationResponse == null) {
             setTokenSSO(typeDocument, identification);
         }
-        return token;
+        return authenticationResponse;
+    }
+
+    public static String getAccessTokenSSO(String typeDocument, String identification) {
+        if (tokenSSO == null) {
+            setTokenSSO(typeDocument, identification);
+        }
+        return tokenSSO;
     }
 
     public static boolean hasCredentialsSSO(String typeDocument, String identification) {

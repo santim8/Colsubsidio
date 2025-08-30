@@ -1,0 +1,7 @@
+<suite name = "colsubsidio2">
+    <test name="test_apis">
+        <classes>
+            <class name="execution.runner.TestRunner"/>
+        </classes>
+    </test>
+</suite>
