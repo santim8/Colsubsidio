@@ -33,3 +33,8 @@ se pone text o clik o como se hace buenas pracitcaS?
 -limpiar codigo con waits
 -adjuntar al archvio resultado
 -organizar imagen figma
+
+-validate all services
+-all data from BDD
+-multi thread execution
+-report from bdd
