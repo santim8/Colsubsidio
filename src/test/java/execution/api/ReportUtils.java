@@ -11,8 +11,8 @@ import static reports.ExtentManager.getExtentTest;
 
 public class ReportUtils {
     public static void reportPreapproved(PreApprovedResponse preApprovedResponse, Response response) {
-        ExtentLogger.info("<b>Preapproved Credit</b>");
         if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Preapproved Credit</b>");
             if (response.getStatusCode() == 200) {
                 ExtentLogger.pass("the service preapproved is working correctly url: " + Constants.validationPreapproved);
                 if (preApprovedResponse.getData().isHasCredit()) {
@@ -29,8 +29,8 @@ public class ReportUtils {
 
     public static void reportValidatorRights(ValidatorRightsResponse validatorRightsResponse, String identification, Response response) {
 
-        ExtentLogger.info("<b>Validator Rights</b>");
         if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Validator Rights</b>");
             if (response.getStatusCode() != 200) {
                 ExtentLogger.fail("the service <b>Validation rights</b> is failing status: " + response.getStatusCode() + "url : " + Constants.validatorRights);
                 ExtentLogger.info("Response" + (response.jsonPath().get()));
@@ -60,8 +60,8 @@ public class ReportUtils {
     }
 
     public static void reportValidationCards(ValidationResponse validationResponse, Response response) {
-        ExtentLogger.info("<b>Card Validations</b>");
         if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Card Validations</b>");
             if (response.getStatusCode() != 200) {
                 ExtentLogger.fail("the service <b>Cards Validations</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationCards);
                 ExtentLogger.info("Response" + (response.jsonPath().get()));
@@ -91,8 +91,8 @@ public class ReportUtils {
     }
 
     public static void reportValidationListRestrictive(ValidationResponse validationResponse, Response response) {
-        ExtentLogger.info("<b>Restrictive List</b>");
         if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Restrictive List</b>");
             if (response.getStatusCode() != 200) {
                 ExtentLogger.fail("the service <b>Restrictive List</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationListRestrictive);
                 ExtentLogger.info("Response: " + response.jsonPath().get());
@@ -114,8 +114,8 @@ public class ReportUtils {
     }
 
     public static void reportValidationBizagi(ValidationResponse validationResponse, Response response) {
-        ExtentLogger.info("<b>Validation Bizagi</b>");
         if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Validation Bizagi</b>");
             if (response.getStatusCode() != 200) {
                 ExtentLogger.fail("the service <b>Validation Bizagi</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationListRestrictive);
                 ExtentLogger.info("Response: " + response.jsonPath().get());

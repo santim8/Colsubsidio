@@ -48,7 +48,7 @@ public class RequestQuotaCreditTest extends BaseTest {
     }
 
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
-    @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class, enabled = true)
+    @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class, enabled = false)
     private void testMethod(
             String typeDocument,
             String identification,

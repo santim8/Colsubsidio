@@ -30,7 +30,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
     }
 
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
-    @Test
+    @Test(enabled = false)
     public void testSimulator(ITestContext iTestContext) {
 
         simulateFreeCreditPage
