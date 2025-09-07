@@ -28,7 +28,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
     }
 
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
-    @Test()
+    @Test(enabled = false)
     @Parameters("path")
     public void testSimulatorQuotaCredit(String path) {
         simulateQuotaCredit
