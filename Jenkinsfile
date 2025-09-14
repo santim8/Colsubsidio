@@ -7,7 +7,7 @@ pipeline {
     stage('Chulo')  {
         steps {
             echo 'echo Test' 
-            mvn test "-Dtest=execution.runner.TestRunner"
+            bat mvn test "-Dtest=execution.runner.TestRunner"
         } 
     }
   }
