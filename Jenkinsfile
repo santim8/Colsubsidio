@@ -5,7 +5,10 @@ pipeline {
         steps { echo 'Esto Build' } 
     }
     stage('Chulo')  {
-        steps { echo 'echo Test'  } 
+        steps {
+            echo 'echo Test' 
+            mvn test "-Dtest=execution.runner.TestRunner"
+        } 
     }
   }
 }
