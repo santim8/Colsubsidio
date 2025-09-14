@@ -2,10 +2,10 @@ pipeline {
     agent any
      stages {
     stage('Papi') {
-        steps { bat 'Esto Build' } 
+        steps { echo 'Esto Build' } 
     }
     stage('Chulo')  {
-        steps { bat 'echo Test'  } 
+        steps { echo 'echo Test'  } 
     }
   }
 }
