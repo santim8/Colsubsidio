@@ -51,6 +51,20 @@ public class ServicesUtils {
         return requestGet(baseApigee + "/api/v2/afiliacion/validador", headers, params);
     }
 
+    public static Response validatorSiifResponse(String typeDocument, String identification) {
+        String token = getAccessToken();
+        String json = """
+                {
+                "idCaso": "a6d876f9c98d90",
+                "documento": { "tipo": "%s", "numero": "%s" }}
+                """.formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification);
+
+        Map<String, String> headers = Map.of(
+                "Authorization", "Bearer " + token
+        );
+
+        return requestPost(baseApigee + "/api/v2/credito/elegibilidad/productos", headers, null, json);
+    }
 
     public static Response validationCardsResponse(String typeDocument, String identification) {
 
@@ -67,7 +81,10 @@ public class ServicesUtils {
     public static Response validationListRestrictiveResponse(String typeDocument, String identification) {
         String token = getAccessToken();
         String body = """ 
-                {"numeroDocumento" : "%s", "tipoDocumento": "%s"}
+                {
+                "numeroDocumento" : "%s"
+                ,"tipoDocumento": "%s"
+                }
                 """.formatted(identification, EnumDocumentTypeServices.getCode(typeDocument).getValue());
 
         Map<String, String> headers = Map.of(
@@ -105,8 +122,6 @@ public class ServicesUtils {
                 "  }\n" +
                 "}";
 
-        Response tin = requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/internal/v1/affiliation-validations", headers, null, json);
-        var data = tin.jsonPath();
-        return tin;
+        return requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/internal/v1/affiliation-validations", headers, null, json);
     }
 }

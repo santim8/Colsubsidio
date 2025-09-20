@@ -128,7 +128,17 @@ final public class DataProviderUtil {
     @DataProvider(name = "fillDataApi")
     public static Object[][] fillDataApi() {
         return new Object[][]{
-//                {"CC", "1023013504"}, //
+//
+//                {"CE", "895652"},
+//                {"CE", "382429"},
+
+//                {"CC", "1010169616"},
+//                {"CC", "1010179176"},
+//                {"CC", "1020750217"}, //
+//                {"CC", "79826658"},
+//                {"CC", "17976879"},
+//                {"CC", "63477452"},
+//                {"CC", "1030547999"}, //
 //                {"CC", "10867250341017"},
 //                {"CC", "79562819"},//funciona
 //                {"CC", "79492132"},//funciona
@@ -149,14 +159,13 @@ final public class DataProviderUtil {
 //                {"CC", "1030533215"},
 //                {"CC", "673434"},
 //                {"CC", "9154736"},
-                //////
 //                {"CC", "7277260"},
 //                {"CC", "1054551595"},
-                ///
-//               {"CC", 79562819}   //funciona Vida crediticia Fija
-//               {"CC", 79492132}   //funciona Vida crediticia Fija
-//                {"CC", "1100519"}, //funciona Cupo Normal Fija y Variable
+//               {"CC", "79562819"},   //funciona Vida crediticia Fija
+//               {"CC", "79492132"},   //funciona Vida crediticia Fija
+//                {"CC", "1100519"}, //funciona Cupo Normal Fija y Variable ///paila
 //                {"CC", "2968928"}, //funciona Cupo Variable Fija y Variable
+//                {"CC", "1108454611"}, //Subsidio
 
                 /// Listas
 //                {"CC", "1067941636"},
@@ -209,9 +218,11 @@ final public class DataProviderUtil {
 //                {"CC", "4584739"},
 //                {"CC", "43620290"},
 //                {"CC", "79988339"},
-
-
-                {"CC","1104637957"},
+//
+//
+//                {"CC","1104637957"},
+//                {"CC", "1010169616"},
+//                {"CC", "79826658"},
 //                {"CC","1104637957"},
 //                {"CC","1104638007"},
 //                {"CC","1104638007"},
@@ -261,6 +272,134 @@ final public class DataProviderUtil {
 //                {"CC","1024539415"}, // temporal
 //                {"CC","1030691913"}, // temporal
 //                {"CC","94379336"}
+
+                /////////
+//                {"CC", "19184974"},
+//                {"CC", "1026276044"},
+//                {"CC", "36496078"},
+
+
+                /// ///////////////
+//                {"CC", "1030691913"},
+//                {"CC", "1012434884"},
+//                {"CC", "1015410690"},
+//                {"CC", "1012434884"},
+//                {"CC", "1015445931"},
+//                {"CC", "1049564184"},
+//                {"CC", "1116433032"},
+//                {"CC", "1130675547"},
+//                {"CC", "12539777"},
+//                {"CC", "16361849"},
+//                {"CC", "16495202"},
+//                {"CC", "16536885"},
+//                {"CC", "16540154"},
+//                {"CC", "16549265"},
+//                {"CC", "16670949"},
+//                {"CC", "16789461"},
+//                {"CC", "17636441"},
+//                {"CC", "18514924"},
+//                {"CC", "18595577"},
+//                {"CC", "19479324"},
+//                {"CC", "6000305"},
+//                {"CC", "72041856"},
+//                {"CC", "77030697"},
+//                {"CC", "79153157"},
+//                {"CC", "79276198"},
+//                {"CC", "79309826"},
+//                {"CC", "80009997"},
+//                {"CC", "8025874"},
+//                {"CC", "86056233"},
+//                {"CC", "93133209"},
+//                {"CC", "98557816"},
+//                {"CC", "98560559"},
+//                {"CE", "345760"},
+//                {"CE", "380400"},
+//                {"CE", "983718"}
+
+
+                // ——— ascards validations———
+//                {"CC", "19184974"},   //K FUNCIONA TODO: VALIDAR
+//                {"CC", "10216105"},   //Funciona
+//                {"CC", "52526685"},   //O funciona
+//                {"CC", "80833648"},   //C
+//                {"CC", "10216105"},   //RANGO EDAD
+//                {"CC", "1023944601"}, //Y funciona
+//                {"CC", "19246507"},   //M
+//                {"CC", "1024539415"}, //CONTRASEÑA INCORRECTA
+//                {"CC", "51951303"},   //CONTRASEÑA INCORRECTA
+//                {"CC", "1013595547"}, //titular no afiliado
+//                {"CC", "1040111207"}, //CONTRASEÑA INCORRECTA
+//                {"CC", "52634111"},   //CONTRASEÑA INCORRECTA
+//                {"CC", "37713491"},   //L TODO: BUG
+//                {"CC", "51736584"},   //no está afiliado
+//                {"CC", "79584194"},   //R
+//                {"CC", "547911"},     //B
+//                {"CC", "80810798"},   //tarjeta mal
+//                {"CC", "28917807"},   //F
+//                {"CC", "52429413"},   //tarjeta mal
+//                {"CC", "20156603"},   //no tiene contraseña
+//                {"CC", "80179000"},   //validar muestra error generico
+//                {"CC", "1016051607"}, //validar muestra error generico amparado
+//                {"CC", "51951303"},   //no está afiliado, RETIRADO
+//                {"CC", "1040111204"}, //estado T
+//                {"CC", "1030636396"}, //estado T
+//                {"CC", "1097397286"}, //estado T
+//                {"CC", "1140814422"}, //estado Z
+//                {"CC", "11259747"},   //estado J
+//                {"CC", "41336668"},   //estado J
+
+
+                ///SIFFF
+//                Corriente 1    SI
+//                Vencido 2      NO
+//                Base Cero 3       NO
+//                Deudas de dudoso recaudo 4    NO
+//                Deudas de dudoso recaudo 5    NO
+//                Deudas de dudoso recaudo 6    NO
+//                Deudas de dudoso recaudo 7    NO
+//                CANCELADO 900     SI
+//                CASTIGADO 901     NO
+//                CASTIGADO 10     SI
+
+/// /////////////////////
+//
+                {"CC", "1004921429"},     //Estado 1
+                {"CC", "1069734918"},   //estado 1
+                {"CC", "38140673"},   //Vencido 2 INVALID REQUIREMENTS
+                {"CC", "1121834528"},   //Vencido 2 INVALID REQUIREMENTS
+                {"CC", "1018475123"},   //6
+                {"CC", "1014195485"},   //900
+                {"CC", "1090438416"},   //estado 901
+                {"CC", "1102842070"},   //Base Cero 3 INVALID REQUIREMENTS
+                {"CC", "1102842070"},   //Base Cero 3 INVALID REQUIREMENTS
+
+                {"CC", "1022329396"},   //estado 901
+                {"CC", "1102842070"},   //estado 3
+                {"CC", "1014195485"},   //estado 901
+                {"CC", "75103224"},   //estado 901
+
+                {"CC", "1069734918"},   //estado 901
+                {"CC", "1018475123"},   //estado 3
+                {"CC", "1030597301"},   //estado 901
+                {"CC", "1090438416"},   //estado 901
+                {"CC", "1026572621"},   //Cancelado 900 OK
+                {"CC", "1033778271"},   //Cancelado 900 OK
+                {"CC", "38140673"},   //Vencido 2 INVALID REQUIREMENTS
+                {"CC", "79941488"},   //Cancelado  900 INVALID REQUIREMENTS
+                {"CC", "1022366366"},   //Castigado 901 INVALID REQUIREMENTS
+                {"CC", "1016040256"},   //Base Cero 3 INVALID REQUIREMENTS
+                {"CC", "3188084"},      //Cancelado 900 OK
+                {"CC", "79947963"},     //Castigado 901 INVALID REQUIREMENTS
+                {"CC", "51782912"},     //Castigado 901 INVALID REQUIREMENTS
+                {"CC", "1004921429"},     //Estado 1
+                {"CC", "26009337"},     //Estado 6
+
+
+//                estado : corriente = 1
+//               estado : eliminado = 10
+//                estado : deudas de dudoso = 7
+//                estado : deudas de dudoso = 5
+
 
         };
     }
