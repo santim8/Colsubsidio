@@ -1,31 +1,12 @@
 pipeline {
     agent any
-    stages {
-        stage("Clean Up"){
-            steps {
-                deleteDir()
-            }
-        }
-        stage("Clone Repo") {
-            steps {
-                sh "test"
-                sh "git clone https://github.com/santim8/Colsubsidio.git"
-            }
-        }
-        stage("Build"){
-            steps {
-                dir("simple-java-maven-app") {
-                    sh "mvn clean install"
-                }
-            }
-        }
-
-        stage("Test"){
-            steps {
-                dir("simple-java-maven-app"){
-                    sh "mvn test"
-                }
-            }
-        }
     }
+    stage('Chulo')  {
+        steps {
+            echo 'echo Test' 
+         //   bat 'mvn test -Dtest=execution.runner.TestRunner'
+            bat 'mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suitTest.xml'
+        } 
+    }
+  }
 }
