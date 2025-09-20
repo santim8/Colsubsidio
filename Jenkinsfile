@@ -8,7 +8,7 @@ pipeline {
         }
         stage("Clone Repo") {
             steps {
-                sh ""
+                sh "test"
                 sh "git clone https://github.com/santim8/Colsubsidio.git"
             }
         }

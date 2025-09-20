@@ -13,17 +13,17 @@ public class ReportUtils {
     public static void reportPreapproved(PreApprovedResponse preApprovedResponse, Response response) {
         if (getExtentTest() != null) {
             ExtentLogger.info("<b>Preapproved Credit</b>");
-            if (response.getStatusCode() == 200) {
+            if (response.getStatusCode() == 200 && preApprovedResponse != null) {
                 ExtentLogger.pass("the service preapproved is working correctly url: " + Constants.validationPreapproved);
                 if (preApprovedResponse.getData().isHasCredit()) {
                     ExtentLogger.pass("✅The user has PREAPPROVED");
                 } else {
                     ExtentLogger.fail("❌The user has NOT PREAPPROVED");
                 }
+                ExtentLogger.infoJsonPretty(preApprovedResponse.getData());
             } else {
                 ExtentLogger.fail("The service <b>Preapproved</b> is not working url:" + Constants.validationPreapproved);
             }
-            ExtentLogger.infoJsonPretty(preApprovedResponse.getData());
         }
     }
 
@@ -48,6 +48,14 @@ public class ReportUtils {
                         ExtentLogger.pass("✅The user is TITULAR");
                     } else {
                         ExtentLogger.fail("❌The user is NOT TITULAR");
+                    }
+
+                    String edadStr = validatorRightsResponse.getData().get(0).getAfiliado().getEdad();
+                    int edad = Integer.parseInt(edadStr);
+                    if (edad >= 18) {
+                        ExtentLogger.pass("✅The user is Adult");
+                    } else {
+                        ExtentLogger.fail("❌The user is NOT Adult");
                     }
                 } else {
                     ExtentLogger.fail("❌The user is NOT affiliate");
@@ -96,15 +104,34 @@ public class ReportUtils {
             if (response.getStatusCode() != 200) {
                 ExtentLogger.fail("the service <b>Restrictive List</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationListRestrictive);
                 ExtentLogger.info("Response: " + response.jsonPath().get());
-                return;
-            }
-            if (validationResponse.getResultado().get(0).getCodigo() == 200) {
+            } else if (validationResponse.getResultado().get(0).getCodigo() == 200) {
                 ExtentLogger.pass("The service restrictive list is working url: " + Constants.validationListRestrictive);
                 String state = validationResponse.getResultadoValidacion().getEstado();
                 if (state.equals("OK")) {
                     ExtentLogger.pass("✅The user pass the LIST RESTRICTIVE validations");
                 } else if (state.equals("VALIDATION_ERROR")) {
                     ExtentLogger.fail("❌The user DOES NOT pass LIST RESTRICTIVE validations");
+                } else {
+                    ExtentLogger.info("❌the state is not recognized");
+                }
+                ExtentLogger.infoJsonPretty(validationResponse.getResultadoValidacion());
+            }
+        }
+    }
+
+    public static void reportValidationSiifValidation(ValidationResponse validationResponse, Response response) {
+        if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Siif validation</b>");
+            if (response.getStatusCode() != 200) {
+                ExtentLogger.fail("the service <b>Siif validation</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationListRestrictive);
+                ExtentLogger.info("Response: " + response.jsonPath().get());
+            } else if (validationResponse.getResultado().get(0).getCodigo() == 200) {
+                ExtentLogger.pass("The service Siif validation is working url: " + Constants.validationListRestrictive);
+                String state = validationResponse.getResultadoValidacion().getEstado();
+                if (state.equals("OK")) {
+                    ExtentLogger.pass("✅The user pass the Siif validation validations");
+                } else if (state.equals("VALIDATION_ERROR")) {
+                    ExtentLogger.fail("❌The user DOES NOT pass Siif validation validations");
                 } else {
                     ExtentLogger.info("❌the state is not recognized");
                 }

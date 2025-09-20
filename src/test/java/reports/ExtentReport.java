@@ -39,7 +39,6 @@ public final class ExtentReport {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void createTest(String testCaseName) {
