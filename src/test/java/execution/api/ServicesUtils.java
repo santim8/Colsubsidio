@@ -113,14 +113,16 @@ public class ServicesUtils {
                 "x-api-key", "ecn24ysGnZ4X17cU5lX4Q9gyFvyPR7fD1DkwR7I7"
         );
 
-
-        String json = "{\n" +
-                "  \"idCaso\": \"564789\",\n" +
-                "  \"documento\": {\n" +
-                "    \"tipo\": \"CO1C\",\n" +
-                "    \"numero\": \"1026564175\"\n" +
-                "  }\n" +
-                "}";
+        String json =
+                """
+                    {
+                    "idCaso": "564789",
+                    "documento": {
+                        "tipo": "%s",
+                        "numero": "%s"
+                        }
+                    }
+                """.formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification);
 
         return requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/internal/v1/affiliation-validations", headers, null, json);
     }

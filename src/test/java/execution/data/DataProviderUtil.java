@@ -129,9 +129,8 @@ final public class DataProviderUtil {
     public static Object[][] fillDataApi() {
         return new Object[][]{
 //
-//                {"CE", "895652"},
+//                {"CC", "51782912"},
 //                {"CE", "382429"},
-
 //                {"CC", "1010169616"},
 //                {"CC", "1010179176"},
 //                {"CC", "1020750217"}, //
@@ -161,8 +160,8 @@ final public class DataProviderUtil {
 //                {"CC", "9154736"},
 //                {"CC", "7277260"},
 //                {"CC", "1054551595"},
-//               {"CC", "79562819"},   //funciona Vida crediticia Fija
-//               {"CC", "79492132"},   //funciona Vida crediticia Fija
+//                {"CC", "79562819"},   //funciona Vida crediticia Fija
+//                {"CC", "79492132"},   //funciona Vida crediticia Fija
 //                {"CC", "1100519"}, //funciona Cupo Normal Fija y Variable ///paila
 //                {"CC", "2968928"}, //funciona Cupo Variable Fija y Variable
 //                {"CC", "1108454611"}, //Subsidio
@@ -218,8 +217,6 @@ final public class DataProviderUtil {
 //                {"CC", "4584739"},
 //                {"CC", "43620290"},
 //                {"CC", "79988339"},
-//
-//
 //                {"CC","1104637957"},
 //                {"CC", "1010169616"},
 //                {"CC", "79826658"},
@@ -272,8 +269,6 @@ final public class DataProviderUtil {
 //                {"CC","1024539415"}, // temporal
 //                {"CC","1030691913"}, // temporal
 //                {"CC","94379336"}
-
-                /////////
 //                {"CC", "19184974"},
 //                {"CC", "1026276044"},
 //                {"CC", "36496078"},
@@ -362,37 +357,44 @@ final public class DataProviderUtil {
 //                CASTIGADO 10     SI
 
 /// /////////////////////
+
+//                {"CC", "1004921429"},     //Estado 2 x
+//                {"CC", "1069734918"},   //Estado 1 x
+//                {"CC", "38140673"},   //Estado 1 x
+//                {"CC", "1018475123"},   //Estado 6 x
+                {"CC", "79301399"},   //900 NO tiene tarjeta
+//                {"CC", "1022366366"},   //estado 901 tiene tarjeta
+//                {"CC", "1016080743"},   //Estado 3 tiene tarjeta
+//                {"CC", "1235339266"},    //Estado 5 tiene tarjeta
+//                {"CC", "1122651592"},   //Estado 3 tiene tarjeta
 //
-                {"CC", "1004921429"},     //Estado 1
-                {"CC", "1069734918"},   //estado 1
-                {"CC", "38140673"},   //Vencido 2 INVALID REQUIREMENTS
-                {"CC", "1121834528"},   //Vencido 2 INVALID REQUIREMENTS
-                {"CC", "1018475123"},   //6
-                {"CC", "1014195485"},   //900
-                {"CC", "1090438416"},   //estado 901
-                {"CC", "1102842070"},   //Base Cero 3 INVALID REQUIREMENTS
-                {"CC", "1102842070"},   //Base Cero 3 INVALID REQUIREMENTS
+//                {"CC", "1022329396"},   //estado 901
+//                {"CC", "1102842070"},   //estado 3
+//                {"CC", "1014195485"},   //estado 901
+//                {"CC", "75103224"},   //estado 901
+//                {"CC", "1069734918"},   //estado 901
+//                {"CC", "1018475123"},   //estado 3
+//                {"CC", "1030597301"},   //estado 901
+//                {"CC", "1090438416"},   //estado 901
+//                {"CC", "1026572621"},   //Cancelado 900 OK
+//                {"CC", "1033778271"},   //Cancelado 900 OK
+//                {"CC", "38140673"},   //Vencido 2 INVALID REQUIREMENTS
+//                {"CC", "79941488"},   //Cancelado  900 INVALID REQUIREMENTS
+//                {"CC", "1022366366"},   //Castigado 901 INVALID REQUIREMENTS
+//                {"CC", "1016040256"},   //Base Cero 3 INVALID REQUIREMENTS
+//                {"CC", "3188084"},      //Cancelado 900 OK
+//                {"CC", "79947963"},     //Castigado 901 INVALID REQUIREMENTS
+//                {"CC", "51782912"},     //NO tarjeta
+//                {"CC", "1004921429"},     //Estado 1
+//                {"CC", "26009337"},     //Estado 6
+//                 Estado 3
+                {"CC", "52015092"},
+                {"CC", "52085696"},
+                {"CC", "79301399"},
+                {"CC", "79604965"},
 
-                {"CC", "1022329396"},   //estado 901
-                {"CC", "1102842070"},   //estado 3
-                {"CC", "1014195485"},   //estado 901
-                {"CC", "75103224"},   //estado 901
-
-                {"CC", "1069734918"},   //estado 901
-                {"CC", "1018475123"},   //estado 3
-                {"CC", "1030597301"},   //estado 901
-                {"CC", "1090438416"},   //estado 901
-                {"CC", "1026572621"},   //Cancelado 900 OK
-                {"CC", "1033778271"},   //Cancelado 900 OK
-                {"CC", "38140673"},   //Vencido 2 INVALID REQUIREMENTS
-                {"CC", "79941488"},   //Cancelado  900 INVALID REQUIREMENTS
-                {"CC", "1022366366"},   //Castigado 901 INVALID REQUIREMENTS
-                {"CC", "1016040256"},   //Base Cero 3 INVALID REQUIREMENTS
-                {"CC", "3188084"},      //Cancelado 900 OK
-                {"CC", "79947963"},     //Castigado 901 INVALID REQUIREMENTS
-                {"CC", "51782912"},     //Castigado 901 INVALID REQUIREMENTS
-                {"CC", "1004921429"},     //Estado 1
-                {"CC", "26009337"},     //Estado 6
+//                 Estado 4
+                {"CC", "1120924374"}, //
 
 
 //                estado : corriente = 1

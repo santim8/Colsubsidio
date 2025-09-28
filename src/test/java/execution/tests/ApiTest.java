@@ -15,10 +15,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import reports.ExtentLogger;
-import utils.Constants;
 import utils.baseTest.BaseRequest;
-
-import static reports.ExtentManager.getExtentTest;
 
 public class ApiTest extends BaseRequest {
     private SoftAssert softly;
@@ -54,14 +51,14 @@ public class ApiTest extends BaseRequest {
         ExtentLogger.infoJsonPretty(TokenManager.getAccessTokenSSOModel(typeDocument, identification));
 
 //        3)Bizagi
-//        Response response = ServicesUtils.validationBizagi(typeDocument, identification);
-//        softly.assertEquals(response.getStatusCode(), 200, "The service Card Validations is failing");
-//        ValidationResponse validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
-//        ReportUtils.reportValidationBizagi(validationResponse, response);
-//        ReportUtils.reportValidationBizagi(validationResponse, response);
+        Response response = ServicesUtils.validationBizagi(typeDocument, identification);
+        softly.assertEquals(response.getStatusCode(), 200, "The service Card Validations is failing");
+        ValidationResponse validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
+        ReportUtils.reportValidationBizagi(validationResponse, response);
+        ReportUtils.reportValidationBizagi(validationResponse, response);
 
 //        2)Validator rights
-        Response response = ServicesUtils.validatorRightsResponse(typeDocument, identification);
+        response = ServicesUtils.validatorRightsResponse(typeDocument, identification);
         softly.assertEquals(response.getStatusCode(), 200, "The service Validation Rights is failing");
         ValidatorRightsResponse validatorRightsResponse = response.getStatusCode() == 200 ? response.as(ValidatorRightsResponse.class) : null;
         ReportUtils.reportValidatorRights(validatorRightsResponse, identification, response);
@@ -69,7 +66,7 @@ public class ApiTest extends BaseRequest {
 //        3)Card validation
         response = ServicesUtils.validationCardsResponse(typeDocument, identification);
         softly.assertEquals(response.getStatusCode(), 200, "The service Card Validations is failing");
-        ValidationResponse validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
+        validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
         ReportUtils.reportValidationCards(validationResponse, response);
 
         // 4) Restrictive list
@@ -85,11 +82,10 @@ public class ApiTest extends BaseRequest {
         ReportUtils.reportValidationSiifValidation(validationResponse, response);
 
 //         5) Preapproved
-//        response = ServicesUtils.validationPreapprovedResponse(typeDocument, identification);
-//        softly.assertEquals(response.getStatusCode(), 200, "Status should be 200");
-//        PreApprovedResponse preApprovedResponse = response.getStatusCode() == 200 ? response.as(PreApprovedResponse.class) : null;
-//        ReportUtils.reportPreapproved(preApprovedResponse, response);
-//
+        response = ServicesUtils.validationPreapprovedResponse(typeDocument, identification);
+        softly.assertEquals(response.getStatusCode(), 200, "Status should be 200");
+        PreApprovedResponse preApprovedResponse = response.getStatusCode() == 200 ? response.as(PreApprovedResponse.class) : null;
+        ReportUtils.reportPreapproved(preApprovedResponse, response);
 
         //Send the Asserts
         softly.assertAll();
