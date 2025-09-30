@@ -29,7 +29,11 @@ This framework provides automated testing capabilities for Colsubsidio services,
    cd colsubsidioFramework
    ```
 
-3. Install dependencies:
+3. Update configuration files with your credentials:
+   - Edit `src/test/resources/figma.properties` with your Figma API access token
+   - Edit `src/test/resources/sdk.properties` with your authentication credentials
+
+4. Install dependencies:
    ```
    mvn clean install
    ```
@@ -47,12 +51,42 @@ colsubsidioFramework/
 │       └── resources/
 │           ├── features/             # Cucumber feature files
 │           ├── schemas/              # JSON schemas for validation
-│           └── suits/                # TestNG XML suite files
+│           ├── suits/                # TestNG XML suite files
+│           ├── figma.properties      # Figma API configuration
+│           └── sdk.properties        # SDK authentication configuration
 ├── libs/                             # External libraries
 ├── DockerFile                        # Docker configuration
 ├── Jenkinsfile                       # Jenkins pipeline definition
 └── pom.xml                           # Maven configuration
 ```
+
+### Configuration Files
+The project requires configuration of the following properties files:
+
+#### `figma.properties`
+Contains Figma API configuration:
+```properties
+figma.base.uri=https://api.figma.com/
+figma.images.base.path=v1/images/
+figma.access.token=YOUR_FIGMA_ACCESS_TOKEN
+```
+
+#### `sdk.properties`
+Contains SDK authentication credentials:
+```properties
+#Global
+magnifai.port=443
+magnifai.host=https://console.magnifai.es
+magnifai_auth.host=https://auth-console.magnifai.es
+
+#Auth
+auth.port=443
+auth.user=YOUR_USERNAME
+auth.password=YOUR_PASSWORD
+auth.token.threshold.seconds=120
+```
+
+**Important**: Always replace the placeholder credentials with your own before running tests.
 
 ## Running Tests
 ### Local Execution
