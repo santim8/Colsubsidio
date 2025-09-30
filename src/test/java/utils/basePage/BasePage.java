@@ -1,18 +1,20 @@
 package utils.basePage;
 
-import execution.enums.WaitStrategy;
-import execution.magnifie.MagnifaiManager;
-import execution.repositories.ExplicitWaitFactory;
+import execution.core.enums.WaitStrategy;
+import execution.core.magnifie.MagnifaiManager;
+import execution.core.magnifie.MagnifaiMethods;
+import utils.ExplicitWaitFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import reports.ExtentLogger;
+import execution.reports.ExtentLogger;
 import utils.ScreenshotUtils;
-
 import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.Duration;
 
 
@@ -107,11 +109,16 @@ public class BasePage {
     }
 
     public <T> T setDimensionsScreen(T currentPage, int width, int height) throws IOException, InterruptedException {
-        MagnifaiManager.setViewPort(width,height);
+        MagnifaiManager.setViewPort(width, height);
+        return currentPage;
+    }
+
+    public <T> T figmaCompare(T currentPage, String fileName, String testName, File imageFigma, BigDecimal minSimilarity) throws IOException, InterruptedException {
+        MagnifaiMethods.figmaCompare(ScreenshotUtils.getScreenshotFile(fileName), imageFigma, minSimilarity, testName);
         return currentPage;
     }
 
     public void setDimensionsScreen(int width, int height) throws IOException, InterruptedException {
-        MagnifaiManager.setViewPort(width,height);
+        MagnifaiManager.setViewPort(width, height);
     }
 }

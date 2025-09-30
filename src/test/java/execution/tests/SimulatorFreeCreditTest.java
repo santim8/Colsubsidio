@@ -1,8 +1,8 @@
 package execution.tests;
 
-import execution.annotations.FrameworkAnnotation;
-import execution.enums.CategoryType;
-import execution.enums.EnumSimulatorQuota;
+import execution.core.annotations.FrameworkAnnotation;
+import execution.core.enums.CategoryType;
+import execution.core.enums.EnumSimulatorQuota;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
 import execution.pages.pagesSimulatorFreeCredit.SimulatorFreeCreditStep2;
 import execution.pages.pagesSimulatorFreeCredit.SimulatorFreeCreditStep3;
@@ -30,7 +30,7 @@ public class SimulatorFreeCreditTest extends BaseTest {
     }
 
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testSimulator(ITestContext iTestContext) {
 
         simulateFreeCreditPage

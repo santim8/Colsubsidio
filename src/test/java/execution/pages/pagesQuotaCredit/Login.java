@@ -1,7 +1,7 @@
 package execution.pages.pagesQuotaCredit;
 
-import execution.enums.EnumDocumentType;
-import execution.enums.WaitStrategy;
+import execution.core.enums.EnumDocumentType;
+import execution.core.enums.WaitStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

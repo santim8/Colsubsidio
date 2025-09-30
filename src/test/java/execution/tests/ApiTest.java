@@ -1,23 +1,23 @@
 package execution.tests;
 
 
-import execution.annotations.FrameworkAnnotation;
-import execution.api.ReportUtils;
+import execution.core.annotations.FrameworkAnnotation;
+import execution.reports.ReportUtils;
 import execution.api.ServicesUtils;
 import execution.api.TokenManager;
 import execution.data.DataProviderUtil;
-import execution.enums.CategoryType;
+import execution.core.enums.CategoryType;
 import io.restassured.response.Response;
-import org.example.models.PreApprovedResponse;
-import org.example.models.ValidationResponse;
-import org.example.models.ValidatorRightsResponse;
+import org.colsubsidio.framework.models.PreApprovedResponse;
+import org.colsubsidio.framework.models.ValidationResponse;
+import org.colsubsidio.framework.models.ValidatorRightsResponse;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import reports.ExtentLogger;
-import utils.baseTest.BaseRequest;
+import execution.reports.ExtentLogger;
+import utils.baseTest.BaseTestRequest;
 
-public class ApiTest extends BaseRequest {
+public class ApiTest extends BaseTestRequest {
     private SoftAssert softly;
 
     @BeforeTest()

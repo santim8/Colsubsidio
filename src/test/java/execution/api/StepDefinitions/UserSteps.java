@@ -7,9 +7,9 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.models.PreApprovedResponse;
-import org.example.models.ValidationResponse;
-import org.example.models.ValidatorRightsResponse;
+import org.colsubsidio.framework.models.PreApprovedResponse;
+import org.colsubsidio.framework.models.ValidationResponse;
+import org.colsubsidio.framework.models.ValidatorRightsResponse;
 import org.junit.Assert;
 import utils.Constants;
 

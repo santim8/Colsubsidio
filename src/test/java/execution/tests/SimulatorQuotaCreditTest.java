@@ -1,9 +1,9 @@
 package execution.tests;
 
-import execution.annotations.FrameworkAnnotation;
-import execution.enums.CategoryType;
-import execution.enums.EnumSimulatorQuota;
-import execution.enums.EnumsRouteFlows;
+import execution.core.annotations.FrameworkAnnotation;
+import execution.core.enums.CategoryType;
+import execution.core.enums.EnumSimulatorQuota;
+import execution.core.enums.EnumsRouteFlows;
 import execution.pages.pagesSimulatorQuotaCredit.SimulateQuotaFreeCredit;
 import execution.pages.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep2;
 import execution.pages.pagesSimulatorQuotaCredit.SimulatorQuotaCreditStep3;
@@ -28,7 +28,7 @@ public class SimulatorQuotaCreditTest extends BaseTest {
     }
 
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
-    @Test(enabled = false)
+    @Test(enabled = true)
     @Parameters("path")
     public void testSimulatorQuotaCredit(String path) {
         simulateQuotaCredit
