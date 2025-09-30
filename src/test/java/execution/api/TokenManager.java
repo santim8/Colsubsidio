@@ -1,12 +1,12 @@
 package execution.api;
 
-import execution.enums.EnumDocumentType;
+import execution.core.enums.EnumDocumentType;
 import io.restassured.config.EncoderConfig;
 import io.restassured.response.Response;
-import org.example.models.AuthenticationResponse;
+import org.colsubsidio.framework.models.AuthenticationResponse;
 import java.util.Map;
 import static io.restassured.RestAssured.*;
-import static utils.baseTest.BaseRequest.requestPost;
+import static utils.baseTest.BaseTestRequest.requestPost;
 
 public class TokenManager {
     private static final String CLIENT_ID = "cmnGMnGPVKLJwWLfWxqFCSZOR5hIjhWb";

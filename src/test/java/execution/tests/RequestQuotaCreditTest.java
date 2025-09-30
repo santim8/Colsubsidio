@@ -1,25 +1,24 @@
 package execution.tests;
 
 
-import execution.annotations.FrameworkAnnotation;
+import execution.core.annotations.FrameworkAnnotation;
 import execution.data.DataProviderUtil;
-import execution.enums.CategoryType;
-import execution.enums.EnumsDropdowns;
-import execution.figma.FigmaImageManager;
-import execution.figma.FigmaScreensData;
-import execution.magnifie.MagnifaiMethods;
+import execution.core.enums.CategoryType;
+import execution.core.enums.EnumsDropdowns;
+import execution.core.figma.FigmaImageManager;
+import execution.core.figma.FigmaScreensData;
 import execution.pages.pagesQuotaCredit.Login;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding1;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding2;
 import execution.pages.pagesQuotaCredit.SolicitudCreditoOnboarding3;
 import execution.pages.pagesQuotaCredit.requestFlow.RequestCreditStep1;
 import execution.pages.pagesSimulatorFreeCredit.SimulateFreeCreditPage;
-import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.ScreenshotUtils;
 import utils.basePage.BasePage;
 import utils.baseTest.BaseTest;
+
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -33,8 +32,9 @@ public class RequestQuotaCreditTest extends BaseTest {
     private SolicitudCreditoOnboarding3 solicitudCreditoOnboarding3;
     private RequestCreditStep1 requestCreditStep1;
     private SimulateFreeCreditPage simulateFreeCreditPage;
-    private static String FIGMAID = "MaMffi0VsnR9vSPsSHo3A9";
-    private File figmaImage;
+    private File imageLogging;
+    private File imageOnboardingOne;
+    private File imageOnboardingTwo;
 
     @BeforeMethod
     private void setUp() throws Exception {
@@ -45,10 +45,13 @@ public class RequestQuotaCreditTest extends BaseTest {
         solicitudCreditoOnboarding3 = new SolicitudCreditoOnboarding3(driver);
         requestCreditStep1 = new RequestCreditStep1(driver);
         simulateFreeCreditPage = new SimulateFreeCreditPage(driver);
+        imageLogging = FigmaImageManager.getInstance().getImage(FigmaScreensData.SCREEN1.getKey());
+        imageOnboardingOne = FigmaImageManager.getInstance().getImage(FigmaScreensData.SCREEN_ONBOARDING_ONE.getKey());
+        imageOnboardingTwo = FigmaImageManager.getInstance().getImage(FigmaScreensData.SCREEN_ONBOARDING_TWO.getKey());
     }
 
     @FrameworkAnnotation(authors = "Santiago Correa", testCategory = {CategoryType.SMOKE, CategoryType.REGRESSION}, userStory = "103023", testID = "10023")
-    @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class, enabled = false)
+    @Test(dataProvider = "fillTheCheckoutStepOne", dataProviderClass = DataProviderUtil.class, enabled = true)
     private void testMethod(
             String typeDocument,
             String identification,
@@ -62,18 +65,24 @@ public class RequestQuotaCreditTest extends BaseTest {
                 .actionMessage(solicitudCreditoOnboarding1, "Validating content Onboarding Step 1")
                 .validateTitle()
                 .takeScreenshotReport(solicitudCreditoOnboarding1, "Screen Onboarding Step 1")
+                .takeScreenshotAndSaveItLocal(solicitudCreditoOnboarding1, "onboarding_first_screen")
+                .figmaCompare(solicitudCreditoOnboarding1, "onboarding_first_screen", "Validanting with figma screen 1", imageOnboardingOne, new BigDecimal("80"))
                 .clickNextButton();
 
         solicitudCreditoOnboarding2
                 .actionMessage(solicitudCreditoOnboarding2, "Validating content Onboarding Step 2")
                 .validateTitle()
                 .takeScreenshotReport(solicitudCreditoOnboarding2, "Screen Onboarding Step 2")
+                .takeScreenshotAndSaveItLocal(solicitudCreditoOnboarding2, "onboarding_second_screen")
+                .figmaCompare(solicitudCreditoOnboarding1, "onboarding_second_screen", "Validanting with figma screen 2", imageOnboardingTwo, new BigDecimal("80"))
                 .clickNextButton();
 
         solicitudCreditoOnboarding3
                 .actionMessage(solicitudCreditoOnboarding3, "Validating content Onboarding Step 1")
                 .validateTitle()
                 .takeScreenshotReport(solicitudCreditoOnboarding3, "Screen Onboarding Step 3")
+                .takeScreenshotAndSaveItLocal(solicitudCreditoOnboarding3, "onboarding_third_screen")
+                .figmaCompare(solicitudCreditoOnboarding3, "onboarding_third_screen", "Validanting with figma screen 3", imageOnboardingOne, new BigDecimal("80"))
                 .clickStartButton();
 
         login
@@ -81,13 +90,12 @@ public class RequestQuotaCreditTest extends BaseTest {
                 .actionMessage(login, "The Login screen is open")
                 .enterIdentification(identification)
                 .enterPassword(password)
-                .takeScreenshotAndSaveItLocal(login, "testNew")
+                .takeScreenshotAndSaveItLocal(login, "login_screen")
+                .figmaCompare(login, "login_screen", "Validanting with figma screen 3", imageLogging, new BigDecimal("80"))
                 .takeScreenshotReport(login, "Login screen")
                 .waitInteractionUser(login, "Please complete the login/CAPTCHA in browser.\nClick OK to continue automation.")
                 .actionMessage(login, "The login is succesfully");
 
-        File imageLogging = FigmaImageManager.getInstance().getImage(FigmaScreensData.SCREEN1.getKey());
-        MagnifaiMethods.figmaCompare(ScreenshotUtils.getScreenshotFile("testNew"), imageLogging, new BigDecimal("80"), "validating figma comparison");
 /*
         simulateFreeCreditPage
                 .markCheckboxTermsAndConditions()

@@ -1,12 +1,12 @@
 package execution.api;
 
-import execution.enums.EnumDocumentTypeServices;
+import execution.core.enums.EnumDocumentTypeServices;
 import io.restassured.response.Response;
 import java.util.Map;
 import static execution.api.TokenManager.getAccessToken;
 import static io.restassured.RestAssured.baseURI;
-import static utils.baseTest.BaseRequest.requestGet;
-import static utils.baseTest.BaseRequest.requestPost;
+import static utils.baseTest.BaseTestRequest.requestGet;
+import static utils.baseTest.BaseTestRequest.requestPost;
 
 public class ServicesUtils {
 

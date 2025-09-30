@@ -3,11 +3,14 @@ package utils.baseTest;
 import com.globant.aut.javacore.validators.exceptions.AugmentedException;
 import com.globant.aut.sdk.AutSDKProperties;
 import com.globant.aut.sdk.figma.FigmaProperties;
-import execution.driver.Driver;
-import execution.driver.DriverManager;
-import execution.magnifie.MagnifaiManager;
+import execution.core.driver.Driver;
+import execution.core.driver.DriverManager;
+import execution.core.magnifie.MagnifaiManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -15,6 +18,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class BaseTest {
     protected WebDriver driver;
+
+    private final Logger logger = LogManager.getLogger(BaseTest.class);
 
     @BeforeSuite
     public void beforeSuite() throws IOException {
@@ -27,7 +32,7 @@ public class BaseTest {
             try {
                 FigmaProperties.loadPropertyFile("figma.properties");
             } catch (IOException e) {
-//                logger.error("Error loading Figma properties", e);
+                logger.error("Error loading Figma properties", e);
             }
         });
 
@@ -35,7 +40,7 @@ public class BaseTest {
             try {
                 AutSDKProperties.loadPropertyFile("sdk.properties");
             } catch (IOException e) {
-//                logger.error("Error loading SDK properties", e);
+                logger.error("Error loading SDK properties", e);
             }
         });
 

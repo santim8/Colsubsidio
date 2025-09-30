@@ -1,6 +1,6 @@
 package execution.pages.pagesQuotaCredit.requestFlow;
 
-import execution.enums.WaitStrategy;
+import execution.core.enums.WaitStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

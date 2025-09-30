@@ -1,6 +1,6 @@
 package utils;
 
-import execution.driver.DriverManager;
+import execution.core.driver.DriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
