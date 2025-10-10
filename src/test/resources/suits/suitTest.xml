@@ -4,11 +4,11 @@
         <listener class-name="execution.core.listeners.RetryListener"/>
     </listeners>
 
-    <!--    <test name="Validation Service User">-->
-    <!--        <classes>-->
-    <!--            <class name="execution.tests.ApiTest"/>-->
-    <!--        </classes>-->
-    <!--    </test>-->
+    <test name="Validation Service User">-->
+        <classes>-->
+                <class name="execution.tests.ApiTest"/>-->
+        </classes>-->
+    </test>-->
 
     <!--    <test name="Simulator Free Credit">-->
     <!--        <classes>-->
@@ -36,14 +36,14 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-    <test name="Request Quota Credit QA">
-        <classes>
-            <parameter name="url"
-                       value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding"/>
-            <parameter name="path" value="optionNumberAmount"/>
-            <class name="execution.tests.RequestQuotaCreditTest"/>
-        </classes>
-    </test>
+    <!-- <test name="Request Quota Credit QA">
+        <!-- <classes>
+        <!--     <parameter name="url"
+      <!--                  value="https://nginx-transacciones.platform-test-external.colsubsidio.com/creditos/solicitud/cupo-de-credito/onboarding"/>
+       <!--      <parameter name="path" value="optionNumberAmount"/>
+       <!--      <class name="execution.tests.RequestQuotaCreditTest"/>
+   <!--      </classes>
+<!--     </test>
 
     <!--    <test name="Request Quota Credit DEV">-->
     <!--        <classes>-->
