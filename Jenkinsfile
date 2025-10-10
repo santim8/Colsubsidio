@@ -1,6 +1,5 @@
 pipeline {
     agent any
-    }
     stage('Chulo')  {
         steps {
             echo 'echo Test' 
@@ -8,5 +7,5 @@ pipeline {
             bat 'mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suitTest.xml'
         } 
     }
-  }
 }
+
