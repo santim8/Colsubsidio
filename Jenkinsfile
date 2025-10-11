@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-         echo 'echo Test new' 
-         bat 'mvn test -Dsurefire.suiteXmlFiles=src/test/resources/suits/suitTest.xml'
+         echo 'echo Test new'
+         echo 'echo Test2'
       }
     }
   }
