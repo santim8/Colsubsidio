@@ -1,7 +1,7 @@
 package execution.reports;
 
 import io.restassured.response.Response;
-import org.colsubsidio.framework.models.PreApprovedResponse;
+import org.colsubsidio.framework.models.PreApprovedResponseAndApproved;
 import org.colsubsidio.framework.models.ValidationResponse;
 import org.colsubsidio.framework.models.ValidatorRightsResponse;
 import utils.Constants;
@@ -9,17 +9,20 @@ import utils.Constants;
 import static execution.reports.ExtentManager.getExtentTest;
 
 public class ReportUtils {
-    public static void reportPreapproved(PreApprovedResponse preApprovedResponse, Response response) {
+    public static void reportPreapproved(PreApprovedResponseAndApproved preApprovedResponse, Response response) {
         if (getExtentTest() != null) {
             ExtentLogger.info("<b>Preapproved Credit</b>");
             if (response.getStatusCode() == 200 && preApprovedResponse != null) {
                 ExtentLogger.pass("the service preapproved is working correctly url: " + Constants.validationPreapproved);
-                if (preApprovedResponse.getData().isHasCredit()) {
-                    ExtentLogger.pass("✅The user has PREAPPROVED");
-                } else {
-                    ExtentLogger.fail("❌The user has NOT PREAPPROVED");
-                }
-                ExtentLogger.infoJsonPretty(preApprovedResponse.getData());
+//                if (preApprovedResponse.getData().isHasCredit()) {
+//                    ExtentLogger.pass("✅The user has PREAPPROVED");
+//                } else {
+//                    ExtentLogger.fail("❌The user has NOT PREAPPROVED");
+//                }
+                ExtentLogger.infoJsonPretty(preApprovedResponse.getDocumento());
+//                ExtentLogger.infoJsonPretty(preApprovedResponse.getCampanas().get(0).getTIPO_CAMPANA());
+                ExtentLogger.infoJsonPretty(preApprovedResponse.getCampanas().get(0));
+
             } else {
                 ExtentLogger.fail("The service <b>Preapproved</b> is not working url:" + Constants.validationPreapproved);
             }
@@ -75,7 +78,7 @@ public class ReportUtils {
                 return;
             }
             if (validationResponse.getResultado().get(0).getCodigo() == 200) {
-                ExtentLogger.pass("The service validate rights is working url: " + Constants.validationCards);
+                ExtentLogger.pass("The service validate cards is working url: " + Constants.validationCards);
                 String state = validationResponse.getResultadoValidacion().getEstado();
                 if (state.equals("OK")) {
                     ExtentLogger.pass("✅The user pass the ASKARD validations");
@@ -138,6 +141,26 @@ public class ReportUtils {
             }
         }
     }
+
+    public static void reportRequestValidation(ValidationResponse validationResponse, Response response) {
+        if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Validation Request</b>");
+            if (response.getStatusCode() != 200) {
+                ExtentLogger.fail("the service <b>Validation Request</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validationListRestrictive);
+                ExtentLogger.info("Response: " + response.jsonPath().get());
+            } else if (validationResponse.getResultado().get(0).getCodigo() == 200) {
+                ExtentLogger.pass("The service Validation Request is working url: " + Constants.validationListRestrictive);
+                String state = validationResponse.getResultadoValidacion().getEstado();
+                if (state.equals("OK")) {
+                    ExtentLogger.pass("✅The user pass the Validation Request validations");
+                } else if (state.equals("VALIDATION_ERROR")) {
+                    ExtentLogger.fail("❌The user DOES NOT pass Validation Request validations");
+                } else {
+                    ExtentLogger.info("❌the state is not recognized");
+                }
+                ExtentLogger.infoJsonPretty(validationResponse.getResultadoValidacion());
+            }
+        }}
 
     public static void reportValidationBizagi(ValidationResponse validationResponse, Response response) {
         if (getExtentTest() != null) {

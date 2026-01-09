@@ -1,5 +1,7 @@
 package execution.api;
 
+import execution.core.enums.EnumDocumentType;
+import execution.core.enums.EnumDocumentTypePreApprovedAndApproved;
 import execution.core.enums.EnumDocumentTypeServices;
 import io.restassured.response.Response;
 import java.util.Map;
@@ -66,6 +68,25 @@ public class ServicesUtils {
         return requestPost(baseApigee + "/api/v2/credito/elegibilidad/productos", headers, null, json);
     }
 
+    public static Response validateRequestResponse(String typeDocument, String identification) {
+        String token = getAccessToken();
+        String body = """
+                {
+                    "documento": {
+                        "tipo": "%s",
+                        "numero": "%s"
+                    },
+                    "canalOrigen": "WEB"
+                }""".formatted(EnumDocumentType.getCode(typeDocument).getValue(), identification);
+
+        Map<String, String> headers = Map.of(
+                "Authorization", "Bearer " + token,
+                "accept", "application/json"
+        );
+
+        return requestPost("https://colsubsidio-test.apigee.net/api/v2/autenticacion/usuarios/login/personas", headers, null, body);
+    }
+
     public static Response validationCardsResponse(String typeDocument, String identification) {
 
         Map<String, String> headers = Map.of(
@@ -98,6 +119,14 @@ public class ServicesUtils {
         return requestGet(basePlatformExt + "/loans/loans/external/v1/preapproved/%s/%s".formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification), null, null);
     }
 
+    public static Response validationPreapprovedAndApprovedResponse(String typeDocument, String identification) {
+        Map<String, String> headers = Map.of(
+                "x-api-key", "ecn24ysGnZ4X17cU5lX4Q9gyFvyPR7fD1DkwR7I7"
+
+        );
+        return requestGet(basePlatformInt + "/loans/eligibility/internal/v1/campaigns/%s/%s".formatted(EnumDocumentTypePreApprovedAndApproved.getCode(typeDocument).getValue(), identification), headers, null);
+    }
+
     public Response getOffers(String typeDocument, String identification) {
         Map<String, String> headers = Map.of(
                 "Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQMTAzMDU5MzU5Nl8yIiwiY3VzdG9tZXIiOnsiZG9jdW1lbnROdW1iZXIiOiIxMDMwNTkzNTk2IiwiZG9jdW1lbnRUeXBlIjoiMiIsInRva2VuSWQiOiJBUUlDNXdNMkxZNFNmY3g3Ym5SczAycUpSMVZ6alNfNHJFVk01ZzZ4c2tXd0Y0WS4qQUFKVFNRQUNNREVBQWxOTEFCUXROekl6TWpVNE1USXdNVGcxT1RFNU56UTBOUS4uKiIsInRlbGVwaG9uZU51bWJlciI6Iis1NzMyMjM5ODQwOTYiLCJtYWlsIjoicHJ1ZWJhcmV0b21hOEBwb3dlcnNjcmV3cy5jb20iLCJ0aW1lU2Vzc2lvbiI6IjYwIiwidXNlcm5hbWUiOiJQMTAzMDU5MzU5Nl8yIiwiZmlyc3ROYW1lIjoiUHJ1ZWJhIiwibGFzdE5hbWUiOiJyZXQifSwiaWF0IjoxNzU1NjI0NDM0LCJleHAiOjE3NTU2MjgwMzR9.vXOBqYAmjUM_iXkdxCMgfp_exra2-DRVITa58Jvdg7y5aB-h5Xr3juPy_6YFRgfZ6vWaWAMKqCbNQCP9rfjQ9A",
@@ -115,14 +144,14 @@ public class ServicesUtils {
 
         String json =
                 """
-                    {
-                    "idCaso": "564789",
-                    "documento": {
-                        "tipo": "%s",
-                        "numero": "%s"
-                        }
-                    }
-                """.formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification);
+                            {
+                            "idCaso": "564789",
+                            "documento": {
+                                "tipo": "%s",
+                                "numero": "%s"
+                                }
+                            }
+                        """.formatted(EnumDocumentTypeServices.getCode(typeDocument).getValue(), identification);
 
         return requestPost("https://platform-test-internal.colsubsidio.com/loans/eligibility/internal/v1/affiliation-validations", headers, null, json);
     }
