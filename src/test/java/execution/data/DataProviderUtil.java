@@ -128,8 +128,18 @@ final public class DataProviderUtil {
     @DataProvider(name = "fillDataApi")
     public static Object[][] fillDataApi() {
         return new Object[][]{
-//
-//                {"CC", "51782912"},
+
+//                {"CE", "446444"},
+//                {"CE", "673434"},
+//                {"CE", "415319"},
+//                {"CE", "604626"},
+//                {"CE", "1007413"},
+//                {"CC", "80163761"},
+//                {"CC", "91156652"},
+//                {"CE", "446444"},
+//                {"CC", "79562819"},
+//                {"CC", "79562819"},
+//                {"CC", "79562819"},
 //                {"CE", "382429"},
 //                {"CC", "1010169616"},
 //                {"CC", "1010179176"},
@@ -362,7 +372,7 @@ final public class DataProviderUtil {
 //                {"CC", "1069734918"},   //Estado 1 x
 //                {"CC", "38140673"},   //Estado 1 x
 //                {"CC", "1018475123"},   //Estado 6 x
-                {"CC", "79301399"},   //900 NO tiene tarjeta
+//                {"CC", "79301399"},   //900 NO tiene tarjeta
 //                {"CC", "1022366366"},   //estado 901 tiene tarjeta
 //                {"CC", "1016080743"},   //Estado 3 tiene tarjeta
 //                {"CC", "1235339266"},    //Estado 5 tiene tarjeta
@@ -388,20 +398,86 @@ final public class DataProviderUtil {
 //                {"CC", "1004921429"},     //Estado 1
 //                {"CC", "26009337"},     //Estado 6
 //                 Estado 3
-                {"CC", "52015092"},
-                {"CC", "52085696"},
-                {"CC", "79301399"},
-                {"CC", "79604965"},
+//                {"CC", "52015092"},
+//                {"CC", "52085696"},
+//                {"CC", "79301399"},
+//                {"CC", "79604965"},
 
 //                 Estado 4
-                {"CC", "1120924374"}, //
+//                {"CC", "1120924374"}, //
+
+                /// ///////////////////////////////////New codes
+//                {"CC", "13617086"},   // Code A
+//                {"CC", "52970147"},   // Code B
+//                {"CC", "53090127"},   // Code C
+//                {"CC", "79209440"},   // Code D
+//                {"CC", "79837324"},   // Code F
+//                {"CC", "52784932"},   // Code G
+//                {"CC", "79528108"},   // Code I
+//                {"CC", "35414229"},   // Code J
+//                {"CC", "79449686"},   // Code K
+//                {"CC", "37713491"},   // Code L
+//                {"CC", "41478750"},   // Code M
+//                {"CC", "51683314"},   // Code N
+//                {"CC", "1095915781"}, // Code O
+//                {"CC", "55169220"},   // Code P
+//                {"CC", "79560689"},   // Code R
+//                {"CC", "5322900346"}, // Code T
+//                {"CC", "51760693"},   // Code V
+//                {"CC", "20202266"},   // Code W
+//                {"CC", "20500981"},   // Code Y
+//                {"CC", "20156603"},   // Code 1
+//                {"CC", "31937142"},   // Code 2
+//                {"CC", "32557892"},   // Code 3
+//                {"CC", "51810488"},   // Code 7
+//                {"CC", "79143841"},   // Code 9
+
+//                {"CC", "51646912"},    // Code 3 - PERDIDA
+//                {"CC", "51815492"},    // Code 7 - CAMBIO DE CLAVE OBLIGATORIO
+//                {"CC", "41454221"},    // Code 2 - ROBADA
+//                {"CC", "80141342"},    // Code 2-I - TARJETA ROBADA / CUPO INACTIVO
+//                {"CC", "39581030"},    // Code 2-V - TARJETA ROBADA / CUPO DEVOLUCIÓN VOLUNTARIA
+//                {"CC", "51606592"},    // Code 4 - BLOQUEO PREVENTIVO COLSUBSIDIO
+//                {"CC", "52966724"},    // Code 0 - PENDIENTE POR ACTIVAR
+//                {"CC", "1097397286"},  // Code S - SOBRECUPO / SUSPENDIDO
+
+ ///////////data aprobados en firme y preaprobados
+
+//                {"CC", "1040111207"},   // PREAPROBADO CUPO NORMAL NO VIGENTE
+//                {"CC", "1075662894"},   // OFERTA EN FIRME INICIA TU VIDA CREDITICIA NO VIGENTE
+//                {"CC", "80764109"},     // OFERTA EN FIRME CUPO NORMAL NO VIGENTE
+//                {"CE", "256726"},       // OFERTA EN FIRME CUPO NORMAL VIGENTE CE
+//                {"CE", "281111"},       // OFERTA EN FIRME CUPO NORMAL NO VIGENTE CE
+//                {"CE", "285632"},       // PREAPROBADO CONSUMO VIGENTE SIN PREAPROBADO CUPO
+//                {"CE", "304706"},       // PREAPROBADO CUPO NORMAL VIGENTE
+//                {"CC", "52544835"},     // OFERTA EN FIRME CUPO NORMAL VIGENTE Y PREAPROBADO CUPO NORMAL NO VIGENTE
+//                {"CC", "192492"},       // OFERTA EN FIRME CUPO NORMAL VIGENTE
+//                {"CC", "1003844571"},   // OFERTA EN FIRME CUPO NORMAL VIGENTE
+//                {"CC", "1023940045"},   // OFERTA EN FIRME CUPO SUBSIDIO NO VIGENTE
+//                {"CC", "1003908455"},   // OFERTA EN FIRME CUPO NORMAL VIGENTE Y OFERTA EN FIRME CUPO SUBSIDIO NO VIGENTE
+//                {"CE", "343929"},   // OFERTA EN FIRME CUPO NORMAL VIGENTE Y OFERTA EN FIRME CUPO SUBSIDIO NO VIGENTE
+
+//                {"CC", "10151820"},
+//                {"CC", "1003844571"}, // OFERTA EN FIRME CUPO SUBSIDIO VIGENTE
+//                {"CC", "1003635154"}, // OFERTA EN FIRME BAJO MONTO VIGENTE
+//                {"CC", "286454"},     // PREAPROBADO CUPO SUBSIDIO VIGENTE
+//                {"CC", "368882"}      // PREAPROBADO BAJO MONTO VIGENTE
 
 
-//                estado : corriente = 1
-//               estado : eliminado = 10
-//                estado : deudas de dudoso = 7
-//                estado : deudas de dudoso = 5
 
+//                {"CC", "1075662894"}, //56 INICIA TU VIDA CREDITICIA(195) y 56 inicia Vida crediticia(2600), diferente cupo
+//                {"CC", "1003844571"}, //56 INICIA TU VIDA CREDITICIA(195) y 56 inicia Vida crediticia(2600), diferente cupo
+//                {"CC", "1075662894"},
+
+//                {"CC", "1003844571"},
+//                {"CC", "1023940045"}, //55 cupo subisidio y 56 vida crediticia
+//                {"CC", "1003908455"},
+//                {"CC", "91156652"},
+//                {"CC", "1048847599"},
+
+                {"CC", "1003908455"},
+                {"CE", "384185"},
+                {"CE", "256726"},
 
         };
     }
