@@ -3,9 +3,13 @@ package execution.api;
 import execution.core.enums.EnumDocumentType;
 import execution.core.enums.EnumDocumentTypePreApprovedAndApproved;
 import execution.core.enums.EnumDocumentTypeServices;
+import execution.core.enums.EnumDocumentTypeValidateRequest;
 import io.restassured.response.Response;
+
 import java.util.Map;
+
 import static execution.api.TokenManager.getAccessToken;
+import static execution.api.TokenManager.getAccessTokenSSO;
 import static io.restassured.RestAssured.baseURI;
 import static utils.baseTest.BaseTestRequest.requestGet;
 import static utils.baseTest.BaseTestRequest.requestPost;
@@ -69,7 +73,7 @@ public class ServicesUtils {
     }
 
     public static Response validateRequestResponse(String typeDocument, String identification) {
-        String token = getAccessToken();
+        String token = getAccessTokenSSO(typeDocument, identification);
         String body = """
                 {
                     "documento": {
@@ -77,14 +81,14 @@ public class ServicesUtils {
                         "numero": "%s"
                     },
                     "canalOrigen": "WEB"
-                }""".formatted(EnumDocumentType.getCode(typeDocument).getValue(), identification);
+                }""".formatted(EnumDocumentTypeValidateRequest.getCode(typeDocument).getValue(), identification);
 
         Map<String, String> headers = Map.of(
-                "Authorization", "Bearer " + token,
+                "Authorization", token,
                 "accept", "application/json"
         );
 
-        return requestPost("https://colsubsidio-test.apigee.net/api/v2/autenticacion/usuarios/login/personas", headers, null, body);
+        return requestPost("https://platform-test-external.colsubsidio.com/loans/req-mgr/external/v1/product/2/request/validate-request", headers, null, body);
     }
 
     public static Response validationCardsResponse(String typeDocument, String identification) {

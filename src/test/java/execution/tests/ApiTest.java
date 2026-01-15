@@ -9,6 +9,7 @@ import execution.data.DataProviderUtil;
 import execution.core.enums.CategoryType;
 import io.restassured.response.Response;
 import org.colsubsidio.framework.models.PreApprovedResponseAndApproved;
+import org.colsubsidio.framework.models.ValidateRequestResponse;
 import org.colsubsidio.framework.models.ValidationResponse;
 import org.colsubsidio.framework.models.ValidatorRightsResponse;
 import org.testng.annotations.BeforeTest;
@@ -55,7 +56,7 @@ public class ApiTest extends BaseTestRequest {
         softly.assertEquals(response.getStatusCode(), 200, "The service Card Validations is failing");
         ValidationResponse validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
         ReportUtils.reportValidationBizagi(validationResponse, response);
-//
+
 //      2)Validator rights
         response = ServicesUtils.validatorRightsResponse(typeDocument, identification);
         softly.assertEquals(response.getStatusCode(), 200, "The service Validation Rights is failing");
@@ -68,27 +69,26 @@ public class ApiTest extends BaseTestRequest {
         validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
         ReportUtils.reportValidationCards(validationResponse, response);
 
-//        // 4) Restrictive list
+        // 4) Restrictive list
         response = ServicesUtils.validationListRestrictiveResponse(typeDocument, identification);
         softly.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
         validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
         ReportUtils.reportValidationListRestrictive(validationResponse, response);
-//
-//        // 5) Siff validation
+
+        // 5) Siff validation
         response = ServicesUtils.validatorSiifResponse(typeDocument, identification);
-        softly.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
+        softly.assertEquals(response.getStatusCode(), 200, "the service validation siff is not working");
         validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
         ReportUtils.reportValidationSiifValidation(validationResponse, response);
-//
-//        // 6) validate request
+
+        // 6) validate request
         response = ServicesUtils.validateRequestResponse(typeDocument, identification);
-        softly.assertEquals(response.getStatusCode(), 200, "the service restrictive list is not working");
-        validationResponse = response.getStatusCode() == 200 ? response.as(ValidationResponse.class) : null;
-        ReportUtils.reportRequestValidation(validationResponse, response);
+        softly.assertEquals(response.getStatusCode(), 202, "the service validate request is not working");
+        ValidateRequestResponse validateRequestResponse = response.getStatusCode() == 202 ? response.as(ValidateRequestResponse.class) : null;
+        ReportUtils.reportValidateRequest(validateRequestResponse, response);
 //
         // 7) Preapproved
         response = ServicesUtils.validationPreapprovedAndApprovedResponse(typeDocument, identification);
-        var tin = response.jsonPath();
         softly.assertEquals(response.getStatusCode(), 200, "Status should be 200");
         PreApprovedResponseAndApproved preApprovedResponse = response.getStatusCode() == 200 ? response.as(PreApprovedResponseAndApproved.class) : null;
         ReportUtils.reportPreapproved(preApprovedResponse, response);

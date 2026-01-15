@@ -2,6 +2,7 @@ package execution.reports;
 
 import io.restassured.response.Response;
 import org.colsubsidio.framework.models.PreApprovedResponseAndApproved;
+import org.colsubsidio.framework.models.ValidateRequestResponse;
 import org.colsubsidio.framework.models.ValidationResponse;
 import org.colsubsidio.framework.models.ValidatorRightsResponse;
 import utils.Constants;
@@ -14,15 +15,7 @@ public class ReportUtils {
             ExtentLogger.info("<b>Preapproved Credit</b>");
             if (response.getStatusCode() == 200 && preApprovedResponse != null) {
                 ExtentLogger.pass("the service preapproved is working correctly url: " + Constants.validationPreapproved);
-//                if (preApprovedResponse.getData().isHasCredit()) {
-//                    ExtentLogger.pass("✅The user has PREAPPROVED");
-//                } else {
-//                    ExtentLogger.fail("❌The user has NOT PREAPPROVED");
-//                }
-                ExtentLogger.infoJsonPretty(preApprovedResponse.getDocumento());
-//                ExtentLogger.infoJsonPretty(preApprovedResponse.getCampanas().get(0).getTIPO_CAMPANA());
-                ExtentLogger.infoJsonPretty(preApprovedResponse.getCampanas().get(0));
-
+                ExtentLogger.infoJsonPretty(preApprovedResponse);
             } else {
                 ExtentLogger.fail("The service <b>Preapproved</b> is not working url:" + Constants.validationPreapproved);
             }
@@ -160,7 +153,21 @@ public class ReportUtils {
                 }
                 ExtentLogger.infoJsonPretty(validationResponse.getResultadoValidacion());
             }
-        }}
+        }
+    }
+
+    public static void reportValidateRequest(ValidateRequestResponse validationResponse, Response response) {
+        if (getExtentTest() != null) {
+            ExtentLogger.info("<b>Validate Request</b>");
+            if (response.getStatusCode() != 202) {
+                ExtentLogger.fail("the service <b>Validate Request</b> is failing status: " + response.getStatusCode() + " url: " + Constants.validateRequest);
+                ExtentLogger.info("Response: " + response.jsonPath().get());
+            } else {
+                ExtentLogger.pass("The service Validate Request is working url: " + Constants.validationBizagi);
+            }
+            ExtentLogger.infoJsonPretty(validationResponse);
+        }
+    }
 
     public static void reportValidationBizagi(ValidationResponse validationResponse, Response response) {
         if (getExtentTest() != null) {
