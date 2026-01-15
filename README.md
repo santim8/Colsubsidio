@@ -114,9 +114,3 @@ The project includes Jenkins pipeline configuration for automated test execution
 - Detailed test reporting
 - CI/CD integration
 - Reusable test components
-
-## License
-[Specify License]
-
-## Contact
-[Provide Contact Information]
